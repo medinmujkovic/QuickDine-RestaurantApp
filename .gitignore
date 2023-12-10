@@ -1,5 +1,6 @@
 # Default ignored files
 .idea
+README.md
 target
 /shelf/
 /.idea/workspace.xml

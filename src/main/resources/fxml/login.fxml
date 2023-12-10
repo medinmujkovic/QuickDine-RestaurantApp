@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane prefHeight="235.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LoginController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="156.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="259.0" />
+      <ColumnConstraints />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="245.0" minHeight="0.0" prefHeight="243.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ImageView fitHeight="256.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2">
+         <image>
+            <Image url="@../img/restaurant-background-2ez77umko2vj5w021.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="transparentImageView" fitHeight="296.0" fitWidth="292.0" opacity="0.5" preserveRatio="true" GridPane.columnIndex="1">
+         <image>
+            <Image url="@../img/restaurant-background-2ez77umko2vj5w022.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="235.0" prefWidth="324.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="20" fitWidth="20" >
+                     <image>
+                        <Image url="@../img/username_icon.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="usernameId" promptText="Username">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="20" fitWidth="20">
+                     <image>
+                        <Image url="@../img/password_icon.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField promptText="Password">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </PasswordField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Button fx:id="loginId" defaultButton="true" mnemonicParsing="false" onAction="#loginAction" prefHeight="24.0" prefWidth="54.0" style="-fx-background-color: #363232;" text="Login" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                <Button cancelButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" style="-fx-background-color: #363232;" text="Register" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</GridPane>
