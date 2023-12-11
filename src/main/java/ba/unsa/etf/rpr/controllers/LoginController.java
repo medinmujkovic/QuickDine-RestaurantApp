@@ -16,8 +16,6 @@ public class LoginController {
 
 
     public void loginAction(ActionEvent actionEvent) {
-        //listener
-        //initialize
     }
 
     public LoginController() {

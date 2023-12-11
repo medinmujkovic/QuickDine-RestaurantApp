@@ -19,10 +19,10 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         stage.setTitle("Login");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setScene(new Scene(root,USE_COMPUTED_SIZE,USE_COMPUTED_SIZE));
 
         //stage.getIcons().add(new Image(""));
-        stage.setResizable(false);
+        stage.setResizable(false); //it should be resizable
         stage.show();
     }
 }

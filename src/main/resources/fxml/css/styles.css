@@ -1,0 +1,9 @@
+#usernameIcon, #passwordIcon{
+    /*make less blurry*/
+}
+
+#loginBtn, #registerBtn{
+    -fx-background-color: #363232;
+}
+
+
