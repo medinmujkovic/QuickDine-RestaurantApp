@@ -10,7 +10,7 @@ public class AdminPageController {
         this.username=username;
     }
 
-    public void initalize()
+    public void initialize()
     {
         adminUserId.setText(username);
     }

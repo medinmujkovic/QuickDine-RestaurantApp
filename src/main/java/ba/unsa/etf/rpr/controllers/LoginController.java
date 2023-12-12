@@ -1,11 +1,10 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.business.PasswordPattern;
-import ba.unsa.etf.rpr.business.UsernamePattern;
+import ba.unsa.etf.rpr.utils.PasswordPattern;
+import ba.unsa.etf.rpr.utils.UsernamePattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,8 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -63,12 +60,6 @@ public class LoginController {
                 invalidPasswordId.setText("");
             }
             else invalidPasswordId.setText("Invalid password!");
-        });
-        backgroundImage.sceneProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue!=null) {
-                backgroundImage.fitWidthProperty().bind(newValue.widthProperty());
-                backgroundImage.fitHeightProperty().bind(newValue.heightProperty());
-            }
         });
     }
 

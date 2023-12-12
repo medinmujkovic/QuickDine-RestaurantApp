@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.business;
+package ba.unsa.etf.rpr.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
