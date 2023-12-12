@@ -1,6 +1,6 @@
 # Default ignored files
 .idea
-src/main/java/ba.unsa.etf.rpr/business/.gitkeep
+src/.gitkeep
 README.md
 target
 /shelf/
