@@ -1,6 +1,17 @@
 # Default ignored files
 .idea
-src/.gitkeep
+src/main/java/ba.unsa.etf.rpr/business/.gitkeep
+src/main/java/ba.unsa.etf.rpr/dao/.gitkeep
+src/main/java/ba.unsa.etf.rpr/domain/.gitkeep
+src/main/java/ba.unsa.etf.rpr/exceptions/.gitkeep
+src/main/java/ba.unsa.etf.rpr/utils/.gitkeep
+src/main/java/ba.unsa.etf.rpr/.gitkeep
+src/main/java/.gitkeep
+src/main/.gitkeep
+src/test/java/ba.unsa.etf.rpr/business/.gitkeep
+src/test/java/ba.unsa.etf.rpr/.gitkeep
+src/test/java/.gitkeep
+src/test/.gitkeep
 README.md
 target
 /shelf/
