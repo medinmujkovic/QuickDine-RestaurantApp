@@ -6,4 +6,17 @@
     -fx-background-color: #363232;
 }
 
+#overlay{
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}
 
+#backgroundImage{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    max-width: 100%;
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}

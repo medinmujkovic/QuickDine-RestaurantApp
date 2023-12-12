@@ -11,11 +11,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="239.0" minWidth="448.0" prefHeight="239.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LoginController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="239.0" minWidth="448.0" prefHeight="239.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LoginController">
   <stylesheets>
      <URL value="@css/styles.css" />
   </stylesheets>
@@ -28,16 +29,12 @@
     <RowConstraints maxHeight="245.0" minHeight="0.0" prefHeight="243.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fitHeight="256.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backgroundImage" fitHeight="252.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/restaurant-background-2ez77umko2vj5w021.jpg" />
+            <Image url="@../img/restaurant-background-2ez77umko2vj5w02.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="transparentImageView" fitHeight="296.0" fitWidth="292.0" opacity="0.5" preserveRatio="true" GridPane.columnIndex="1">
-         <image>
-            <Image url="@../img/restaurant-background-2ez77umko2vj5w022.jpg" />
-         </image>
-      </ImageView>
+      <Pane fx:id="overlay" prefHeight="200.0" GridPane.columnIndex="1" />
       <VBox alignment="CENTER" prefHeight="235.0" prefWidth="324.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
          <children>
             <Label fx:id="loginTitle" text="Quick Dine">
@@ -65,7 +62,10 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="invaliduUsernameId" />
+            <Label fx:id="invaliduUsernameId" textFill="#ee1414">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font></Label>
             <HBox alignment="CENTER">
                <children>
                   <ImageView fx:id="passwordIcon" fitHeight="20" fitWidth="20" pickOnBounds="true" preserveRatio="true">
@@ -83,7 +83,7 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <Label fx:id="invalidPasswordId" />
+            <Label fx:id="invalidPasswordId" textFill="#ee1414" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <Button fx:id="loginBtn" defaultButton="true" mnemonicParsing="false" onAction="#loginAction" prefHeight="24.0" prefWidth="54.0" text="Login" textFill="WHITE">

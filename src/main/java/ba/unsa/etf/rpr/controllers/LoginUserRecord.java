@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.dao;
+package ba.unsa.etf.rpr.controllers;
 
 import java.io.Serializable;
 
