@@ -24,13 +24,15 @@ public class LoginController {
     public Button loginId;
     public TextField usernameId;
     public PasswordField passwordId;
-    public LoginUserRecord user;
+    public LoginUserMapper user;
     public Label invaliduUsernameId;
     public Label invalidPasswordId;
     public ImageView backgroundImage;
 
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
+        user.setUsernameId(usernameId.getText());
+        user.setPasswordId(passwordId.getText());
         if(usernameId.getText().equals("admin") && passwordId.getText().equals("admin")) {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminpage.fxml"));
@@ -46,6 +48,7 @@ public class LoginController {
     }
 
     public LoginController() {
+
     }
 
     @FXML
