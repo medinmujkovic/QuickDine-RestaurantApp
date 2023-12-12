@@ -24,11 +24,10 @@ public class LoginController {
     public Button loginId;
     public TextField usernameId;
     public PasswordField passwordId;
+    public LoginUserRecord user;
     public Label invaliduUsernameId;
     public Label invalidPasswordId;
     public ImageView backgroundImage;
-    private double xOffset = 0;
-    private double yOffset = 0;
 
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
@@ -39,9 +38,11 @@ public class LoginController {
             loader.setController(controller);
             stage.setTitle("Admin Page");
             stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setResizable(true); //it should be resizable
+            stage.setResizable(true);
             stage.show();
         }
+        if(usernameId.getText().isEmpty()) invaliduUsernameId.setText("Username required to login!");
+        if(passwordId.getText().isEmpty()) invalidPasswordId.setText("Password required to login!");
     }
 
     public LoginController() {
@@ -58,9 +59,9 @@ public class LoginController {
         });
         passwordId.textProperty().addListener((obs,oldValue,newValue)->{
             if(PasswordPattern.isValid(newValue)){
-                invaliduUsernameId.setText("");
+                invalidPasswordId.setText("");
             }
-            else invaliduUsernameId.setText("Invalid password!");
+            else invalidPasswordId.setText("Invalid password!");
         });
         backgroundImage.sceneProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue!=null) {
