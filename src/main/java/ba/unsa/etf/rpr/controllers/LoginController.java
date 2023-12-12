@@ -31,8 +31,6 @@ public class LoginController {
 
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
-        user.setUsernameId(usernameId.getText());
-        user.setPasswordId(passwordId.getText());
         if(usernameId.getText().equals("admin") && passwordId.getText().equals("admin")) {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminpage.fxml"));
