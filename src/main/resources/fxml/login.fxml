@@ -91,7 +91,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                <Button fx:id="registerBtn" cancelButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Register" textFill="WHITE">
+                <Button fx:id="registerBtn" cancelButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" onAction="#registerClick" text="Register" textFill="WHITE">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
