@@ -47,7 +47,7 @@ public class RegisterController {
             else invalidID.setText("Invalid birthdate!");
         });
         repeatPasswordID.textProperty().addListener((obs,oldValue,newValue)->{
-            if(!newValue.equals(passwordID.getText())){
+            if(newValue.equals(passwordID.getText())){
                 invalidID.setText("");
             }
             else invalidID.setText("Passwords do not match!");
