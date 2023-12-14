@@ -111,9 +111,19 @@
                         <Font name="Baskerville Old Face" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="dateOfBirthID" alignment="CENTER" prefWidth="190.0">
+                  <TextField fx:id="dayOfBirthID" alignment="CENTER" prefHeight="25.0" prefWidth="80.0">
                      <HBox.margin>
-                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="20.0" left="20.0" right="5.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="monthOfBirthID" alignment="CENTER" layoutX="150.0" layoutY="30.0" prefHeight="25.0" prefWidth="80.0">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="yearOfBirthID" alignment="CENTER" prefHeight="25.0" prefWidth="80.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="5.0" right="20.0" top="20.0" />
                      </HBox.margin>
                   </TextField>
                </children>
@@ -162,6 +172,14 @@
                            </font></Button>
                     </buttons>
                   </ButtonBar>
+                  <Label fx:id="invalidID" contentDisplay="RIGHT" maxHeight="100.0" maxWidth="144.0" minHeight="100.0" minWidth="100.0" prefHeight="100.0" prefWidth="144.0" textAlignment="CENTER" textFill="RED" wrapText="true">
+                     <font>
+                        <Font name="Baskerville Old Face" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Label>
                </children>
             </HBox>
          </children>
