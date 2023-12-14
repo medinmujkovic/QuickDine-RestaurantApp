@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.RegisterController">
+  <columnConstraints>
+    <ColumnConstraints />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="179.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="381.0" minWidth="10.0" prefWidth="370.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ImageView fitHeight="500.0" fitWidth="891.0" opacity="0.21" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+         <image>
+            <Image url="@../img/restaurant-background-2ez77umko2vj5w02.jpg" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="460.0" prefWidth="326.0" GridPane.columnIndex="2">
+         <children>
+            <HBox prefHeight="112.0" prefWidth="221.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="150.0" text="Full name" textAlignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="20.0" top="22.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Baskerville Old Face" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fullNameID" alignment="CENTER" prefWidth="190.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="112.0" prefWidth="221.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="150.0" text="Email" textAlignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="20.0" top="22.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Baskerville Old Face" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="emailID" alignment="CENTER" prefWidth="190.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="112.0" prefWidth="221.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="150.0" text="Username" textAlignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="20.0" top="22.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Baskerville Old Face" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameID" alignment="CENTER" prefHeight="25.0" prefWidth="190.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="138.0" prefWidth="235.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="150.0" text="Date of Birth" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets bottom="20.0" top="22.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Baskerville Old Face" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dateOfBirthID" alignment="CENTER" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="150.0" prefWidth="235.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="150.0" text="Password" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets bottom="20.0" top="22.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Baskerville Old Face" size="16.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="passwordID" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <HBox prefHeight="138.0" prefWidth="235.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="150.0" text="Repeat password" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets bottom="20.0" top="22.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Baskerville Old Face" size="16.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="repeatPasswordID" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <HBox prefHeight="150.0" prefWidth="235.0">
+               <children>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                    <buttons>
+                        <Button fx:id="registerButtonID" mnemonicParsing="false" onAction="#registerClick" text="Register">
+                           <font>
+                              <Font name="Baskerville Old Face" size="17.0" />
+                           </font></Button>
+                    </buttons>
+                  </ButtonBar>
+               </children>
+            </HBox>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+      </VBox>
+      <Label text="Quick Dine - BEST RESTAURANT APP EVER" wrapText="true" GridPane.columnIndex="1">
+         <font>
+            <Font name="Baskerville Old Face" size="41.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </Label>
+   </children>
+</GridPane>
