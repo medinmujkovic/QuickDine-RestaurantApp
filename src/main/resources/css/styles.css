@@ -4,21 +4,8 @@
 
 #loginBtn, #registerBtn{
     -fx-background-color: #363232;
-}
-
-#overlay{
-    -fx-background-color: rgba(255, 255, 255, 0.5);
-}
-
-#backgroundImage{
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    max-width: 100%;
-    height: auto;
-    background-position: center;
-    background-repeat: no-repeat;
+    -fx-pref-width: 90;
+    -fx-pref-height: 25;
 }
 
 .body{
@@ -27,4 +14,8 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 100% 100%;
+}
+
+.pane{
+    -fx-background-color: rgba(255, 255, 255, 0.6);
 }
