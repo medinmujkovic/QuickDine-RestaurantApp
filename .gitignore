@@ -1,7 +1,7 @@
 # Default ignored files
 .idea
-README.md
 target
+out
 /shelf/
 /.idea/workspace.xml
 # Editor-based HTTP Client requests
