@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.controllers.DTO.LoginRequest;
 import ba.unsa.etf.rpr.utils.PasswordPattern;
 import ba.unsa.etf.rpr.utils.UsernamePattern;
 import javafx.event.ActionEvent;
@@ -19,7 +20,6 @@ public class LoginController {
     public Label invaliduUsernameId;
     public Label invalidPasswordId;
     public ImageView backgroundImage;
-
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
         if(usernameId.getText().isEmpty()) invaliduUsernameId.setText("Username is required!");
