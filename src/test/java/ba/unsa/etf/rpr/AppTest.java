@@ -1,4 +1,5 @@
 package ba.unsa.etf.rpr;
 
-public class AppFX {
+public class AppTest {
+
 }
