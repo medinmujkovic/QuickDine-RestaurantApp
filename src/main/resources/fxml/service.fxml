@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane prefHeight="446.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.39996337890625" minWidth="10.0" prefWidth="203.1999755859375" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="645.6000213623047" minWidth="10.0" prefWidth="589.6000244140625" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="263.1999877929687" minHeight="10.0" prefHeight="120.00001831054688" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="372.6000106811524" minHeight="10.0" prefHeight="325.5999816894531" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <VBox prefHeight="134.0" prefWidth="203.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Label text="username" />
+            <Button mnemonicParsing="false" text="Home" />
+            <Button layoutX="10.0" layoutY="178.0" mnemonicParsing="false" text="Settings" />
+            <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" text="Sign out" />
+         </children>
+      </VBox>
+      <Pane prefHeight="400.0" prefWidth="590.0" GridPane.columnIndex="1">
+         <children>
+            <VBox prefHeight="121.0" prefWidth="582.0">
+               <children>
+                  <Label text="Customer Service Orders" />
+                  <HBox prefHeight="48.0" prefWidth="562.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Food" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Drinks" />
+                        <Button layoutX="159.0" layoutY="10.0" mnemonicParsing="false" text="Menus" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Name" />
+                        <Label layoutX="10.0" layoutY="10.0" text="Price" />
+                        <Label layoutX="42.0" layoutY="10.0" text="Status" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="50.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <VBox layoutX="10.0" layoutY="-52.0" prefHeight="134.0" prefWidth="203.0" GridPane.rowIndex="1">
+         <children>
+            <ListView prefHeight="200.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="80.0" />
+               </VBox.margin>
+            </ListView>
+            <Button mnemonicParsing="false" text="Checkout" />
+         </children>
+      </VBox>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+   </children>
+</GridPane>
