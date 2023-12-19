@@ -25,14 +25,16 @@ public class ServiceController {
 
 
     public void initialize() {
+        //Creating a list of menu items using the MenuRequest record
         ObservableList<MenuRequest> menuItems = FXCollections.observableArrayList(
                 new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),10.99),
                 new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),10.99),
                 new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),10.99)
         );
-
+        //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
-        MenuListId.setCellFactory(param -> new ListCell<MenuRequest>() {
+        //Displaying the view
+        MenuListId.setCellFactory(param->new ListCell<MenuRequest>() {
             @Override
             protected void updateItem(MenuRequest item, boolean empty) {
                 super.updateItem(item, empty);
