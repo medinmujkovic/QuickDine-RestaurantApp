@@ -2,9 +2,36 @@
     /*make less blurry*/
 }
 
-
 ImageView {
     -fx-effect: dropshadow(gaussian, #888888, 2, 0, 0, 0);
+}
+
+.list-cell:selected {
+    -fx-background-color: #3d2f2f;
+    -fx-border-color: #3d2f2f;
+    -fx-text-fill: white;
+}
+
+.list-cell:selected .text {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 0.3, 0, 0, 0);
+}
+
+Button {
+    -fx-background-color: #333333;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 12px;
+    -fx-padding: 6 10;
+    -fx-background-radius: 5;
+    -fx-border-color: #666666;
+    -fx-border-width: 0;
+}
+
+Button:pressed {
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0, 0, 1);
+}
+
+.Button:hover {
+    -fx-background-color: #555555;
 }
 
 #loginBtn, #registerBtn{

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="446.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ServiceController">
+<GridPane fx:id="serviceBackgroundId" prefHeight="446.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ServiceController">
    <stylesheets>
       <URL value="@../css/styles.css" />
    </stylesheets>
