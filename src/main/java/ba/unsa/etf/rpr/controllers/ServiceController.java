@@ -27,9 +27,11 @@ public class ServiceController {
     public void initialize() {
         //Creating a list of menu items using the MenuRequest record
         ObservableList<MenuRequest> menuItems = FXCollections.observableArrayList(
-                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),10.99),
-                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),10.99),
-                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),10.99)
+                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),1044.53,"Available"),
+                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),1044.53,"Available"),
+                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),1044.53,"Not Available"),
+                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),23444,"Not Available"),
+                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),0,"Not Available")
         );
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
@@ -48,9 +50,11 @@ public class ServiceController {
                     imageView.setFitWidth(80);
                     imageView.setFitHeight(80);
                     HBox hBox=new HBox();
+                    hBox.setSpacing(140);
                     hBox.getChildren().addAll(
                             new Label(item.name()),
-                            new Label("$"+item.price())
+                            new Label("$"+item.price()),
+                            new Label(item.Status())
                     );
                     hbox.getChildren().addAll(imageView,hBox);
                     setGraphic(hbox);
