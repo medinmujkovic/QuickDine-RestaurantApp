@@ -1,4 +1,4 @@
-QuickDine
+# QuickDine
 
 A Restauraunt App used for Managers, Customer Service and chefs for better management.
 
