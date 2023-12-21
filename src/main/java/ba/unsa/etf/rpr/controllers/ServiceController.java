@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import static ba.unsa.etf.rpr.utils.MenuRequestHelper.createMenuRequests;
+
 public class ServiceController {
     public Label FullNameId;
     public Button homeId;
@@ -26,13 +28,7 @@ public class ServiceController {
 
     public void initialize() {
         //Creating a list of menu items using the MenuRequest record
-        ObservableList<MenuRequest> menuItems = FXCollections.observableArrayList(
-                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),1044.53,"Available"),
-                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),1044.53,"Available"),
-                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),1044.53,"Not Available"),
-                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),23444,"Not Available"),
-                new MenuRequest("Pizza",new Image(getClass().getClassLoader().getResource("img/password_icon.png").toExternalForm()),0,"Not Available")
-        );
+        ObservableList<MenuRequest> menuItems=createMenuRequests();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view

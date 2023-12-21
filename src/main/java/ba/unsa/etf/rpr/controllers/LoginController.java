@@ -26,10 +26,6 @@ public class LoginController {
         if(passwordId.getText().isEmpty()) invalidPasswordId.setText("Password is required!");
     }
 
-    public LoginController() {
-
-    }
-
     @FXML
     public void initialize()
     {

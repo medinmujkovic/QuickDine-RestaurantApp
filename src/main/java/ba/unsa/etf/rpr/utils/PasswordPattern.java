@@ -9,7 +9,6 @@ public class PasswordPattern {
     private static final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
 
     public static boolean isValid(final String password) {
-        if(password.equals("admin")) return true;
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
