@@ -3,10 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -46,11 +43,13 @@ public class ServiceController {
                     imageView.setFitWidth(80);
                     imageView.setFitHeight(80);
                     HBox hBox=new HBox();
-                    hBox.setSpacing(140);
+                    hBox.setSpacing(70);
                     hBox.getChildren().addAll(
                             new Label(item.name()),
                             new Label("$"+item.price()),
-                            new Label(item.Status())
+                            new Label(item.Status()),
+                            new Button("Add"),
+                            new Spinner(0, 10, 0)
                     );
                     hbox.getChildren().addAll(imageView,hBox);
                     setGraphic(hbox);
