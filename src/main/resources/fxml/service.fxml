@@ -89,15 +89,18 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Label>
-                        <Label layoutX="42.0" layoutY="10.0" text="Status">
+                        <Label layoutX="42.0" layoutY="10.0" text="Amount">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Label>
-                        <Label layoutX="414.0" layoutY="19.0" text="Amount" />
+                        <Label layoutX="414.0" layoutY="19.0" text="Status" />
                      </children>
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
                   </HBox>
                </children>
             </VBox>
