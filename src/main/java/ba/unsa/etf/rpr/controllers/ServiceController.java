@@ -26,19 +26,22 @@ public class ServiceController {
     public Button CheckOutId;
     public ListView MenuListId;
 
+    public void setSelectedListId(ObservableList<MenuRequest> selectedItems ) {
+        SelectedListId.setItems(selectedItems);
+    }
 
     public void initialize() {
         //Creating a list of menu items using the MenuRequest record
-        ObservableList<MenuRequest> menuItems=createMenuRequests();
+        ObservableList<MenuRequest> menuItems = createMenuRequests();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view
-        MenuListId.setCellFactory(param->new ListCell<MenuRequest>() {
+        MenuListId.setCellFactory(param -> new ListCell<MenuRequest>() {
             @Override
             protected void updateItem(MenuRequest item, boolean empty) {
-                super.updateItem(item,empty);
+                super.updateItem(item, empty);
 
-                if (empty||item == null) {
+                if (empty || item == null) {
                     setGraphic(null);
                 } else {
                     HBox hbox = ItemBoxHelper.createItemBox(item);
