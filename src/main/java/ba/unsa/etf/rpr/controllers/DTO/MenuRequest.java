@@ -4,6 +4,6 @@ import javafx.scene.image.Image;
 
 import java.io.Serializable;
 
-public record MenuRequest(String name, Image path, double price,String Status) implements Serializable {
+public record MenuRequest(String name, Image path, double price,String status) implements Serializable {
 
 }

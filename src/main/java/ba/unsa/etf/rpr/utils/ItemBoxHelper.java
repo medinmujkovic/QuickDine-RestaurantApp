@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -36,7 +35,7 @@ public class ItemBoxHelper {
 
         //Creating the circle status
         Circle statusCircle=new Circle(8);
-        statusCircle.setFill(item.Status().equals("Available") ? Color.GREEN : Color.RED);
+        statusCircle.setFill(item.status().equals("Available") ? Color.GREEN : Color.RED);
         statusCircle.setStroke(Color.BLACK);
         statusCircle.setStrokeWidth(0.8);
 
@@ -81,7 +80,7 @@ public class ItemBoxHelper {
 
         //Add button action
         button.setOnAction(actionEvent -> {
-            MenuRequest menuRequest = new MenuRequest(item.name(), item.path(), item.price(), item.Status());
+            MenuRequest menuRequest = new MenuRequest(item.name(), item.path(), item.price(), item.status());
             selectedListItems.add(menuRequest);
             updateSelectedListView();
         });
