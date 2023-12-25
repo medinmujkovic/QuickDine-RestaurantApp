@@ -31,7 +31,7 @@
    <children>
       <VBox alignment="CENTER" prefHeight="132.0" prefWidth="141.0">
          <children>
-            <ImageView fitHeight="21.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="21.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="FullNameId" text="Admin">
                <VBox.margin>
                   <Insets top="10.0" />
@@ -103,25 +103,28 @@
             </VBox>
          </children>
       </Pane>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <content>
-            <ListView fx:id="MenuListId" prefHeight="395.0" prefWidth="620.0" />
-         </content>
-         <padding>
-            <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
-         </padding>
-      </ScrollPane>
+      <ListView fx:id="MenuListId" prefHeight="395.0" prefWidth="620.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <ScrollPane layoutX="205.0" layoutY="191.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <padding>
             <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
          </padding>
          <content>
-            <ListView fx:id="MenuListId1" prefHeight="395.0" prefWidth="620.0" />
+            <ListView fx:id="UserListId" prefHeight="395.0" prefWidth="620.0" />
          </content>
       </ScrollPane>
       <VBox alignment="CENTER" prefHeight="134.0" prefWidth="203.0" GridPane.rowIndex="1">
          <children>
             <Button fx:id="homeId" mnemonicParsing="false" text="Home">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="addUserId" layoutX="58.0" layoutY="70.0" mnemonicParsing="false" text="Add User">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="addMenuId" layoutX="50.0" layoutY="89.0" mnemonicParsing="false" text="Add Menu">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

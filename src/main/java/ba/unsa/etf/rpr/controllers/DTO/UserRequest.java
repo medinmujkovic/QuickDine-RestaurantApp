@@ -2,5 +2,5 @@ package ba.unsa.etf.rpr.controllers.DTO;
 
 import java.io.Serializable;
 
-public record UserRequest (String username, String Password, String email, String fullName, String dateOfBirth) implements Serializable {
+public record UserRequest (String id, String username, String password, String email, String fullName, String dateOfBirth) implements Serializable {
 }
