@@ -17,8 +17,7 @@ public class ChefController {
 
     public ListView orderListId;
 
-    public void initialize()
-    {
+    public void initialize() {
         //Creating a list of order items using the OrderRequest record
         ObservableList<OrderRequest> orders = createOrderRequests();
         //Setting the orders to the FXML ListView

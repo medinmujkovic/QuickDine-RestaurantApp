@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -30,16 +29,7 @@
    <children>
       <VBox alignment="CENTER" prefHeight="134.0" prefWidth="203.0">
          <children>
-            <ImageView fitHeight="21.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="FullNameId" text="Full Name">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin></Label>
             <Button fx:id="homeId" mnemonicParsing="false" text="Home">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin></Button>
-            <Button fx:id="SettingsId" layoutX="10.0" layoutY="178.0" mnemonicParsing="false" text="Settings">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Button>
@@ -108,9 +98,9 @@
       </Pane>
       <VBox layoutX="10.0" layoutY="-52.0" prefHeight="134.0" prefWidth="203.0" GridPane.rowIndex="1">
          <children>
-            <ListView fx:id="SelectedListId" prefHeight="200.0" prefWidth="200.0">
+            <ListView fx:id="SelectedListId" prefHeight="260.0" prefWidth="183.0">
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="80.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
             </ListView>
             <Button fx:id="CheckOutId" mnemonicParsing="false" text="Checkout">

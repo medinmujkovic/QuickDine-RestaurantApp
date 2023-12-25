@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
 
 public class OrderRequestHelper {
     public static ObservableList<OrderRequest> createOrderRequests() {
-        ObservableList<OrderRequest>orders= FXCollections.observableArrayList(
-                new OrderRequest("name",new Image(OrderRequestHelper.class.getClassLoader().getResource("img/password_icon.png").toExternalForm()),"aaaaaaaaa")
+        ObservableList<OrderRequest> orders = FXCollections.observableArrayList(
+                new OrderRequest("name", new Image(OrderRequestHelper.class.getClassLoader().getResource("img/password_icon.png").toExternalForm()), "aaaaaaaaa")
         );
         return orders;
     }
