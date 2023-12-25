@@ -79,24 +79,28 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="582.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="582.0" spacing="100.0">
                      <children>
                         <Label text="Name">
                            <HBox.margin>
-                              <Insets left="70.0" right="70.0" />
+                              <Insets left="85.0" />
                            </HBox.margin></Label>
                         <Label layoutX="10.0" layoutY="10.0" text="Price">
                            <HBox.margin>
-                              <Insets left="70.0" right="70.0" />
+                              <Insets />
                            </HBox.margin></Label>
-                        <Label layoutX="42.0" layoutY="10.0" text="Status">
+                        <Label layoutX="42.0" layoutY="10.0" text="Amount">
                            <HBox.margin>
-                              <Insets left="70.0" right="70.0" />
+                              <Insets />
                            </HBox.margin></Label>
+                        <Label layoutX="414.0" layoutY="19.0" text="Status" />
                      </children>
                      <VBox.margin>
-                        <Insets />
+                        <Insets top="5.0" />
                      </VBox.margin>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
                   </HBox>
                </children>
             </VBox>
