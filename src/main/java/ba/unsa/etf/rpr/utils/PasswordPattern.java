@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Password regex patterns
 public class PasswordPattern {
     private static final String PASSWORD_PATTERN =
             "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";

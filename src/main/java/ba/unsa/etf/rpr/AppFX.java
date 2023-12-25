@@ -10,6 +10,7 @@ public class AppFX extends Application {
         launch(args);
     }
 
+    //Application starting through JavaFX
     @Override
     public void start(Stage stage) throws Exception {
         StageUtils stageUtils = new StageUtils();

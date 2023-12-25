@@ -1,16 +1,12 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
 import ba.unsa.etf.rpr.controllers.DTO.OrderRequest;
-import ba.unsa.etf.rpr.utils.MenuItemBox;
 import ba.unsa.etf.rpr.utils.OrderItemBox;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
-import static ba.unsa.etf.rpr.utils.MenuRequestHelper.createMenuRequests;
-import static ba.unsa.etf.rpr.utils.OrderItemBox.createOrderBox;
 import static ba.unsa.etf.rpr.utils.OrderRequestHelper.createOrderRequests;
 
 public class ChefController {

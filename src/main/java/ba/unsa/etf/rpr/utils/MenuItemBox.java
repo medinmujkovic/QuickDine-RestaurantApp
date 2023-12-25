@@ -15,6 +15,7 @@ import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 import java.util.List;
 
+//Menu item in the listview
 public class MenuItemBox {
     private static List<MenuRequest> selectedListItems;
     private static ObservableList<MenuRequest> selectedItems= FXCollections.observableArrayList();

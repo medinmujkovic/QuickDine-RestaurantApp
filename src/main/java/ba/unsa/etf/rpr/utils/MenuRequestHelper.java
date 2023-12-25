@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 public class MenuRequestHelper {
 
     public static ObservableList<MenuRequest>createMenuRequests() {
+        //demo that should be connected to backend
         ObservableList<MenuRequest>menuItems=FXCollections.observableArrayList(
                 new MenuRequest("Pizza",new Image(MenuRequestHelper.class.getClassLoader().getResource("img/password_icon.png").toExternalForm()),1044.53,"Available"),
                 new MenuRequest("Pizza",new Image(MenuRequestHelper.class.getClassLoader().getResource("img/password_icon.png").toExternalForm()),1044.53,"Available"),

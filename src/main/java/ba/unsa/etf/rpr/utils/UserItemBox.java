@@ -1,21 +1,11 @@
 package ba.unsa.etf.rpr.utils;
 
-import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
 import ba.unsa.etf.rpr.controllers.DTO.UserRequest;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
-import java.util.ArrayList;
-import java.util.List;
-
+//User item in Admin Dashboard listview
 public class UserItemBox {
 
     public static HBox createUserBox(UserRequest item) {

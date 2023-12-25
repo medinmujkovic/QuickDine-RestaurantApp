@@ -1,13 +1,11 @@
 package ba.unsa.etf.rpr.utils;
 
-import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
 import ba.unsa.etf.rpr.controllers.DTO.UserRequest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 
 public class UserRequestHelper {
-
+    //demo that should be connected to backend
     public static ObservableList<UserRequest> createUserRequests() {
         ObservableList<UserRequest>users= FXCollections.observableArrayList(
                 new UserRequest("1","alminabr1","1234f","almina@gmail.com","Almina","4.12.12"),

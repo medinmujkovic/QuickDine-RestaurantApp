@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.controllers.DTO.LoginRequest;
 import ba.unsa.etf.rpr.utils.PasswordPattern;
 import ba.unsa.etf.rpr.utils.UsernamePattern;
 import javafx.event.ActionEvent;
@@ -21,6 +20,7 @@ public class LoginController {
     public Label invalidPasswordId;
     public ImageView backgroundImage;
 
+    //Login validation
     public void loginAction(ActionEvent actionEvent) throws IOException {
         if(usernameId.getText().isEmpty()) invaliduUsernameId.setText("Username is required!");
         if(passwordId.getText().isEmpty()) invalidPasswordId.setText("password is required!");
@@ -29,6 +29,7 @@ public class LoginController {
     @FXML
     public void initialize()
     {
+        //Listener for checking if the user typed in the right credentials while typing
         usernameId.setFocusTraversable(false);
         passwordId.setFocusTraversable(false);
         usernameId.textProperty().addListener((obs,oldValue,newValue)->{

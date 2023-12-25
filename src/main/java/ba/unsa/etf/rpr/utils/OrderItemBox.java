@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+//Order item in the Chef Dashboard listview
 public class OrderItemBox {
     public static HBox createOrderBox(OrderRequest item) {
 
