@@ -14,7 +14,6 @@ public class AppFX extends Application {
     public void start(Stage stage) throws Exception {
         StageUtils stageUtils = new StageUtils();
         stageUtils.openStage("/fxml/chef.fxml", "Login");
-
     }
 }
 

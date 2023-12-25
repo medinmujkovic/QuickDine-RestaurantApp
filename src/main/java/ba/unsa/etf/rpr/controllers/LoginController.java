@@ -23,7 +23,7 @@ public class LoginController {
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
         if(usernameId.getText().isEmpty()) invaliduUsernameId.setText("Username is required!");
-        if(passwordId.getText().isEmpty()) invalidPasswordId.setText("Password is required!");
+        if(passwordId.getText().isEmpty()) invalidPasswordId.setText("password is required!");
     }
 
     @FXML

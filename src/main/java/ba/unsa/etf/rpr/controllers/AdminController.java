@@ -1,30 +1,20 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
+import ba.unsa.etf.rpr.controllers.DTO.UserRequest;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
-import javafx.collections.FXCollections;
+import ba.unsa.etf.rpr.utils.UserItemBox;
 import javafx.collections.ObservableList;
-import javafx.scene.control.*;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
-import static ba.unsa.etf.rpr.utils.MenuItemBox.getSelectedItems;
 import static ba.unsa.etf.rpr.utils.MenuRequestHelper.createMenuRequests;
+import static ba.unsa.etf.rpr.utils.UserRequestHelper.createUserRequests;
 
-public class ServiceController {
-    public Label FullNameId;
-    public Button homeId;
-    public Button SettingsId;
-    public Button SignOutId;
-    public Button FoodId;
-    public Button DrinksId;
-    public Button MenusId;
-    public ListView SelectedListId;
-    public Button CheckOutId;
+public class AdminController {
     public ListView MenuListId;
-
-    public void setSelectedListId(ObservableList<MenuRequest> selectedItems ) {
-        SelectedListId.setItems(selectedItems);
-    }
+    public ListView UserListId;
 
     public void initialize() {
         //Creating a list of menu items using the MenuRequest record
@@ -46,26 +36,24 @@ public class ServiceController {
             }
         });
 
-        //Creating a list of selected menu items using the MenuRequest record
-        ObservableList<MenuRequest> selectedItems = getSelectedItems();
-        //Setting the selected menu items to the FXML ListView
-        SelectedListId.setItems(selectedItems);
+        //Creating a list of user items using the UserRequest record
+        ObservableList<UserRequest> users =createUserRequests();
+        //Setting the user items to the FXML ListView
+        UserListId.setItems(users);
         //Displaying the view
-        SelectedListId.setCellFactory(param -> new ListCell<MenuRequest>() {
+        UserListId.setCellFactory(param -> new ListCell<UserRequest>() {
             @Override
-            protected void updateItem(MenuRequest item, boolean empty) {
+            protected void updateItem(UserRequest item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = MenuItemBox.createItemBox(item);
+                    HBox hbox = UserItemBox.createUserBox(item);
                     setGraphic(hbox);
                 }
             }
         });
-
-
 
     }
 }
