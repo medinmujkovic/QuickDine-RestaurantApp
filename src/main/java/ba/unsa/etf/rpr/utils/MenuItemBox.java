@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -16,7 +15,7 @@ import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemBoxHelper {
+public class MenuItemBox {
     private static List<MenuRequest> selectedListItems;
     private static ObservableList<MenuRequest> selectedItems= FXCollections.observableArrayList();
 

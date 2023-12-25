@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
-import ba.unsa.etf.rpr.utils.ItemBoxHelper;
+import ba.unsa.etf.rpr.utils.MenuItemBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-import static ba.unsa.etf.rpr.utils.ItemBoxHelper.getSelectedItems;
+import static ba.unsa.etf.rpr.utils.MenuItemBox.getSelectedItems;
 import static ba.unsa.etf.rpr.utils.MenuRequestHelper.createMenuRequests;
 
 public class ServiceController {
@@ -45,7 +45,7 @@ public class ServiceController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = ItemBoxHelper.createItemBox(item);
+                    HBox hbox = MenuItemBox.createItemBox(item);
                     setGraphic(hbox);
                 }
             }
@@ -64,7 +64,7 @@ public class ServiceController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = ItemBoxHelper.createItemBox(item);
+                    HBox hbox = MenuItemBox.createItemBox(item);
                     setGraphic(hbox);
                 }
             }
