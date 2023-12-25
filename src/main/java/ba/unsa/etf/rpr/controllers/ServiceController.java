@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+import static ba.unsa.etf.rpr.utils.ItemBoxHelper.getSelectedItems;
 import static ba.unsa.etf.rpr.utils.MenuRequestHelper.createMenuRequests;
 
 public class ServiceController {
@@ -49,5 +50,27 @@ public class ServiceController {
                 }
             }
         });
+
+        //Creating a list of selected menu items using the MenuRequest record
+        ObservableList<MenuRequest> selectedItems = getSelectedItems();
+        //Setting the selected menu items to the FXML ListView
+        SelectedListId.setItems(selectedItems);
+        //Displaying the view
+        SelectedListId.setCellFactory(param -> new ListCell<MenuRequest>() {
+            @Override
+            protected void updateItem(MenuRequest item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setGraphic(null);
+                } else {
+                    HBox hbox = ItemBoxHelper.createItemBox(item);
+                    setGraphic(hbox);
+                }
+            }
+        });
+
+
+
     }
 }
