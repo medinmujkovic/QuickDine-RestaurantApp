@@ -14,7 +14,9 @@ public class AppFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         StageUtils stageUtils = new StageUtils();
-        stageUtils.openStage("/fxml/chef.fxml", "Login");
+        stageUtils.openStage("/fxml/admin.fxml", "Login");
+
+
     }
 }
 
