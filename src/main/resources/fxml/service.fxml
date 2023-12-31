@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="serviceBackgroundId" prefHeight="446.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ServiceController">
+<GridPane fx:id="serviceBackgroundId" prefHeight="498.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ServiceController">
    <stylesheets>
       <URL value="@../css/styles.css" />
    </stylesheets>
@@ -23,8 +23,8 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="645.6000213623047" minWidth="10.0" prefWidth="589.6000244140625" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="263.1999877929687" minHeight="10.0" prefHeight="120.00001831054688" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="372.6000106811524" minHeight="10.0" prefHeight="325.5999816894531" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="263.1999877929687" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="382.0" minHeight="10.0" prefHeight="382.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <VBox alignment="CENTER" prefHeight="134.0" prefWidth="203.0">
@@ -96,7 +96,7 @@
             </VBox>
          </children>
       </Pane>
-      <VBox layoutX="10.0" layoutY="-52.0" prefHeight="134.0" prefWidth="203.0" GridPane.rowIndex="1">
+      <VBox layoutX="10.0" layoutY="-52.0" prefHeight="134.0" prefWidth="216.0" GridPane.rowIndex="1">
          <children>
             <ListView fx:id="SelectedListId" prefHeight="260.0" prefWidth="183.0">
                <VBox.margin>
@@ -112,7 +112,7 @@
       </VBox>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <content>
-            <ListView fx:id="MenuListId" prefHeight="301.0" prefWidth="560.0" />
+            <ListView fx:id="MenuListId" prefHeight="360.0" prefWidth="626.0" />
          </content>
          <padding>
             <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />

@@ -50,7 +50,7 @@ public class MenuItemBox {
         HBox priceBox=createItemLabel(new Label("$"+item.price()),60);
         VBox addBox=createItemAdd(
                 new Button("Add"),
-                new Spinner(1, 30, 0), //The amount of the item selected
+                new Spinner(1, item.amount(), 1), //The amount of the item selected
                 item
         );
 
