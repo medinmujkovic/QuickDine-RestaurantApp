@@ -19,6 +19,7 @@ import java.util.List;
 public class MenuItemBox {
     private static List<MenuRequest> selectedListItems;
     private static ObservableList<MenuRequest> selectedItems= FXCollections.observableArrayList();
+    private static MenuRequest exists;
 
     //Method for creating the main listview
     public static HBox createItemBox(MenuRequest item) {
@@ -45,11 +46,11 @@ public class MenuItemBox {
         HBox hBox=new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox nameBox=createItemNamePrice(new Label(item.name()),50);
-        HBox priceBox=createItemNamePrice(new Label("$"+item.price()),60);
+        HBox nameBox=createItemLabel(new Label(item.name()),50);
+        HBox priceBox=createItemLabel(new Label("$"+item.price()),60);
         VBox addBox=createItemAdd(
                 new Button("Add"),
-                new Spinner(0, 30, 0), //The amount of the item selected
+                new Spinner(1, 30, 0), //The amount of the item selected
                 item
         );
 
@@ -82,25 +83,26 @@ public class MenuItemBox {
         HBox hBox=new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox nameBox=createItemNamePrice(new Label(item.name()),50);
-        HBox priceBox=createItemNamePrice(new Label("$"+item.price()),60);
+        HBox nameBox=createItemLabel(new Label(item.name()),50);
+        HBox priceBox=createItemLabel(new Label("$"+item.price()),60);
         VBox deleteBox=createSelectedItemDelete(
                 new Button("X"),
                 item
                 );
+        HBox amountBox=createItemLabel(new Label("x"+item.amount()),60);
 
         //Creating pacing between the items
         hBox.setSpacing(20);
 
         //Setting children of the main HBox views
-        hBox.getChildren().addAll(nameBox,priceBox,deleteBox);
+        hBox.getChildren().addAll(nameBox,priceBox,deleteBox,amountBox);
         hbox.getChildren().addAll(imageView,hBox);
 
         return hbox;
     }
 
-    //Method for creating the items name and price view
-    private static HBox createItemNamePrice(Label label, double width) {
+    //Method for creating the items name, price and amount view
+    private static HBox createItemLabel(Label label, double width) {
         HBox infoBox=new HBox(label);
         infoBox.setMinWidth(width);
         infoBox.setPrefWidth(width);
@@ -136,9 +138,41 @@ public class MenuItemBox {
 
         //Add button action
         button.setOnAction(actionEvent -> {
-            MenuRequest menuRequest = new MenuRequest(item.id(), item.name(),item.type(), item.description(), item.image(), item.price(), item.amount());
-            selectedListItems.add(menuRequest);
-            updateSelectedListView();
+
+            //Check if the MenuRequest already exists
+            exists=null;
+            for(MenuRequest i :selectedItems)
+                if(i.id()==item.id())
+                    exists=i;
+
+            if(exists!=null) {
+                //If the MenuRequest already exists then just alter the changes to the selected list
+                selectedListItems.remove(exists);
+                MenuRequest updatedRequest=new MenuRequest(
+                        exists.id(),
+                        exists.name(),
+                        exists.type(),
+                        exists.description(),
+                        exists.image(),
+                        exists.price(),
+                        (Integer) spinner.getValue()
+                );
+                selectedListItems.add(updatedRequest);
+                updateSelectedListView();
+            }
+            else{
+                //If the MenuRequest doesn't already exist then add a new MenuRequest to the selected list
+                MenuRequest menuRequest=new MenuRequest(
+                        item.id(),
+                        item.name(),
+                        item.type(),
+                        item.description(),
+                        item.image(),
+                        item.price(),
+                        (Integer) spinner.getValue());
+                selectedListItems.add(menuRequest);
+                updateSelectedListView();
+            }
         });
 
         return infoBox;
