@@ -16,13 +16,12 @@ public abstract class AbstractDao<T> implements Dao<T> {
         if (AbstractDao.connection == null) {
             try {
                 Properties p = new Properties();
-                p.load(ClassLoader.getSystemResource("application.properties").openStream());
-                String url = p.getProperty("jdbc:mysql://sql.freedb.tech:3306/freedb_QuickDineProject");
-                String username = p.getProperty("freedb_Medin");
-                String password = p.getProperty("296GdU#gBd5MctZ");
-                System.out.println("connected");
+                p.load(ClassLoader.getSystemResource("application.properties.sample").openStream());
+                String url = p.getProperty("DB_CONNECTION_STRING");
+                String username = p.getProperty("DB_USER");
+                String password = p.getProperty("DB_PASSWORD");
                 AbstractDao.connection = DriverManager.getConnection(url, username, password);
-
+                System.out.println("connected");
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

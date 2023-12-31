@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr;
 
+import ba.unsa.etf.rpr.dao.OrderDao;
+import ba.unsa.etf.rpr.dao.OrderDaoSQLImpl;
 import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.utils.StageUtils;
 import javafx.application.Application;
@@ -14,7 +16,7 @@ public class AppFX extends Application {
     //Application starting through JavaFX
     @Override
     public void start(Stage stage) throws Exception {
-        UserDaoSQLImpl a;
+        UserDaoSQLImpl a= new UserDaoSQLImpl();
         StageUtils stageUtils = new StageUtils();
         stageUtils.openStage("/fxml/admin.fxml", "Login");
 

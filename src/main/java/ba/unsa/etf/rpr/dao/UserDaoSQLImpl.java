@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao {
     private static UserDaoSQLImpl instance = null;
-    private UserDaoSQLImpl() {
+    public UserDaoSQLImpl() {
         super("user");
     }
 
