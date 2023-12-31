@@ -34,13 +34,4 @@ public class OrderDaoSQLImpl extends AbstractDao<OrderRequest> implements OrderD
         return null;
     }
 
-    @Override
-    public OrderRequest get(int id) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void delete(OrderRequest item) throws SQLException {
-
-    }
 }

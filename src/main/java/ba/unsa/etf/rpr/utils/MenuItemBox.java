@@ -31,13 +31,13 @@ public class MenuItemBox {
         HBox hbox=new HBox(10);
 
         //Creating the ImageView of the item
-        ImageView imageView=new ImageView(item.path());
+        ImageView imageView=new ImageView(item.image());
         imageView.setFitWidth(80);
         imageView.setFitHeight(80);
 
         //Creating the circle status
         Circle statusCircle=new Circle(8);
-        statusCircle.setFill(item.status().equals("Available") ? Color.GREEN : Color.RED);
+        statusCircle.setFill(item.amount()>0? Color.GREEN : Color.RED);
         statusCircle.setStroke(Color.BLACK);
         statusCircle.setStrokeWidth(0.8);
 
@@ -74,7 +74,7 @@ public class MenuItemBox {
         HBox hbox=new HBox(10);
 
         //Creating the ImageView of the item
-        ImageView imageView=new ImageView(item.path());
+        ImageView imageView=new ImageView(item.image());
         imageView.setFitWidth(20);
         imageView.setFitHeight(20);
 
@@ -136,7 +136,7 @@ public class MenuItemBox {
 
         //Add button action
         button.setOnAction(actionEvent -> {
-            MenuRequest menuRequest = new MenuRequest(item.name(), item.path(), item.price(), item.status());
+            MenuRequest menuRequest = new MenuRequest(item.id(), item.name(),item.type(), item.description(), item.image(), item.price(), item.amount());
             selectedListItems.add(menuRequest);
             updateSelectedListView();
         });
