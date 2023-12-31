@@ -48,17 +48,33 @@ public class MenuItemBox {
         // Creating HBoxes for the UI of:
         HBox nameBox=createItemLabel(new Label(item.name()),50);
         HBox priceBox=createItemLabel(new Label("$"+item.price()),60);
-        VBox addBox=createItemAdd(
-                new Button("Add"),
-                new Spinner(1, item.amount(), 1), //The amount of the item selected
-                item
-        );
 
-        //Creating pacing between the items
-        hBox.setSpacing(70);
-        //Setting children of the main HBox views
-        hBox.getChildren().addAll(nameBox,priceBox,addBox,statusCircle);
-        hbox.getChildren().addAll(imageView,hBox);
+        if(item.amount()!=0) {
+            VBox addBox = createItemAdd(
+                    new Button("Add"),
+                    new Spinner(1, item.amount(), 1), //The amount of the item selected
+                    item
+            );
+
+            //Creating pacing between the items
+            hBox.setSpacing(70);
+            //Setting children of the main HBox views
+            hBox.getChildren().addAll(nameBox, priceBox, addBox, statusCircle);
+            hbox.getChildren().addAll(imageView, hBox);
+        }
+        else
+        {
+            VBox addBox = new VBox();
+            addBox.setMinWidth(60);
+            addBox.setPrefWidth(60);
+            addBox.setMaxWidth(60);
+
+            //Creating pacing between the items
+            hBox.setSpacing(70);
+            //Setting children of the main HBox views
+            hBox.getChildren().addAll(nameBox, priceBox, addBox, statusCircle);
+            hbox.getChildren().addAll(imageView, hBox);
+        }
 
         return hbox;
     }
