@@ -58,7 +58,7 @@ public class ServiceController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = MenuItemBox.createItemBox(item);
+                    HBox hbox = MenuItemBox.createSelectedItemBox(item);
                     setGraphic(hbox);
                 }
             }

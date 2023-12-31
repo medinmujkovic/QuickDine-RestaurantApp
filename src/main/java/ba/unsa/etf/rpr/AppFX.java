@@ -18,7 +18,7 @@ public class AppFX extends Application {
     public void start(Stage stage) throws Exception {
         UserDaoSQLImpl a= new UserDaoSQLImpl();
         StageUtils stageUtils = new StageUtils();
-        stageUtils.openStage("/fxml/admin.fxml", "Login");
+        stageUtils.openStage("/fxml/service.fxml", "Login");
 
 
     }

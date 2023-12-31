@@ -21,7 +21,7 @@ public class MenuItemBox {
     private static ObservableList<MenuRequest> selectedItems= FXCollections.observableArrayList();
 
     public static HBox createItemBox(MenuRequest item) {
-
+        //Preventing selectedListItems to be null when loaded
         if (selectedListItems == null) {
             selectedListItems = new ArrayList<>();
         }
@@ -56,6 +56,37 @@ public class MenuItemBox {
         hBox.setSpacing(70);
         //Setting children of the main HBox views
         hBox.getChildren().addAll(nameBox,priceBox,addBox,statusCircle);
+        hbox.getChildren().addAll(imageView,hBox);
+
+        return hbox;
+    }
+
+    public static HBox createSelectedItemBox(MenuRequest item) {
+
+        //Preventing selectedListItems to be null when loaded
+        if (selectedListItems == null) {
+            selectedListItems = new ArrayList<>();
+        }
+
+        //Creating the main HBox view for Image
+        HBox hbox=new HBox(10);
+
+        //Creating the ImageView of the item
+        ImageView imageView=new ImageView(item.path());
+        imageView.setFitWidth(20);
+        imageView.setFitHeight(20);
+
+        //Creating the main HBox view for other info
+        HBox hBox=new HBox();
+
+        // Creating HBoxes for the UI of:
+        HBox nameBox=createItemNamePrice(new Label(item.name()),50);
+        HBox priceBox=createItemNamePrice(new Label("$"+item.price()),60);
+
+        //Creating pacing between the items
+        hBox.setSpacing(20);
+        //Setting children of the main HBox views
+        hBox.getChildren().addAll(nameBox,priceBox);
         hbox.getChildren().addAll(imageView,hBox);
 
         return hbox;
