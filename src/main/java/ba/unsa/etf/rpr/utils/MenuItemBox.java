@@ -20,6 +20,7 @@ public class MenuItemBox {
     private static List<MenuRequest> selectedListItems;
     private static ObservableList<MenuRequest> selectedItems= FXCollections.observableArrayList();
 
+    //Method for creating the main listview
     public static HBox createItemBox(MenuRequest item) {
         //Preventing selectedListItems to be null when loaded
         if (selectedListItems == null) {
@@ -61,6 +62,7 @@ public class MenuItemBox {
         return hbox;
     }
 
+    //Method for creating the selected item listview
     public static HBox createSelectedItemBox(MenuRequest item) {
 
         //Preventing selectedListItems to be null when loaded
@@ -82,17 +84,22 @@ public class MenuItemBox {
         // Creating HBoxes for the UI of:
         HBox nameBox=createItemNamePrice(new Label(item.name()),50);
         HBox priceBox=createItemNamePrice(new Label("$"+item.price()),60);
+        VBox deleteBox=createSelectedItemDelete(
+                new Button("X"),
+                item
+                );
 
         //Creating pacing between the items
         hBox.setSpacing(20);
+
         //Setting children of the main HBox views
-        hBox.getChildren().addAll(nameBox,priceBox);
+        hBox.getChildren().addAll(nameBox,priceBox,deleteBox);
         hbox.getChildren().addAll(imageView,hBox);
 
         return hbox;
     }
 
-    //Helper function for creating Name and Price view
+    //Method for creating the items name and price view
     private static HBox createItemNamePrice(Label label, double width) {
         HBox infoBox=new HBox(label);
         infoBox.setMinWidth(width);
@@ -101,7 +108,24 @@ public class MenuItemBox {
         return infoBox;
     }
 
-    //Helper function for creating Add view
+    //Method for creating the delete item button when selected
+    private static VBox createSelectedItemDelete(Button button, MenuRequest item) {
+        VBox infoBox=new VBox(button);
+        button.setId("deleteItemButtonId");
+        infoBox.setMinWidth(30);
+        infoBox.setPrefWidth(30);
+        infoBox.setMaxWidth(30);
+
+        //Delete button action
+        button.setOnAction(actionEvent -> {
+            selectedListItems.remove(item);
+            updateSelectedListView();
+        });
+
+        return infoBox;
+    }
+
+    //Method for creating the add button next to the item view
     private static VBox createItemAdd(Button button, Spinner spinner, MenuRequest item) {
         VBox infoBox=new VBox(button,spinner);
         button.setId("addItemButtonId");
