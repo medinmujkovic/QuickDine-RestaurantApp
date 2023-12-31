@@ -3,6 +3,8 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
 import javafx.scene.image.Image;
 
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -28,15 +30,17 @@ public class MenuDaoSQLImpl extends AbstractDao<MenuRequest> implements MenuDao 
     @Override
     public MenuRequest row2object(ResultSet rs) throws SQLException {
         try{
-            return new MenuRequest(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("type"),
-                    rs.getString("description"),
-                    (Image) rs.getBlob("image"),
-                    rs.getDouble("price"),
-                    rs.getInt("amount")
-                    );
+            int id = rs.getInt("id");
+            String name = rs.getString("name");
+            String type = rs.getString("type");
+            String description = rs.getString("description");
+            Blob imageBlob = rs.getBlob("image");
+            InputStream inputStream = ((Blob) imageBlob).getBinaryStream();
+            Image image = new Image(inputStream);
+            double price = rs.getDouble("price");
+            int amount = rs.getInt("amount");
+
+            return new MenuRequest(id, name, type, description, image, price, amount);
         }
         catch (Exception e)
         {

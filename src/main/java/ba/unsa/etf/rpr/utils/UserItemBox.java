@@ -14,12 +14,12 @@ public class UserItemBox {
         HBox hBox=new HBox(10);
 
         // Creating HBoxes for the UI of:
-        HBox idBox=createItemBox(new Label(item.id()),10);
+       // HBox idBox=createItemBox(new Label(item.id()),10);
         HBox usernameBox=createItemBox(new Label(item.username()),60);
         HBox passwordBox=createItemBox(new Label(item.password()),60);
         HBox emailBox=createItemBox(new Label(item.email()),105);
         HBox fullNameBox=createItemBox(new Label(item.fullName()),60);
-        HBox dateOfBirthBox=createItemBox(new Label(item.dateOfBirth()),60);
+        //HBox dateOfBirthBox=createItemBox(new Label(item.dateOfBirth()),60);
 
         // Remove the user from the userRequests list
         Button deleteButton = new Button("Delete");
@@ -36,7 +36,7 @@ public class UserItemBox {
         //Creating spacing between the items
         hBox.setSpacing(20);
         //Setting children of the main HBox views
-        hBox.getChildren().addAll(idBox,usernameBox,passwordBox,emailBox,fullNameBox,dateOfBirthBox,deleteButton,editButton);
+       // hBox.getChildren().addAll(idBox,usernameBox,passwordBox,emailBox,fullNameBox,dateOfBirthBox,deleteButton,editButton);
 
         return hBox;
     }
