@@ -46,35 +46,29 @@ public class MenuItemBox {
         HBox hBox=new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox nameBox=createItemLabel(new Label(item.name()),50);
-        HBox priceBox=createItemLabel(new Label("$"+item.price()),60);
+        VBox nameBox=createItemLabelVBox(new Label(item.name()),new Label(item.description()),100);
+        HBox priceBox=createItemLabelHBox(new Label("$"+item.price()),60);
+        HBox typeBox=createItemLabelHBox(new Label(item.type()),60);
 
+        //When item is not available
+        VBox addBox=new VBox();
         if(item.amount()!=0) {
-            VBox addBox = createItemAdd(
+            addBox = createItemAdd(
                     new Button("Add"),
                     new Spinner(1, item.amount(), 1), //The amount of the item selected
                     item
             );
-
-            //Creating pacing between the items
-            hBox.setSpacing(70);
-            //Setting children of the main HBox views
-            hBox.getChildren().addAll(nameBox, priceBox, addBox, statusCircle);
-            hbox.getChildren().addAll(imageView, hBox);
         }
-        else
-        {
-            VBox addBox = new VBox();
+        else {
             addBox.setMinWidth(60);
             addBox.setPrefWidth(60);
             addBox.setMaxWidth(60);
-
-            //Creating pacing between the items
-            hBox.setSpacing(70);
-            //Setting children of the main HBox views
-            hBox.getChildren().addAll(nameBox, priceBox, addBox, statusCircle);
-            hbox.getChildren().addAll(imageView, hBox);
         }
+        //Creating pacing between the items
+        hBox.setSpacing(70);
+        //Setting children of the main HBox views
+        hBox.getChildren().addAll(nameBox,typeBox,priceBox, addBox, statusCircle);
+        hbox.getChildren().addAll(imageView, hBox);
 
         return hbox;
     }
@@ -99,13 +93,13 @@ public class MenuItemBox {
         HBox hBox=new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox nameBox=createItemLabel(new Label(item.name()),50);
-        HBox priceBox=createItemLabel(new Label("$"+item.price()),60);
+        HBox nameBox=createItemLabelHBox(new Label(item.name()),50);
+        HBox priceBox=createItemLabelHBox(new Label("$"+item.price()),60);
         VBox deleteBox=createSelectedItemDelete(
                 new Button("X"),
                 item
                 );
-        HBox amountBox=createItemLabel(new Label("x"+item.amount()),60);
+        HBox amountBox=createItemLabelHBox(new Label("x"+item.amount()),30);
 
         //Creating pacing between the items
         hBox.setSpacing(20);
@@ -118,11 +112,20 @@ public class MenuItemBox {
     }
 
     //Method for creating the items name, price and amount view
-    private static HBox createItemLabel(Label label, double width) {
+    private static HBox createItemLabelHBox(Label label, double width) {
         HBox infoBox=new HBox(label);
         infoBox.setMinWidth(width);
         infoBox.setPrefWidth(width);
         infoBox.setMaxWidth(width);
+        return infoBox;
+    }
+
+    private static VBox createItemLabelVBox(Label label1,Label label2,double width) {
+        VBox infoBox=new VBox(label1,label2);
+        infoBox.setMinWidth(width);
+        infoBox.setPrefWidth(width);
+        infoBox.setMaxWidth(width);
+        infoBox.setSpacing(2);
         return infoBox;
     }
 
