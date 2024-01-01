@@ -2,6 +2,5 @@ package ba.unsa.etf.rpr.controllers.DTO;
 
 import java.io.Serializable;
 
-public record LoginRequest(String usernameId, String passwordId) implements Serializable {
-
+public record LoginRequest(String username, String password) implements Serializable {
 }

@@ -2,7 +2,6 @@ package ba.unsa.etf.rpr.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class StageUtils {
