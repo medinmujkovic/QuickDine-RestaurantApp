@@ -1,6 +1,7 @@
 # Default ignored files
 .idea
 target
+/src/main/resources/application.properties
 out
 /shelf/
 /.idea/workspace.xml

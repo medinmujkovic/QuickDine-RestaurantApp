@@ -1,9 +1,12 @@
 package ba.unsa.etf.rpr.dao;
 
+
+import ba.unsa.etf.rpr.domain.Idable;
+
 import java.sql.*;
 import java.util.*;
 
-public abstract class AbstractDao<T> implements Dao<T> {
+public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     private static Connection connection = null;
     private String tableName;
 
@@ -16,7 +19,7 @@ public abstract class AbstractDao<T> implements Dao<T> {
         if (AbstractDao.connection == null) {
             try {
                 Properties p = new Properties();
-                p.load(ClassLoader.getSystemResource("application.properties.sample").openStream());
+                p.load(ClassLoader.getSystemResource("application.properties").openStream());
                 String url = p.getProperty("DB_CONNECTION_STRING");
                 String username = p.getProperty("DB_USER");
                 String password = p.getProperty("DB_PASSWORD");
@@ -155,7 +158,7 @@ public abstract class AbstractDao<T> implements Dao<T> {
         int counter = 0;
         for (Map.Entry<String, Object> entry: row.entrySet()) {
             counter++;
-            if (entry.getKey().equals("id")) continue; //skip insertion of id due autoincrement
+            if (entry.getKey().equals("id")) continue;
             columns.append(entry.getKey());
             questions.append("?");
             if (row.size() != counter) {
@@ -172,7 +175,7 @@ public abstract class AbstractDao<T> implements Dao<T> {
         int counter = 0;
         for (Map.Entry<String, Object> entry: row.entrySet()) {
             counter++;
-            if (entry.getKey().equals("id")) continue; //skip update of id due where clause
+            if (entry.getKey().equals("id")) continue;
             columns.append(entry.getKey()).append("= ?");
             if (row.size() != counter) {
                 columns.append(",");

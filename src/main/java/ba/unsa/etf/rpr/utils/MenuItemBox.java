@@ -111,6 +111,44 @@ public class MenuItemBox {
         return hbox;
     }
 
+    //Method for creating the menu item listview for admin dashboard
+    public static HBox createMenuItemAdmin(MenuRequest item) {
+
+        //Preventing selectedListItems to be null when loaded
+        if (selectedListItems == null) {
+            selectedListItems = new ArrayList<>();
+        }
+
+        //Creating the main HBox view for Image
+        HBox hbox=new HBox(10);
+
+        //Creating the ImageView of the item
+        ImageView imageView=new ImageView(item.image());
+        imageView.setFitWidth(20);
+        imageView.setFitHeight(20);
+
+        //Creating the main HBox view for other info
+        HBox hBox=new HBox();
+
+        // Creating HBoxes for the UI of:
+        HBox nameBox=createItemLabelHBox(new Label(item.name()),50);
+        HBox priceBox=createItemLabelHBox(new Label("$"+item.price()),60);
+        VBox deleteBox=createSelectedItemDelete(
+                new Button("X"),
+                item
+        );
+        HBox amountBox=createItemLabelHBox(new Label("x"+item.amount()),30);
+
+        //Creating pacing between the items
+        hBox.setSpacing(20);
+
+        //Setting children of the main HBox views
+        hBox.getChildren().addAll(nameBox,priceBox,deleteBox,amountBox);
+        hbox.getChildren().addAll(imageView,hBox);
+
+        return hbox;
+    }
+
     //Method for creating the items name, price and amount view
     private static HBox createItemLabelHBox(Label label, double width) {
         HBox infoBox=new HBox(label);

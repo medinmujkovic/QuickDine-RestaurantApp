@@ -3,7 +3,6 @@ package ba.unsa.etf.rpr.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//Username regex pattern
 public class UsernamePattern{
     private static final String USERNAME_PATTERN =
             "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$";
