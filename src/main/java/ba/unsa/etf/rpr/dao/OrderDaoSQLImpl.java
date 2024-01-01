@@ -14,7 +14,7 @@ import java.util.TreeMap;
 public class OrderDaoSQLImpl extends AbstractDao<OrderRequest> implements OrderDao {
     private static OrderDaoSQLImpl instance = null;
     private OrderDaoSQLImpl() {
-        super("order");
+        super("orders");
     }
 
     public static OrderDaoSQLImpl getInstance(){
