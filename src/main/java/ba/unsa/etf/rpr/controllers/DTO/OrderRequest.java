@@ -4,7 +4,7 @@ import ba.unsa.etf.rpr.domain.Idable;
 import javafx.scene.image.Image;
 import java.io.Serializable;
 
-public record OrderRequest (int id,String name, Image image, String description) implements Serializable, Idable {
+public record OrderRequest (int id,int mealId,int userId, String selectedMeals) implements Serializable, Idable {
     @Override
     public void setId(int id) {
 
