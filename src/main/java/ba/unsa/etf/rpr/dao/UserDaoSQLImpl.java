@@ -31,8 +31,7 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
                     rs.getString("password"),
                     rs.getString("email"),
                     rs.getString("full_name"),
-                    rs.getDate("date_of_birth"),
-                    rs.getString("roles")
+                    rs.getDate("date_of_birth")
             );
         }
         catch (Exception e)
@@ -50,8 +49,11 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
         item.put("email", object.email());
         item.put("full_name", object.fullName());
         item.put("date_of_birth", object.dateOfBirth());
-        item.put("roles", object.roles());
         return item;
+    }
+
+    public UserRequest getByUsername(String username) throws SQLException {
+        return executeQueryUnique("SELECT * FROM user WHERE username = ?", new Object[]{username});
     }
 
 }
