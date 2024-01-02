@@ -26,7 +26,7 @@ public class LoginController {
     //Login validation
     public void loginAction(ActionEvent actionEvent) throws Exception {
         if(usernameId.getText().isEmpty()) invaliduUsernameId.setText("Username is required!");
-        else if(passwordId.getText().isEmpty()) invalidPasswordId.setText("password is required!");
+        else if(passwordId.getText().isEmpty()) invalidPasswordId.setText("Password is required!");
         else if(loginManager.authentication(usernameId.getText(), passwordId.getText())){
             //login authentication
             StageUtils stageUtils = new StageUtils();

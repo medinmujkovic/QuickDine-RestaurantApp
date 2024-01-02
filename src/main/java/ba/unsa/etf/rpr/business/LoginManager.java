@@ -15,7 +15,6 @@ public class LoginManager {
         UserRequest rs=getByUsername(username);
         System.out.println(username.equals(rs.username()) && password.equals(rs.password()));
         return username.equals(rs.username()) && password.equals(rs.password());
-
     }
     public String getRole()
     {
