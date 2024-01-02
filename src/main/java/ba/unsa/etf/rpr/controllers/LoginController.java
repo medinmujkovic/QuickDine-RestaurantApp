@@ -1,7 +1,5 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.utils.PasswordPattern;
-import ba.unsa.etf.rpr.utils.UsernamePattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+
+import static ba.unsa.etf.rpr.utils.ValidationPatterns.isValid;
+import static ba.unsa.etf.rpr.utils.ValidationPatterns.type.*;
+
 
 public class LoginController {
     public Button loginId;
@@ -33,13 +35,13 @@ public class LoginController {
         usernameId.setFocusTraversable(false);
         passwordId.setFocusTraversable(false);
         usernameId.textProperty().addListener((obs,oldValue,newValue)->{
-            if(UsernamePattern.isValid(newValue)){
+            if(isValid(newValue, username)){
                 invaliduUsernameId.setText("");
             }
             else invaliduUsernameId.setText("Invalid username!");
         });
         passwordId.textProperty().addListener((obs,oldValue,newValue)->{
-            if(PasswordPattern.isValid(newValue)){
+            if(isValid(newValue, password)){
                 invalidPasswordId.setText("");
             }
             else invalidPasswordId.setText("Invalid password!");

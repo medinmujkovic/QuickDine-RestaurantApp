@@ -1,13 +1,17 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.utils.*;
+import ba.unsa.etf.rpr.business.UserManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import static ba.unsa.etf.rpr.utils.ValidationPatterns.isValid;
+import static ba.unsa.etf.rpr.utils.ValidationPatterns.type.*;
+
 public class RegisterController {
+    private final UserManager userManager = new UserManager();
     public TextField usernameID;
     public Label invalidUsernameID;
     public PasswordField passwordID;
@@ -25,13 +29,13 @@ public class RegisterController {
     @FXML
     public void initialize() {
         usernameID.textProperty().addListener((obs,oldValue,newValue)->{
-            if(UsernamePattern.isValid(newValue))
+            if(isValid(newValue, username))
                 invalidUsernameID.setText("");
             else
                 invalidUsernameID.setText("Invalid username!");
         });
         passwordID.textProperty().addListener((obs,oldValue,newValue)->{
-            if(PasswordPattern.isValid(newValue))
+            if(isValid(newValue, password))
                 invalidPasswordID.setText("");
             else
                 invalidPasswordID.setText("Invalid password!");
@@ -47,19 +51,19 @@ public class RegisterController {
                 invalidRepeatPasswordID.setText("Passwords do not match!");
         });
         emailID.textProperty().addListener((obs,oldValue,newValue)->{
-            if(EmailPattern.isValid(emailID.getText()))
+            if(isValid(newValue, email))
                 invalidEmailID.setText("");
             else
                 invalidEmailID.setText("Invalid email!");
         });
         fullNameID.textProperty().addListener((obs,oldValue,newValue)->{
-            if(FullNamePattern.isValid(fullNameID.getText()))
+            if(isValid(newValue, fullname))
                 invalidFullNameID.setText("");
             else
                 invalidFullNameID.setText("Invalid full name!");
         });
         dateOfBirthID.textProperty().addListener((obs,oldValue,newValue)->{
-            if(DatePattern.isValid(dateOfBirthID.getText()))
+            if(isValid(newValue, date))
                 invalidDateOfBirth.setText("");
             else
                 invalidDateOfBirth.setText("Invalid date!");
@@ -68,21 +72,24 @@ public class RegisterController {
             this.registerClick();
         });
     }
-    public void registerClick()  {
-        if(usernameID.getText().isEmpty()) invalidUsernameID.setText("Username is required!");
-        if(passwordID.getText().isEmpty()) invalidPasswordID.setText("Password is required!");
-        if(repeatPasswordID.getText().isEmpty()) invalidRepeatPasswordID.setText("Repeated password is required!");
-        if(emailID.getText().isEmpty()) invalidEmailID.setText("Email is required!");
-        if(fullNameID.getText().isEmpty()) invalidFullNameID.setText("Full name is required!");
-        if(dateOfBirthID.getText().isEmpty()) invalidDateOfBirth.setText("Date of birth is required!");
+    public void registerClick() {
+        if (usernameID.getText().isEmpty()) invalidUsernameID.setText("Username is required!");
+        if (passwordID.getText().isEmpty()) invalidPasswordID.setText("Password is required!");
+        if (repeatPasswordID.getText().isEmpty()) invalidRepeatPasswordID.setText("Repeated password is required!");
+        if (emailID.getText().isEmpty()) invalidEmailID.setText("Email is required!");
+        if (fullNameID.getText().isEmpty()) invalidFullNameID.setText("Full name is required!");
+        if (dateOfBirthID.getText().isEmpty()) invalidDateOfBirth.setText("Date of birth is required!");
 
-        if( invalidUsernameID.getText().isEmpty()       &&
-            invalidPasswordID.getText().isEmpty()       &&
-            invalidRepeatPasswordID.getText().isEmpty() &&
-            invalidEmailID.getText().isEmpty()          &&
-            invalidFullNameID.getText().isEmpty()       &&
-            invalidDateOfBirth.getText().isEmpty())
-                System.out.println("Everything is valid, going on Registration");
+        // if there are no errors, all invalid labels will be empty, and we can add the user
+        if (invalidUsernameID.getText().isEmpty() &&
+                invalidPasswordID.getText().isEmpty() &&
+                invalidRepeatPasswordID.getText().isEmpty() &&
+                invalidEmailID.getText().isEmpty() &&
+                invalidFullNameID.getText().isEmpty() &&
+                invalidDateOfBirth.getText().isEmpty()) {
+            System.out.println("Everything is valid, going on Registration");
+            userManager.add();
+        }
     }
 }
 
