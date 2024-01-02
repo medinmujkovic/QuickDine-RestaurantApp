@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="700.0" prefHeight="400.0" prefWidth="700.0" styleClass="body" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LoginController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="700.0" prefHeight="400.0" prefWidth="700.0" styleClass="body" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.RegisterController">
   <stylesheets>
      <URL value="@../css/styles.css" />
   </stylesheets>
@@ -101,11 +101,11 @@
                               <Image url="@../img/password_icon.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="repeatPasswordID" promptText="Repeat password">
+                        <PasswordField fx:id="repeatPasswordID" promptText="Repeat password">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
-                        </TextField>
+                        </PasswordField>
                      </children>
                   </HBox>
                   <Label fx:id="invalidRepeatPasswordID" textFill="#ee1414">
@@ -195,7 +195,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="67.0" prefWidth="382.0" spacing="10.0">
                <children>
-                <Button fx:id="registerBtn" cancelButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Register" textFill="WHITE">
+                <Button fx:id="registerButton" cancelButton="true" mnemonicParsing="false" prefHeight="29.0" prefWidth="78.0" text="Register" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
