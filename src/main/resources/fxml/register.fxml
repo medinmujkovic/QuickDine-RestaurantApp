@@ -70,7 +70,7 @@
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <ImageView fx:id="passwordIcon" fitHeight="20" fitWidth="20" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="passwordIcon2" fitHeight="20" fitWidth="20" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/password_icon.png" />
                            </image>
