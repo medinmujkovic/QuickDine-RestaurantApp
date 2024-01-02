@@ -53,4 +53,13 @@ public class OrderDaoSQLImpl extends AbstractDao<OrderRequest> implements OrderD
         return item;
     }
 
+    @Override
+    public void setId(int id) {
+
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
 }

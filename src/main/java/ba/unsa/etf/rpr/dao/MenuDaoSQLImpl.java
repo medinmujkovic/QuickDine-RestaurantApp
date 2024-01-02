@@ -61,4 +61,13 @@ public class MenuDaoSQLImpl extends AbstractDao<MenuRequest> implements MenuDao 
         return item;
     }
 
+    @Override
+    public void setId(int id) {
+
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
 }

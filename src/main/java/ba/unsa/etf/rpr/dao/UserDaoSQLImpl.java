@@ -1,12 +1,9 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
 import ba.unsa.etf.rpr.controllers.DTO.UserRequest;
-import javafx.scene.image.Image;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -56,4 +53,13 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
         return executeQueryUnique("SELECT * FROM user WHERE username = ?", new Object[]{username});
     }
 
+    @Override
+    public void setId(int id) {
+
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
 }
