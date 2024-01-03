@@ -11,7 +11,6 @@ public class LoginManager {
 
     public boolean authentication(String username, String password) throws SQLException {
         rs=getByUsername(username);
-            System.out.println(username.equals(rs.username()) && password.equals(rs.password()));
         return username.equals(rs.username()) && password.equals(rs.password());
     }
 
