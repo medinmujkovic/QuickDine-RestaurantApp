@@ -2,8 +2,10 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
+import ba.unsa.etf.rpr.utils.StageUtils;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
@@ -20,15 +22,24 @@ public class ServiceController {
     public ListView SelectedListId;
     public Button CheckOutId;
     public ListView MenuListId;
+    public static StageUtils checkoutScreen;
 
     public void setSelectedListId(ObservableList<MenuRequest> selectedItems ) {
         SelectedListId.setItems(selectedItems);
     }
-
+    @FXML
     public void signOutAction(ActionEvent actionEvent) {
         stageDashboard.closeStage();
     }
 
+    public void checkoutAction(ActionEvent actionEvent) throws Exception {
+        //Redirect to checkout screen
+        ObservableList<MenuRequest> menuItems = getSelectedItems();
+        if(!menuItems.isEmpty()) {
+            checkoutScreen = new StageUtils();
+            checkoutScreen.openStage("/fxml/checkout.fxml", "Checkout Screen");
+        }
+    }
     public void initialize() {
         //Creating a list of menu items using the MenuRequest record
         ObservableList<MenuRequest> menuItems = createMenuRequests();

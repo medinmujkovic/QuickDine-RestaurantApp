@@ -104,7 +104,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
             </ListView>
-            <Button fx:id="CheckOutId" mnemonicParsing="false" text="Checkout">
+            <Button fx:id="CheckOutId" mnemonicParsing="false" onAction="#checkoutAction" text="Checkout">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
