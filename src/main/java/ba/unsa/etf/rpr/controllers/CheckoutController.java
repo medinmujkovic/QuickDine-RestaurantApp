@@ -1,10 +1,12 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
 import ba.unsa.etf.rpr.controllers.DTO.OrderRequest;
 import ba.unsa.etf.rpr.dao.OrderDaoSQLImpl;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
 import ba.unsa.etf.rpr.utils.StageUtils;
+import com.google.protobuf.StringValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +16,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
 import java.security.Provider;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static ba.unsa.etf.rpr.utils.MenuItemBox.*;
 
@@ -28,6 +33,15 @@ public class CheckoutController {
         for (MenuRequest menu:selectedItems)
             sum+=menu.price()*menu.amount();
         return sum;
+    }
+
+    public String storeOrder(ObservableList<MenuRequest> selectedItems)
+    {
+        String order=new String();
+        for (MenuRequest menu:selectedItems)
+            order+=(String.valueOf(menu.id())+',');
+        System.out.println(order);
+        return order;
     }
 
     public void initialize()
@@ -54,9 +68,11 @@ public class CheckoutController {
     }
 
     // Clear the selections in the ListView
-    public void submitOrderAction(ActionEvent actionEvent) {
-//        OrderRequest=new OrderRequest()
-//        OrderDaoSQLImpl.object2row()
+    public void submitOrderAction(ActionEvent actionEvent) throws SQLException {
+        String orderString=storeOrder(selectedItems);
+        OrderRequest order=new OrderRequest(10,10,10,orderString);
+        OrderRequest order2 = OrderManager.add(order);
+        System.out.println(order2);
         selectedItems.clear();
         deleteSelectedItems();
         ServiceController.checkoutScreen.closeStage();
