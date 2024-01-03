@@ -27,8 +27,9 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
                     rs.getString("username"),
                     rs.getString("password"),
                     rs.getString("email"),
-                    rs.getString("full_name"),
-                    rs.getDate("date_of_birth")
+                    rs.getString("fullName"),
+                    rs.getDate("dateOfBirth"),
+                    rs.getInt("roleId")
             );
         }
         catch (Exception e)
@@ -44,8 +45,9 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
         item.put("username", object.username());
         item.put("password", object.password());
         item.put("email", object.email());
-        item.put("full_name", object.fullName());
-        item.put("date_of_birth", object.dateOfBirth());
+        item.put("fullName", object.fullName());
+        item.put("dateOfBirth", object.dateOfBirth());
+        item.put("roleId", object.roleId());
         return item;
     }
 
@@ -53,6 +55,9 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
         return executeQueryUnique("SELECT * FROM user WHERE username = ?", new Object[]{username});
     }
 
+//    public String getRoleNameById(int roleId) throws SQLException {
+//        return String.valueOf(executeQueryUnique("SELECT name FROM role WHERE id = ?", new Object[]{roleId}));
+//    }
     @Override
     public void setId(int id) {
 

@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.utils.PasswordPattern;
+import ba.unsa.etf.rpr.utils.RoleEnum;
 import ba.unsa.etf.rpr.utils.StageUtils;
 import ba.unsa.etf.rpr.utils.UsernamePattern;
 import javafx.event.ActionEvent;
@@ -30,13 +31,13 @@ public class LoginController {
         else if(loginManager.authentication(usernameId.getText(), passwordId.getText())){
             //login authentication
             StageUtils stageUtils = new StageUtils();
-            if(loginManager.getRole().equals("service")){
+            if(loginManager.getRole()==RoleEnum.service){
                 stageUtils.openStage("/fxml/service.fxml", "Customer Service Dashboard");
             }
-            if(loginManager.getRole().equals("chef")){
+            if(loginManager.getRole()==RoleEnum.chef){
                 stageUtils.openStage("/fxml/chef.fxml", "Chef Dashboard");
             }
-            else if(loginManager.getRole().equals("admin")){
+            else if(loginManager.getRole()==RoleEnum.admin){
                 stageUtils.openStage("/fxml/admin.fxml", "Admin Dashboard");
             }
 

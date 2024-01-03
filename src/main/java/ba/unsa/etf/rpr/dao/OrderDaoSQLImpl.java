@@ -32,10 +32,10 @@ public class OrderDaoSQLImpl extends AbstractDao<OrderRequest> implements OrderD
     public OrderRequest row2object(ResultSet rs) throws SQLException {
         try{
             int id = rs.getInt("id");
-            int mealId = rs.getInt("mealId");
             int userId = rs.getInt("userId");
-            String selected_meals = rs.getString("selected_meals");
-            return new OrderRequest(id, mealId, userId, selected_meals);
+            int statusId = rs.getInt("statusId");
+            String selectedMeals = rs.getString("selectedMeals");
+            return new OrderRequest(id, userId, statusId,selectedMeals);
         }
         catch (Exception e)
         {
@@ -47,9 +47,9 @@ public class OrderDaoSQLImpl extends AbstractDao<OrderRequest> implements OrderD
     public Map<String, Object> object2row(OrderRequest object) {
         Map<String, Object> item = new TreeMap<>();
         item.put("id", object.id());
-        item.put("mealId", object.mealId());
         item.put("userId", object.userId());
-        item.put("selected_meals", object.selectedMeals());
+        item.put("statusId", object.userId());
+        item.put("selectedMeals", object.selectedMeals());
         return item;
     }
 

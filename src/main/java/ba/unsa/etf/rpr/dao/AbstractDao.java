@@ -183,4 +183,5 @@ public abstract class AbstractDao<T> implements Idable,Dao<T>{
         }
         return columns.toString();
     }
+
 };
