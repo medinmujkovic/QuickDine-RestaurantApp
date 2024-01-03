@@ -6,7 +6,7 @@ import ba.unsa.etf.rpr.domain.Idable;
 import java.sql.*;
 import java.util.*;
 
-public abstract class AbstractDao<T extends Idable> implements Dao<T> {
+public abstract class AbstractDao<T> implements Idable,Dao<T>{
     private static Connection connection = null;
     private String tableName;
 
@@ -89,7 +89,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
 
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-            //item.setId(rs.getInt(1)); //set id to return it back */
+            //item.setId(rs.getInt(1));
 
             return item;
         }catch (SQLException e){
@@ -183,4 +183,5 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         }
         return columns.toString();
     }
+
 };

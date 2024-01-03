@@ -3,16 +3,16 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
+import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.MenuItemBox.getSelectedItems;
 import static ba.unsa.etf.rpr.utils.MenuRequestHelper.createMenuRequests;
 
 public class ServiceController {
-    public Label FullNameId;
     public Button homeId;
-    public Button SettingsId;
     public Button SignOutId;
     public Button FoodId;
     public Button DrinksId;
@@ -23,6 +23,10 @@ public class ServiceController {
 
     public void setSelectedListId(ObservableList<MenuRequest> selectedItems ) {
         SelectedListId.setItems(selectedItems);
+    }
+
+    public void signOutAction(ActionEvent actionEvent) {
+        stageDashboard.closeStage();
     }
 
     public void initialize() {
@@ -63,8 +67,5 @@ public class ServiceController {
                 }
             }
         });
-
-
-
     }
 }

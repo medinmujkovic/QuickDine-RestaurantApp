@@ -33,7 +33,7 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Button>
-            <Button fx:id="SignOutId" layoutX="10.0" layoutY="204.0" mnemonicParsing="false" text="Sign out">
+            <Button fx:id="signOutId" layoutX="10.0" layoutY="204.0" mnemonicParsing="false" onAction="#signOutAction" text="Sign out">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Button>

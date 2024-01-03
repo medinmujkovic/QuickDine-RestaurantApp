@@ -3,15 +3,19 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.controllers.DTO.OrderRequest;
 import ba.unsa.etf.rpr.utils.OrderItemBox;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
+import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.OrderRequestHelper.createOrderRequests;
 
 public class ChefController {
 
     public ListView orderListId;
+    public Button SignOutId;
 
     public void initialize() {
         //Creating a list of order items using the OrderRequest record
@@ -32,5 +36,9 @@ public class ChefController {
                 }
             }
         });
+    }
+
+    public void signOutAction(ActionEvent actionEvent) {
+        stageDashboard.closeStage();
     }
 }
