@@ -23,6 +23,7 @@ public class LoginController {
     public Label invalidPasswordId;
     public ImageView backgroundImage;
     private final LoginManager loginManager = new LoginManager();
+    public static StageUtils stageDashboard = new StageUtils();
 
     //Login validation
     public void loginAction(ActionEvent actionEvent) throws Exception {
@@ -30,15 +31,15 @@ public class LoginController {
         else if(passwordId.getText().isEmpty()) invalidPasswordId.setText("Password is required!");
         else if(loginManager.authentication(usernameId.getText(), passwordId.getText())){
             //login authentication
-            StageUtils stageUtils = new StageUtils();
+
             if(loginManager.getRole()==RoleEnum.service){
-                stageUtils.openStage("/fxml/service.fxml", "Customer Service Dashboard");
+                stageDashboard.openStage("/fxml/service.fxml", "Customer Service Dashboard");
             }
             if(loginManager.getRole()==RoleEnum.chef){
-                stageUtils.openStage("/fxml/chef.fxml", "Chef Dashboard");
+                stageDashboard.openStage("/fxml/chef.fxml", "Chef Dashboard");
             }
             else if(loginManager.getRole()==RoleEnum.admin){
-                stageUtils.openStage("/fxml/admin.fxml", "Admin Dashboard");
+                stageDashboard.openStage("/fxml/admin.fxml", "Admin Dashboard");
             }
 
         }

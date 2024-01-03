@@ -5,16 +5,20 @@ import ba.unsa.etf.rpr.controllers.DTO.UserRequest;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
 import ba.unsa.etf.rpr.utils.UserItemBox;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
+import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.MenuRequestHelper.createMenuRequests;
 import static ba.unsa.etf.rpr.utils.UserRequestHelper.createUserRequests;
 
 public class AdminController {
     public ListView MenuListId;
     public ListView UserListId;
+    public Button signOutId;
 
     public void initialize() {
         //Creating a list of menu items using the MenuRequest record
@@ -55,5 +59,9 @@ public class AdminController {
             }
         });
 
+    }
+
+    public void signOutAction(ActionEvent actionEvent) {
+        stageDashboard.closeStage();
     }
 }
