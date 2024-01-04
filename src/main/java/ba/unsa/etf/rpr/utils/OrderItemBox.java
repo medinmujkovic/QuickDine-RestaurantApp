@@ -60,6 +60,11 @@ public class OrderItemBox {
 
         // Creating HBoxes for the UI of:
         HBox descriptionBox=createItemBox(new Label(item.getSelectedMeals()),200);
+        HBox finishBox=createSelectedItemDelete(
+                new Button("X"),
+                item
+        );
+
         HBox deleteBox=createSelectedItemDelete(
                 new Button("X"),
                 item
@@ -69,7 +74,7 @@ public class OrderItemBox {
         hBox.setSpacing(30);
 
         //Setting children of the main HBox views
-        hBox.getChildren().addAll(descriptionBox,deleteBox);
+        hBox.getChildren().addAll(descriptionBox,finishBox,deleteBox);
 
         return hBox;
     }
@@ -104,6 +109,23 @@ public class OrderItemBox {
         //Accept button action
         button.setOnAction(actionEvent -> {
             selectedOrderItems.add(item);
+            updateSelectedOrderView();
+        });
+
+        return infoBox;
+    }
+
+    //Method for creating the finish item button when selected
+    private static HBox createSelectedItemFinish(Button button, Order item) {
+        HBox infoBox=new HBox(button);
+        button.setId("finishItemButtonId");
+        infoBox.setMinWidth(30);
+        infoBox.setPrefWidth(30);
+        infoBox.setMaxWidth(30);
+
+        //Delete button action
+        button.setOnAction(actionEvent -> {
+            selectedOrderItems.remove(item);
             updateSelectedOrderView();
         });
 
