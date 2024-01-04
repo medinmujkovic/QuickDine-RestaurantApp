@@ -17,6 +17,12 @@ public class Order implements Idable {
         this.selectedMeals = selectedMeals;
     }
 
+    public Order(Integer userId, int statusId, String selectedMeals) {
+        this.userId = userId;
+        this.statusId = statusId;
+        this.selectedMeals = selectedMeals;
+    }
+
     public int getId() {
         return id;
     }

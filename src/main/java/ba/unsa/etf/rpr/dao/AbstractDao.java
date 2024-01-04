@@ -90,7 +90,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
 
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-            //item.setId(rs.getInt(1));
+            item.setId(rs.getInt(1));
 
             return item;
         }catch (SQLException e){
@@ -116,7 +116,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
                 stmt.setObject(counter, entry.getValue());
                 counter++;
             }
-            //stmt.setObject(counter, item.getId());
+            stmt.setObject(counter, item.getId());
             stmt.executeUpdate();
             return item;
         }catch (SQLException e){

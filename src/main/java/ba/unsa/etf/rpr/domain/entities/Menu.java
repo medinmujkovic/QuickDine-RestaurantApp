@@ -15,7 +15,7 @@ public class Menu implements Idable {
     int amount;
 
     public Menu(int id, String name, String type, String description, Image image, double price, int amount) {
-        this.id = id;
+        this.id=id;
         this.name = name;
         this.type = type;
         this.description = description;

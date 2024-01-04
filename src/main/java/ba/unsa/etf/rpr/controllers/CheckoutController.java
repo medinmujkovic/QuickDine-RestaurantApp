@@ -38,8 +38,13 @@ public class CheckoutController {
     public String storeOrder(ObservableList<Menu> selectedItems)
     {
         String order=new String();
-        for (Menu menu:selectedItems)
-            order+=(String.valueOf(menu.getId())+',');
+        for (int i=0;i<selectedItems.size(); i++) {
+            Menu menu=selectedItems.get(i);
+            order+=String.valueOf(menu.getName())+" x"+String.valueOf(menu.getAmount());
+            if (i<selectedItems.size()-1) {
+                order+=", ";
+            }
+        }
         System.out.println(order);
         return order;
     }
@@ -70,9 +75,9 @@ public class CheckoutController {
     // Clear the selections in the ListView
     public void submitOrderAction(ActionEvent actionEvent) throws SQLException {
         String orderString=storeOrder(selectedItems);
-        Order order=new Order(10,10,10,orderString);
-        //Order order2 = OrderManager.add(order);
-        //System.out.println(order2);
+        Order order = new Order(1,1,orderString);
+        Order order2 = OrderManager.add(order);
+        //Deleting items from the select list
         selectedItems.clear();
         deleteSelectedItems();
         ServiceController.checkoutScreen.closeStage();

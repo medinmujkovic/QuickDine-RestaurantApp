@@ -98,7 +98,7 @@ public class MenuItemBox {
         VBox deleteBox=createSelectedItemDelete(
                 new Button("X"),
                 item
-                );
+        );
         HBox amountBox=createItemLabelHBox(new Label("x"+item.getAmount()),30);
 
         //Creating pacing between the items
@@ -231,14 +231,14 @@ public class MenuItemBox {
         //Add button action
         button.setOnAction(actionEvent -> {
 
-            //Check if the Menu already exists
+            //Check if the MenuRequest already exists
             exists=null;
             for(Menu i :selectedItems)
-                if(item.getId()==item.getId())
+                if(i.getId()==item.getId())
                     exists=i;
 
             if(exists!=null) {
-                //If the Menu already exists then just alter the changes to the selected list
+                //If the MenuRequest already exists then just alter the changes to the selected list
                 selectedListItems.remove(exists);
                 Menu updatedRequest=new Menu(
                         exists.getId(),
@@ -253,8 +253,8 @@ public class MenuItemBox {
                 updateSelectedListView();
             }
             else{
-                //If the Menu doesn't already exist then add a new Menu to the selected list
-                Menu Menu=new Menu(
+                //If the MenuRequest doesn't already exist then add a new MenuRequest to the selected list
+                Menu menuRequest=new Menu(
                         item.getId(),
                         item.getName(),
                         item.getType(),
@@ -262,7 +262,7 @@ public class MenuItemBox {
                         item.getImage(),
                         item.getPrice(),
                         (Integer) spinner.getValue());
-                selectedListItems.add(Menu);
+                selectedListItems.add(menuRequest);
                 updateSelectedListView();
             }
         });
@@ -281,6 +281,7 @@ public class MenuItemBox {
     public static ObservableList<Menu> getSelectedItems() {
         return selectedItems;
     }
+
 
     //Delete the items when not needed
     public static void deleteSelectedItems() {

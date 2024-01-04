@@ -30,11 +30,10 @@ public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
     @Override
     public Order row2object(ResultSet rs) throws SQLException {
         try{
-            int id = rs.getInt("id");
             int userId = rs.getInt("userId");
             int statusId = rs.getInt("statusId");
             String selectedMeals = rs.getString("selectedMeals");
-            return new Order(id, userId, statusId,selectedMeals);
+            return new Order(userId, statusId,selectedMeals);
         }
         catch (Exception e)
         {
