@@ -21,6 +21,7 @@ public class OrderItemBox {
 
     private static List<Order> selectedOrderItems;
     private static ObservableList<Order> selectedItems= FXCollections.observableArrayList();
+    private static Order exists;
     private static final OrderManager orderManager = new OrderManager();
     public static HBox createOrderBox(Order item) throws SQLException {
 
@@ -61,7 +62,7 @@ public class OrderItemBox {
         // Creating HBoxes for the UI of:
         HBox descriptionBox=createItemBox(new Label(item.getSelectedMeals()),200);
         HBox finishBox=createSelectedItemDelete(
-                new Button("X"),
+                new Button("Finish"),
                 item
         );
 
@@ -108,10 +109,37 @@ public class OrderItemBox {
 
         //Accept button action
         button.setOnAction(actionEvent -> {
-            selectedOrderItems.add(item);
-            updateSelectedOrderView();
-        });
+            //Check if the Order already exists
+            exists=null;
+            for(Order i :selectedItems)
+                if(i.getId()==item.getId())
+                    exists=i;
 
+            if(exists!=null) {
+                //If the Order already exists then just alter the changes to the selected list
+                selectedOrderItems.remove(exists);
+                Order order=new Order(
+                        exists.getId(),
+                        exists.getUserId(),
+                        exists.getStatusId(),
+                        exists.getSelectedMeals()
+                );
+                selectedOrderItems.add(order);
+                updateSelectedOrderView();
+            }
+            else {
+                //If the Order doesn't already exist then add a new Order to the selected list
+                Order order = new Order(
+                        item.getId(),
+                        item.getUserId(),
+                        item.getStatusId(),
+                        item.getSelectedMeals()
+                );
+                selectedOrderItems.add(order);
+                updateSelectedOrderView();
+
+            }
+        });
         return infoBox;
     }
 
