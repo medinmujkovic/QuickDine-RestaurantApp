@@ -2,21 +2,17 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.utils.PasswordPattern;
-import ba.unsa.etf.rpr.utils.RoleEnum;
+import ba.unsa.etf.rpr.domain.enums.Role;
 import ba.unsa.etf.rpr.utils.StageUtils;
 import ba.unsa.etf.rpr.utils.UsernamePattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-import java.io.IOException;
-
 public class LoginController {
-    public Button loginId;
     public TextField usernameId;
     public PasswordField passwordId;
     public Label invaliduUsernameId;
@@ -32,13 +28,13 @@ public class LoginController {
         else if(loginManager.authentication(usernameId.getText(), passwordId.getText())){
             //login authentication
 
-            if(loginManager.getRole()==RoleEnum.service){
+            if(loginManager.getRole()== Role.SERVICE){
                 stageDashboard.openStage("/fxml/service.fxml", "Customer Service Dashboard");
             }
-            if(loginManager.getRole()==RoleEnum.chef){
+            if(loginManager.getRole()== Role.CHEF){
                 stageDashboard.openStage("/fxml/chef.fxml", "Chef Dashboard");
             }
-            else if(loginManager.getRole()==RoleEnum.admin){
+            else if(loginManager.getRole()== Role.ADMIN){
                 stageDashboard.openStage("/fxml/admin.fxml", "Admin Dashboard");
             }
 

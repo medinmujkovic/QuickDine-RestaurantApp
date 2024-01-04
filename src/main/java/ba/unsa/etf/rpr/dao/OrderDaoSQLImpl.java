@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
-import ba.unsa.etf.rpr.controllers.DTO.OrderRequest;
+import ba.unsa.etf.rpr.domain.entities.Order;
 import javafx.scene.image.Image;
 
 import java.io.InputStream;
@@ -11,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class OrderDaoSQLImpl extends AbstractDao<OrderRequest> implements OrderDao {
+public class OrderDaoSQLImpl extends AbstractDao<Order> implements OrderDao {
     private static OrderDaoSQLImpl instance = null;
     private OrderDaoSQLImpl() {
         super("orders");
@@ -29,13 +28,12 @@ public class OrderDaoSQLImpl extends AbstractDao<OrderRequest> implements OrderD
     }
 
     @Override
-    public OrderRequest row2object(ResultSet rs) throws SQLException {
+    public Order row2object(ResultSet rs) throws SQLException {
         try{
-            int id = rs.getInt("id");
             int userId = rs.getInt("userId");
             int statusId = rs.getInt("statusId");
             String selectedMeals = rs.getString("selectedMeals");
-            return new OrderRequest(id, userId, statusId,selectedMeals);
+            return new Order(userId, statusId,selectedMeals);
         }
         catch (Exception e)
         {
@@ -44,22 +42,14 @@ public class OrderDaoSQLImpl extends AbstractDao<OrderRequest> implements OrderD
     }
 
     @Override
-    public Map<String, Object> object2row(OrderRequest object) {
+    public Map<String, Object> object2row(Order object) {
         Map<String, Object> item = new TreeMap<>();
-        item.put("id", object.id());
-        item.put("userId", object.userId());
-        item.put("statusId", object.userId());
-        item.put("selectedMeals", object.selectedMeals());
+        item.put("id", object.getId());
+        item.put("userId", object.getUserId());
+        item.put("statusId", object.getUserId());
+        item.put("selectedMeals", object.getSelectedMeals());
         return item;
     }
 
-    @Override
-    public void setId(int id) {
 
-    }
-
-    @Override
-    public int getId() {
-        return 0;
-    }
 }
