@@ -13,25 +13,17 @@ public class OrderItemBox {
     private static final OrderManager orderManager = new OrderManager();
     public static HBox createOrderBox(Order item) {
 
-        //Creating the main HBox view for Image
-        HBox hbox = new HBox(10);
-
-        //Creating the ImageView of the item
-//        ImageView imageView = new ImageView(item.image());
-//        imageView.setFitWidth(80);
-//        imageView.setFitHeight(80);
-
         //Creating the main HBox view for other info
         HBox hBox = new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox mainOrderBox = createItemBox(new Label(item.getSelectedMeals()), 60);
+        HBox mainOrderBox = createItemBox(new Label(item.getSelectedMeals()), 400);
        // HBox statusBox = createItemStatusBox(100);
 
         //Creating spacing between the items
         hBox.setSpacing(100);
         //Setting children of the main HBox views
-        //hBox.getChildren().addAll(mainOrderBox, statusBox);
+        hBox.getChildren().addAll(mainOrderBox);
 
         return hBox;
     }
