@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 public class LoginController {
-    public Button loginId;
     public TextField usernameId;
     public PasswordField passwordId;
     public Label invaliduUsernameId;

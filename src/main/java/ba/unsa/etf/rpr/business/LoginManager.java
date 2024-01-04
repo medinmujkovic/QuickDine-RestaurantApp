@@ -18,6 +18,10 @@ public class LoginManager {
         return RoleEnum.fromRoleId(rs.getRoleId());
     }
 
+    public static User getRs() {
+        return rs;
+    }
+
     public User getByUsername(String username) throws SQLException {
         return DaoFactory.userDao().getByUsername(username);
     }
