@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
-import ba.unsa.etf.rpr.controllers.DTO.UserRequest;
+import ba.unsa.etf.rpr.domain.entities.Menu;
+import ba.unsa.etf.rpr.domain.entities.User;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
 import ba.unsa.etf.rpr.utils.UserItemBox;
 import javafx.collections.ObservableList;
@@ -12,7 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
-import static ba.unsa.etf.rpr.utils.MenuRequestHelper.createMenuRequests;
+import static ba.unsa.etf.rpr.utils.MenuHelper.createMenus;
 import static ba.unsa.etf.rpr.utils.UserRequestHelper.createUserRequests;
 
 public class AdminController {
@@ -21,14 +21,14 @@ public class AdminController {
     public Button signOutId;
 
     public void initialize() {
-        //Creating a list of menu items using the MenuRequest record
-        ObservableList<MenuRequest> menuItems = createMenuRequests();
+        //Creating a list of menu items using the Menu record
+        ObservableList<Menu> menuItems = createMenus();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view
-        MenuListId.setCellFactory(param -> new ListCell<MenuRequest>() {
+        MenuListId.setCellFactory(param -> new ListCell<Menu>() {
             @Override
-            protected void updateItem(MenuRequest item, boolean empty) {
+            protected void updateItem(Menu item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if (empty || item == null) {
@@ -41,13 +41,13 @@ public class AdminController {
         });
 
         //Creating a list of user items using the UserRequest record
-        ObservableList<UserRequest> users =createUserRequests();
+        ObservableList<User> users =createUserRequests();
         //Setting the user items to the FXML ListView
         UserListId.setItems(users);
         //Displaying the view
-        UserListId.setCellFactory(param -> new ListCell<UserRequest>() {
+        UserListId.setCellFactory(param -> new ListCell<User>() {
             @Override
-            protected void updateItem(UserRequest item, boolean empty) {
+            protected void updateItem(User item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if (empty || item == null) {

@@ -1,9 +1,9 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.OrderManager;
-import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
-import ba.unsa.etf.rpr.controllers.DTO.OrderRequest;
 import ba.unsa.etf.rpr.dao.OrderDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.entities.Menu;
+import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
 import ba.unsa.etf.rpr.utils.StageUtils;
 import com.google.protobuf.StringValue;
@@ -25,21 +25,21 @@ import static ba.unsa.etf.rpr.utils.MenuItemBox.*;
 public class CheckoutController {
     public ListView selectedListCheckout;
     public Label totalPriceLabel;
-    private ObservableList<MenuRequest> selectedItems;
+    private ObservableList<Menu> selectedItems;
 
-    public double calculateTotalPrice(ObservableList<MenuRequest> selectedItems)
+    public double calculateTotalPrice(ObservableList<Menu> selectedItems)
     {
         double sum=0;
-        for (MenuRequest menu:selectedItems)
-            sum+=menu.price()*menu.amount();
+        for (Menu menu:selectedItems)
+            sum+=menu.getPrice()*menu.getAmount();
         return sum;
     }
 
-    public String storeOrder(ObservableList<MenuRequest> selectedItems)
+    public String storeOrder(ObservableList<Menu> selectedItems)
     {
         String order=new String();
-        for (MenuRequest menu:selectedItems)
-            order+=(String.valueOf(menu.id())+',');
+        for (Menu menu:selectedItems)
+            order+=(String.valueOf(menu.getId())+',');
         System.out.println(order);
         return order;
     }
@@ -52,9 +52,9 @@ public class CheckoutController {
         //Display selected items and its full price
         totalPriceLabel.setText("Total Price: "+String.format("%.2f", totalPrice)+" $");
         selectedListCheckout.setItems(selectedItems);
-        selectedListCheckout.setCellFactory(param -> new ListCell<MenuRequest>() {
+        selectedListCheckout.setCellFactory(param -> new ListCell<Menu>() {
             @Override
-            protected void updateItem(MenuRequest item, boolean empty) {
+            protected void updateItem(Menu item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if (empty || item == null) {
@@ -70,9 +70,9 @@ public class CheckoutController {
     // Clear the selections in the ListView
     public void submitOrderAction(ActionEvent actionEvent) throws SQLException {
         String orderString=storeOrder(selectedItems);
-        OrderRequest order=new OrderRequest(10,10,10,orderString);
-        OrderRequest order2 = OrderManager.add(order);
-        System.out.println(order2);
+        Order order=new Order(10,10,10,orderString);
+        //Order order2 = OrderManager.add(order);
+        //System.out.println(order2);
         selectedItems.clear();
         deleteSelectedItems();
         ServiceController.checkoutScreen.closeStage();

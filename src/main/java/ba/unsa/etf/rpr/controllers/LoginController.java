@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.utils.PasswordPattern;
-import ba.unsa.etf.rpr.utils.RoleEnum;
+import ba.unsa.etf.rpr.domain.enums.RoleEnum;
 import ba.unsa.etf.rpr.utils.StageUtils;
 import ba.unsa.etf.rpr.utils.UsernamePattern;
 import javafx.event.ActionEvent;
@@ -12,8 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-
-import java.io.IOException;
 
 public class LoginController {
     public Button loginId;

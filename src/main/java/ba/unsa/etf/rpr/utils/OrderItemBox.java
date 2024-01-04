@@ -1,13 +1,13 @@
 package ba.unsa.etf.rpr.utils;
 
-import ba.unsa.etf.rpr.controllers.DTO.OrderRequest;
+import ba.unsa.etf.rpr.domain.entities.Order;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 //Order item in the Chef Dashboard listview
 public class OrderItemBox {
-    public static HBox createOrderBox(OrderRequest item) {
+    public static HBox createOrderBox(Order item) {
 
         //Creating the main HBox view for Image
         HBox hbox = new HBox(10);

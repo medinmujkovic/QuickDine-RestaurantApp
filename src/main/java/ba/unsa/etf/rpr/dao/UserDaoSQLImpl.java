@@ -1,13 +1,13 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.controllers.DTO.UserRequest;
+import ba.unsa.etf.rpr.domain.entities.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao {
+public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao {
     private static UserDaoSQLImpl instance = null;
     public UserDaoSQLImpl() {
         super("user");
@@ -20,9 +20,9 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
     }
 
     @Override
-    public UserRequest row2object(ResultSet rs) throws SQLException {
+    public User row2object(ResultSet rs) throws SQLException {
         try{
-            return new UserRequest(
+            return new User(
                     rs.getInt("id"),
                     rs.getString("username"),
                     rs.getString("password"),
@@ -39,32 +39,20 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
     }
 
     @Override
-    public Map<String, Object> object2row(UserRequest object) {
+    public Map<String, Object> object2row(User object) {
         Map<String, Object> item = new TreeMap<>();
-        item.put("id", object.id());
-        item.put("username", object.username());
-        item.put("password", object.password());
-        item.put("email", object.email());
-        item.put("fullName", object.fullName());
-        item.put("dateOfBirth", object.dateOfBirth());
-        item.put("roleId", object.roleId());
+        item.put("id", object.getId());
+        item.put("username", object.getUsername());
+        item.put("password", object.getPassword());
+        item.put("email", object.getEmail());
+        item.put("fullName", object.getFullName());
+        item.put("dateOfBirth", object.getDateOfBirth());
+        item.put("roleId", object.getRoleId());
         return item;
     }
 
-    public UserRequest getByUsername(String username) throws SQLException {
+    public User getByUsername(String username) throws SQLException {
         return executeQueryUnique("SELECT * FROM user WHERE username = ?", new Object[]{username});
     }
 
-//    public String getRoleNameById(int roleId) throws SQLException {
-//        return String.valueOf(executeQueryUnique("SELECT name FROM role WHERE id = ?", new Object[]{roleId}));
-//    }
-    @Override
-    public void setId(int id) {
-
-    }
-
-    @Override
-    public int getId() {
-        return 0;
-    }
 }

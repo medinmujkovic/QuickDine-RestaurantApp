@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.utils;
+package ba.unsa.etf.rpr.domain.enums;
 
 public enum RoleEnum {
     admin(1),

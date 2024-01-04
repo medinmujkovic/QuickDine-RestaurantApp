@@ -6,7 +6,8 @@ import ba.unsa.etf.rpr.domain.Idable;
 import java.sql.*;
 import java.util.*;
 
-public abstract class AbstractDao<T> implements Idable,Dao<T>{
+
+public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     private static Connection connection = null;
     private String tableName;
 
