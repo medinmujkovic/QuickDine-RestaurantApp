@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderRequestHelper {
+public class OrderHelper {
     //Retrieving order items from the database
     public static ObservableList<Order> createOrderRequests() {
         OrderDaoSQLImpl orderDao = OrderDaoSQLImpl.getInstance();

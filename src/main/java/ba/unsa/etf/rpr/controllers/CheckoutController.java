@@ -1,24 +1,17 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.OrderManager;
-import ba.unsa.etf.rpr.dao.OrderDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
-import ba.unsa.etf.rpr.utils.StageUtils;
-import com.google.protobuf.StringValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
-import java.security.Provider;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static ba.unsa.etf.rpr.utils.MenuItemBox.*;
 

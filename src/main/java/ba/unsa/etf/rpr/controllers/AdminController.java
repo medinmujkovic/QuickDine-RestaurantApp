@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.MenuHelper.createMenus;
-import static ba.unsa.etf.rpr.utils.UserRequestHelper.createUserRequests;
+import static ba.unsa.etf.rpr.utils.UserHelper.createUserRequests;
 
 public class AdminController {
     public ListView MenuListId;
@@ -60,7 +60,6 @@ public class AdminController {
         });
 
     }
-
     public void signOutAction(ActionEvent actionEvent) {
         stageDashboard.closeStage();
     }

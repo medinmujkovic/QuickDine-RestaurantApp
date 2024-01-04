@@ -14,14 +14,9 @@ public class LoginManager {
         return username.equals(rs.getUsername()) && password.equals(rs.getPassword());
     }
 
-//    private String getRoleNameById(int roleId) throws SQLException{
-//        return DaoFactory.userDao().getRoleNameById(roleId);
-//    }
-
     public RoleEnum getRole(){
         return RoleEnum.fromRoleId(rs.getRoleId());
     }
-
 
     public User getByUsername(String username) throws SQLException {
         return DaoFactory.userDao().getByUsername(username);

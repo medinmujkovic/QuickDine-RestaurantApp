@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
-import static ba.unsa.etf.rpr.utils.OrderRequestHelper.createOrderRequests;
+import static ba.unsa.etf.rpr.utils.OrderHelper.createOrderRequests;
 
 public class ChefController {
 

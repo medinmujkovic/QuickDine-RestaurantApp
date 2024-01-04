@@ -24,13 +24,13 @@ public class UserItemBox {
         // Remove the user from the userRequests list
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(event -> {
-            UserRequestHelper.remove(item);
+            UserHelper.remove(item);
         });
 
         // Edit the user from the userRequests list
         Button editButton = new Button("Edit");
         editButton.setOnAction(event -> {
-            UserRequestHelper.edit(item);
+            UserHelper.edit(item);
         });
 
         //Creating spacing between the items
