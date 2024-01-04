@@ -2,7 +2,6 @@ package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.entities.Order;
-import ba.unsa.etf.rpr.domain.enums.StatusEnum;
 
 import java.sql.SQLException;
 import java.util.List;

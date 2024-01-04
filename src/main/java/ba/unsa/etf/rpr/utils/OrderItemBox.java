@@ -1,11 +1,8 @@
 package ba.unsa.etf.rpr.utils;
 
-import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.entities.Order;
-import ba.unsa.etf.rpr.domain.enums.StatusEnum;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 //Order item in the Chef Dashboard listview

@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.domain.entities.User;
-import ba.unsa.etf.rpr.domain.enums.RoleEnum;
+import ba.unsa.etf.rpr.domain.enums.Role;
 import ba.unsa.etf.rpr.dao.DaoFactory;
 
 import java.sql.SQLException;
@@ -14,8 +14,8 @@ public class LoginManager {
         return username.equals(rs.getUsername()) && password.equals(rs.getPassword());
     }
 
-    public RoleEnum getRole(){
-        return RoleEnum.fromRoleId(rs.getRoleId());
+    public Role getRole(){
+        return Role.fromRoleId(rs.getRoleId());
     }
 
     public static User getRs() {

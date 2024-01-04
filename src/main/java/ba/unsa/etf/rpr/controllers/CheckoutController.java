@@ -22,29 +22,29 @@ public class CheckoutController {
 
     public double calculateTotalPrice(ObservableList<Menu> selectedItems)
     {
-        double sum=0;
-        for (Menu menu:selectedItems)
-            sum+=menu.getPrice()*menu.getAmount();
-        return sum;
+        //Stream API
+        return selectedItems.stream()
+            .mapToDouble(menu -> menu.getPrice() * menu.getAmount())
+            .sum();
     }
 
+    //Storing the order in an attribute of the Order entity
     public String storeOrder(ObservableList<Menu> selectedItems)
     {
-        String order=new String();
+        StringBuilder order=new StringBuilder();
         for (int i=0;i<selectedItems.size(); i++) {
             Menu menu=selectedItems.get(i);
-            order+=String.valueOf(menu.getName())+" x"+String.valueOf(menu.getAmount());
+            order.append(menu.getName()).append(" x").append(menu.getAmount());
             if (i<selectedItems.size()-1) {
-                order+=", ";
+                order.append(", ");
             }
         }
-        System.out.println(order);
-        return order;
+        return order.toString();
     }
 
     public void initialize()
     {
-        //Fetch items from selectedlist
+        //Fetch items from selected list
         selectedItems = getSelectedItems();
         double totalPrice = calculateTotalPrice(selectedItems);
         //Display selected items and its full price

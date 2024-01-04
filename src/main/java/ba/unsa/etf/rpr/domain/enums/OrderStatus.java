@@ -1,13 +1,13 @@
 package ba.unsa.etf.rpr.domain.enums;
 
-public enum StatusEnum {
-    order_received(1),
-    in_progress(2),
-    ready_for_pickup(3);
+public enum OrderStatus {
+    RECEIVED(1),
+    IN_PROGRESS(2),
+    READY_FOR_PICKUP(3);
 
     private final int statusId;
 
-    StatusEnum(int status) {
+    OrderStatus(int status) {
         this.statusId = status;
     }
 
@@ -15,8 +15,8 @@ public enum StatusEnum {
         return statusId;
     }
 
-    public static StatusEnum fromStatusId(int statusId) {
-        for (StatusEnum status : StatusEnum.values()) {
+    public static OrderStatus fromStatusId(int statusId) {
+        for (OrderStatus status : OrderStatus.values()) {
             if (status.getStatusId() == statusId) {
                 return status;
             }
