@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.utils;
 
 import ba.unsa.etf.rpr.domain.entities.Menu;
+import ba.unsa.etf.rpr.domain.entities.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -11,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.List;
 //Menu item in the listview
 public class MenuItemBox {
     private static List<Menu> selectedListItems;
+    //Used for getting the selectedItems List to the ServiceController.java
     private static ObservableList<Menu> selectedItems= FXCollections.observableArrayList();
     private static Menu exists;
 
@@ -277,11 +280,11 @@ public class MenuItemBox {
         selectedItems.addAll(selectedListItems);
     }
 
-    //Used for getting the selectedItems List to the ServiceController.java
-    public static ObservableList<Menu> getSelectedItems() {
+    //Get Selected menu items for view
+    public static ObservableList<Menu> getSelectedItems()
+    {
         return selectedItems;
     }
-
 
     //Delete the items when not needed
     public static void deleteSelectedItems() {
