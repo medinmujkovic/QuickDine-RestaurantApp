@@ -36,7 +36,7 @@ public class OrderItemBox {
 
         // Creating HBoxes for the UI of:
         HBox mainOrderBox = createItemBox(new Label(item.getSelectedMeals()), 200);
-        HBox statusBox = createItemStatusBox(70,item);
+        HBox statusBox = createItemStatusBox(130,item);
         HBox acceptOrderBox=createAcceptedButtonBox(
                 new Button("Accept"),
                 item
