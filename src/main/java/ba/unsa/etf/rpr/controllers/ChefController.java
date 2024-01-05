@@ -7,6 +7,7 @@ import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
 import ba.unsa.etf.rpr.utils.OrderItemBox;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -47,7 +48,7 @@ public class ChefController {
                             HBox hbox = OrderItemBox.createOrderBox(item);
                             setGraphic(hbox);
                         } else {
-                            orders.remove(item);
+                            Platform.runLater(() ->orders.remove(item));
                         }
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
