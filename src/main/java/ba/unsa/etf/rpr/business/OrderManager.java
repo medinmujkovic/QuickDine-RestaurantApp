@@ -18,9 +18,22 @@ public class OrderManager {
     public static List<Order> getAll() throws SQLException {
         return DaoFactory.orderDao().getAll();
     }
-    public OrderStatus getStatus() throws SQLException {
+    public OrderStatus getStatus(int id) throws SQLException {
         rs=getAll();
-        return OrderStatus.fromStatusId(rs.get(0).getStatusId());
+        for (Order order : rs) {
+            if (order.getId() == id) {
+                return OrderStatus.fromStatusId(order.getStatusId());
+            }
+        }
+        return null;
+    }
+
+    public Order changeStatusId(Order order) throws SQLException{
+        return DaoFactory.orderDao().changeStatus(order);
+    }
+
+    public void deleteOrderFrom(int id)  throws SQLException{
+        DaoFactory.orderDao().deleteOrder(id);
     }
 
 }

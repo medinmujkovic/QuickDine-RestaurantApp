@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.utils;
 
 import ba.unsa.etf.rpr.business.OrderManager;
+import ba.unsa.etf.rpr.dao.OrderDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
@@ -35,7 +36,7 @@ public class OrderItemBox {
 
         // Creating HBoxes for the UI of:
         HBox mainOrderBox = createItemBox(new Label(item.getSelectedMeals()), 200);
-        HBox statusBox = createItemStatusBox(70);
+        HBox statusBox = createItemStatusBox(70,item);
         HBox acceptOrderBox=createAcceptedButtonBox(
                 new Button("Accept"),
                 item
@@ -45,7 +46,6 @@ public class OrderItemBox {
         hBox.setSpacing(70);
         //Setting children of the main HBox views
         hBox.getChildren().addAll(mainOrderBox,statusBox,acceptOrderBox);
-
         return hBox;
     }
 
@@ -60,8 +60,8 @@ public class OrderItemBox {
         HBox hBox=new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox descriptionBox=createItemBox(new Label(item.getSelectedMeals()),200);
-        HBox finishBox=createSelectedItemDelete(
+        HBox descriptionBox=createItemBox(new Label(item.getSelectedMeals()),150);
+        HBox finishBox=createSelectedItemFinish(
                 new Button("Finish"),
                 item
         );
@@ -72,7 +72,7 @@ public class OrderItemBox {
         );
 
         //Creating pacing between the items
-        hBox.setSpacing(30);
+        hBox.setSpacing(10);
 
         //Setting children of the main HBox views
         hBox.getChildren().addAll(descriptionBox,finishBox,deleteBox);
@@ -80,8 +80,8 @@ public class OrderItemBox {
         return hBox;
     }
 
-    private static HBox createItemStatusBox(double width) throws SQLException {
-        if(orderManager.getStatus()==OrderStatus.RECEIVED)
+    private static HBox createItemStatusBox(double width,Order item) throws SQLException {
+        if(orderManager.getStatus(item.getId())==OrderStatus.RECEIVED)
         {
             HBox infoBox = new HBox(new Label("Received"));
             infoBox.setMinWidth(width);
@@ -89,7 +89,7 @@ public class OrderItemBox {
             infoBox.setMaxWidth(width);
             return infoBox;
         }
-        if(orderManager.getStatus()==OrderStatus.IN_PROGRESS)
+        if(orderManager.getStatus(item.getId())==OrderStatus.IN_PROGRESS)
         {
             HBox infoBox = new HBox(new Label("In Progress"));
             infoBox.setMinWidth(width);
@@ -135,9 +135,14 @@ public class OrderItemBox {
                         item.getStatusId(),
                         item.getSelectedMeals()
                 );
+                try {
+                    order.setStatusId(2);
+                    Order changeStatus=orderManager.changeStatusId(order);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 selectedOrderItems.add(order);
                 updateSelectedOrderView();
-
             }
         });
         return infoBox;
@@ -147,13 +152,24 @@ public class OrderItemBox {
     private static HBox createSelectedItemFinish(Button button, Order item) {
         HBox infoBox=new HBox(button);
         button.setId("finishItemButtonId");
-        infoBox.setMinWidth(30);
-        infoBox.setPrefWidth(30);
-        infoBox.setMaxWidth(30);
+        infoBox.setMinWidth(50);
+        infoBox.setPrefWidth(50);
+        infoBox.setMaxWidth(50);
 
-        //Delete button action
+        //Finish button action
         button.setOnAction(actionEvent -> {
-            selectedOrderItems.remove(item);
+            Order order = new Order(
+                    item.getId(),
+                    item.getUserId(),
+                    item.getStatusId(),
+                    item.getSelectedMeals()
+            );
+            try {
+                order.setStatusId(3);
+                Order changeStatus=orderManager.changeStatusId(order);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             updateSelectedOrderView();
         });
 
@@ -171,6 +187,12 @@ public class OrderItemBox {
         //Delete button action
         button.setOnAction(actionEvent -> {
             selectedOrderItems.remove(item);
+            try {
+                item.setStatusId(1);
+                Order changeStatus=orderManager.changeStatusId(item);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             updateSelectedOrderView();
         });
 
@@ -183,7 +205,6 @@ public class OrderItemBox {
         infoBox.setMinWidth(width);
         infoBox.setPrefWidth(width);
         infoBox.setMaxWidth(width);
-        infoBox.setPadding(new javafx.geometry.Insets(0, 0, 0, 60));
         return infoBox;
     }
 
