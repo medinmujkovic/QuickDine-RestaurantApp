@@ -1,10 +1,12 @@
 package ba.unsa.etf.rpr.utils;
 
+import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.dao.OrderDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
+import com.mysql.cj.log.Log;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -24,6 +26,8 @@ public class OrderItemBox {
     private static ObservableList<Order> selectedItems= FXCollections.observableArrayList();
     private static Order exists;
     private static final OrderManager orderManager = new OrderManager();
+    private static final LoginManager loginManager = new LoginManager();
+
     public static HBox createOrderBox(Order item) throws SQLException {
 
         //Preventing selectedListItems to be null when loaded
@@ -137,6 +141,7 @@ public class OrderItemBox {
                 );
                 try {
                     order.setStatusId(2);
+                    order.setUserId(loginManager.getRs().getId());
                     Order changeStatus=orderManager.changeStatusId(order);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
@@ -189,6 +194,7 @@ public class OrderItemBox {
             selectedOrderItems.remove(item);
             try {
                 item.setStatusId(1);
+                item.setUserId(1);
                 Order changeStatus=orderManager.changeStatusId(item);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
