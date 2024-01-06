@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.utils;
+package ba.unsa.etf.rpr.utils.listviews;
 
 import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.business.OrderManager;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Order item in the Chef Dashboard listview
-public class OrderItemBox {
+public class OrderItemBox extends ItemBox{
 
     private static List<Order> selectedOrderItems;
     private static ObservableList<Order> selectedItems= FXCollections.observableArrayList();
@@ -39,7 +39,7 @@ public class OrderItemBox {
         HBox hBox = new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox mainOrderBox = createItemBox(new Label(item.getSelectedMeals()), 200);
+        HBox mainOrderBox = createItemLabelHBox(new Label(item.getSelectedMeals()), 200);
         HBox statusBox = createItemStatusBox(130,item);
         HBox acceptOrderBox=createAcceptedButtonBox(
                 new Button("Accept"),
@@ -64,7 +64,7 @@ public class OrderItemBox {
         HBox hBox=new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox descriptionBox=createItemBox(new Label(item.getSelectedMeals()),150);
+        HBox descriptionBox=createItemLabelHBox(new Label(item.getSelectedMeals()),150);
         HBox finishBox=createSelectedItemFinish(
                 new Button("Finish"),
                 item
@@ -205,14 +205,6 @@ public class OrderItemBox {
         return infoBox;
     }
 
-    //Helper method for creating the view
-    private static HBox createItemBox(Label label, double width) {
-        HBox infoBox = new HBox(label);
-        infoBox.setMinWidth(width);
-        infoBox.setPrefWidth(width);
-        infoBox.setMaxWidth(width);
-        return infoBox;
-    }
 
     //Get selected Order Items for View
     public static ObservableList<Order> getSelectedOrderItems()

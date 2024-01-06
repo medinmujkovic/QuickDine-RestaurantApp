@@ -1,7 +1,7 @@
-package ba.unsa.etf.rpr.utils;
+package ba.unsa.etf.rpr.utils.listviews;
 
+import ba.unsa.etf.rpr.controllers.ServiceController;
 import ba.unsa.etf.rpr.domain.entities.Menu;
-import ba.unsa.etf.rpr.domain.entities.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -12,23 +12,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 //Menu item in the listview
-public class MenuItemBox {
-    private static List<Menu> selectedListItems;
-    //Used for getting the selectedItems List to the ServiceController.java
-    private static ObservableList<Menu> selectedItems= FXCollections.observableArrayList();
-    private static Menu exists;
+public class MenuItemBox extends ItemBox {
+    private static List<Menu> selectedList;
+    private static ObservableList<Menu> selectedObservable = FXCollections.observableArrayList();
 
     //Method for creating the main listview
-    public static HBox createItemBox(Menu item) {
+    public static HBox createMenuItem(Menu item) {
         //Preventing selectedListItems to be null when loaded
-        if (selectedListItems == null) {
-            selectedListItems = new ArrayList<>();
+        if (selectedList == null) {
+            selectedList = new ArrayList<>();
         }
 
         //Creating the main HBox view for Image
@@ -49,7 +46,7 @@ public class MenuItemBox {
         HBox hBox=new HBox();
 
         // Creating HBoxes for the UI of:
-        VBox nameBox=createItemLabelVBox(new Label(item.getName()),new Label(item.getDescription()),100);
+        VBox nameBox= createTwoItemLabelsVBox(new Label(item.getName()),new Label(item.getDescription()),100);
         HBox priceBox=createItemLabelHBox(new Label("$"+item.getPrice()),60);
         HBox typeBox=createItemLabelHBox(new Label(item.getType()),60);
 
@@ -77,11 +74,11 @@ public class MenuItemBox {
     }
 
     //Method for creating the selected item listview
-    public static HBox createSelectedItemBox(Menu item) {
+    public static HBox createSelectedMenuItem(Menu item) {
 
         //Preventing selectedListItems to be null when loaded
-        if (selectedListItems == null) {
-            selectedListItems = new ArrayList<>();
+        if (selectedList == null) {
+            selectedList = new ArrayList<>();
         }
 
         //Creating the main HBox view for Image
@@ -114,12 +111,12 @@ public class MenuItemBox {
         return hbox;
     }
 
-    ////Method for creating the checkout item listview
+    //Method for creating the checkout item listview
     public static HBox createSelectedItemCheckoutBox(Menu item) {
 
         //Preventing selectedListItems to be null when loaded
-        if (selectedListItems == null) {
-            selectedListItems = new ArrayList<>();
+        if (selectedList == null) {
+            selectedList = new ArrayList<>();
         }
 
         //Creating the main HBox view for Image
@@ -149,62 +146,6 @@ public class MenuItemBox {
     }
 
 
-    //Method for creating the menu item listview for admin dashboard
-    public static HBox createMenuItemAdmin(Menu item) {
-
-        //Preventing selectedListItems to be null when loaded
-        if (selectedListItems == null) {
-            selectedListItems = new ArrayList<>();
-        }
-
-        //Creating the main HBox view for Image
-        HBox hbox=new HBox(10);
-
-        //Creating the ImageView of the item
-        ImageView imageView=new ImageView(item.getImage());
-        imageView.setFitWidth(20);
-        imageView.setFitHeight(20);
-
-        //Creating the main HBox view for other info
-        HBox hBox=new HBox();
-
-        // Creating HBoxes for the UI of:
-        HBox nameBox=createItemLabelHBox(new Label(item.getName()),50);
-        HBox priceBox=createItemLabelHBox(new Label("$"+item.getPrice()),60);
-        VBox deleteBox=createSelectedItemDelete(
-                new Button("X"),
-                item
-        );
-        HBox amountBox=createItemLabelHBox(new Label("x"+item.getAmount()),30);
-
-        //Creating pacing between the items
-        hBox.setSpacing(20);
-
-        //Setting children of the main HBox views
-        hBox.getChildren().addAll(nameBox,priceBox,deleteBox,amountBox);
-        hbox.getChildren().addAll(imageView,hBox);
-
-        return hbox;
-    }
-
-    //Method for creating the items name, price and amount view
-    private static HBox createItemLabelHBox(Label label, double width) {
-        HBox infoBox=new HBox(label);
-        infoBox.setMinWidth(width);
-        infoBox.setPrefWidth(width);
-        infoBox.setMaxWidth(width);
-        return infoBox;
-    }
-
-    private static VBox createItemLabelVBox(Label label1,Label label2,double width) {
-        VBox infoBox=new VBox(label1,label2);
-        infoBox.setMinWidth(width);
-        infoBox.setPrefWidth(width);
-        infoBox.setMaxWidth(width);
-        infoBox.setSpacing(2);
-        return infoBox;
-    }
-
     //Method for creating the delete item button when selected
     private static VBox createSelectedItemDelete(Button button, Menu item) {
         VBox infoBox=new VBox(button);
@@ -215,7 +156,7 @@ public class MenuItemBox {
 
         //Delete button action
         button.setOnAction(actionEvent -> {
-            selectedListItems.remove(item);
+            selectedList.remove(item);
             updateSelectedListView();
         });
 
@@ -235,14 +176,14 @@ public class MenuItemBox {
         button.setOnAction(actionEvent -> {
 
             //Check if the MenuRequest already exists
-            exists=null;
-            for(Menu i :selectedItems)
+            Menu exists=null;
+            for(Menu i : selectedObservable)
                 if(i.getId()==item.getId())
                     exists=i;
 
             if(exists!=null) {
                 //If the MenuRequest already exists then just alter the changes to the selected list
-                selectedListItems.remove(exists);
+                selectedList.remove(exists);
                 Menu updatedRequest=new Menu(
                         exists.getId(),
                         exists.getName(),
@@ -252,7 +193,7 @@ public class MenuItemBox {
                         exists.getPrice(),
                         (Integer) spinner.getValue()
                 );
-                selectedListItems.add(updatedRequest);
+                selectedList.add(updatedRequest);
                 updateSelectedListView();
             }
             else{
@@ -265,7 +206,7 @@ public class MenuItemBox {
                         item.getImage(),
                         item.getPrice(),
                         (Integer) spinner.getValue());
-                selectedListItems.add(menuRequest);
+                selectedList.add(menuRequest);
                 updateSelectedListView();
             }
         });
@@ -276,18 +217,18 @@ public class MenuItemBox {
     //Updating the selected items view
     public static void updateSelectedListView()
     {
-        selectedItems.clear();
-        selectedItems.addAll(selectedListItems);
+        selectedObservable.clear();
+        selectedObservable.addAll(selectedList);
     }
 
     //Get Selected menu items for view
-    public static ObservableList<Menu> getSelectedItems()
+    public static ObservableList<Menu> getSelectedObservable()
     {
-        return selectedItems;
+        return selectedObservable;
     }
 
-    //Delete the items when not needed
+    //Delete the items when order submitted
     public static void deleteSelectedItems() {
-        selectedListItems.clear();
+        selectedList.clear();
     }
 }

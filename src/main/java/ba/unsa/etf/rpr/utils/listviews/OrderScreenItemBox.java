@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.utils;
+package ba.unsa.etf.rpr.utils.listviews;
 
 import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.entities.Order;
@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class OrderScreenItemBox {
+public class OrderScreenItemBox extends ItemBox{
 
     private static final OrderManager orderManager = new OrderManager();
     public static HBox createOrderScreenBox(Order item) throws SQLException {
@@ -20,13 +20,17 @@ public class OrderScreenItemBox {
         HBox hBox = new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox mainOrderBox = createItemBox(new Label(item.getSelectedMeals()), 200);
+        HBox mainOrderBox = createItemLabelHBox(new Label(item.getSelectedMeals()), 200);
         HBox statusBox = createItemStatusBox(130,item);
+        HBox acceptOrderBox=createAcceptedButtonBox(
+                new Button("Accept"),
+                item
+        );
 
         //Creating spacing between the items
         hBox.setSpacing(70);
         //Setting children of the main HBox views
-        hBox.getChildren().addAll(mainOrderBox,statusBox);
+        hBox.getChildren().addAll(mainOrderBox,statusBox,acceptOrderBox);
         return hBox;
     }
 
@@ -57,11 +61,23 @@ public class OrderScreenItemBox {
         }
         return null;
     }
-    private static HBox createItemBox(Label label, double width) {
-        HBox infoBox = new HBox(label);
-        infoBox.setMinWidth(width);
-        infoBox.setPrefWidth(width);
-        infoBox.setMaxWidth(width);
+
+    private static HBox createAcceptedButtonBox(Button button, Order item) {
+        HBox infoBox=new HBox(button);
+        button.setId("acceptButtonId");
+        infoBox.setMinWidth(60);
+        infoBox.setPrefWidth(60);
+        infoBox.setMaxWidth(60);
+
+        //Accept button action
+        button.setOnAction(actionEvent -> {
+           try {
+                orderManager.deleteOrderFrom(item.getId());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
         return infoBox;
     }
+
 }

@@ -1,5 +1,6 @@
-package ba.unsa.etf.rpr.utils;
+package ba.unsa.etf.rpr.utils.listviews;
 
+import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.entities.User;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,13 +25,13 @@ public class UserItemBox {
         // Remove the user from the userRequests list
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(event -> {
-            UserHelper.remove(item);
+            UserManager.remove(item);
         });
 
         // Edit the user from the userRequests list
         Button editButton = new Button("Edit");
         editButton.setOnAction(event -> {
-            UserHelper.edit(item);
+            UserManager.edit(item);
         });
 
         //Creating spacing between the items
