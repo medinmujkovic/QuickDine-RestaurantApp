@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
+import ba.unsa.etf.rpr.domain.entities.Menu;
 import javafx.scene.image.Image;
 
 import java.io.InputStream;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MenuDaoSQLImpl extends AbstractDao<MenuRequest> implements MenuDao  {
+public class MenuDaoSQLImpl extends AbstractDao<Menu> implements MenuDao  {
     private static MenuDaoSQLImpl instance = null;
     private MenuDaoSQLImpl() {
         super("menu");
@@ -28,7 +28,7 @@ public class MenuDaoSQLImpl extends AbstractDao<MenuRequest> implements MenuDao 
     }
 
     @Override
-    public MenuRequest row2object(ResultSet rs) throws SQLException {
+    public Menu row2object(ResultSet rs) throws SQLException {
         try{
             int id = rs.getInt("id");
             String name = rs.getString("name");
@@ -40,7 +40,7 @@ public class MenuDaoSQLImpl extends AbstractDao<MenuRequest> implements MenuDao 
             double price = rs.getDouble("price");
             int amount = rs.getInt("amount");
 
-            return new MenuRequest(id, name, type, description, image, price, amount);
+            return new Menu(id, name, type, description, image, price, amount);
         }
         catch (Exception e)
         {
@@ -49,15 +49,15 @@ public class MenuDaoSQLImpl extends AbstractDao<MenuRequest> implements MenuDao 
     }
 
     @Override
-    public Map<String, Object> object2row(MenuRequest object) {
+    public Map<String, Object> object2row(Menu object) {
         Map<String, Object> item = new TreeMap<>();
-        item.put("id", object.id());
-        item.put("name", object.name());
-        item.put("type", object.type());
-        item.put("description", object.description());
-        item.put("image", object.image());
-        item.put("price", object.price());
-        item.put("amount", object.amount());
+        item.put("id", object.getId());
+        item.put("name", object.getName());
+        item.put("type", object.getType());
+        item.put("description", object.getDescription());
+        item.put("image", object.getImage());
+        item.put("price", object.getPrice());
+        item.put("amount", object.getAmount());
         return item;
     }
 

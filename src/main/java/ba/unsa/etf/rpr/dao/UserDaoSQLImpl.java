@@ -1,16 +1,13 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.controllers.DTO.MenuRequest;
-import ba.unsa.etf.rpr.controllers.DTO.UserRequest;
-import javafx.scene.image.Image;
+import ba.unsa.etf.rpr.domain.entities.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao {
+public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao {
     private static UserDaoSQLImpl instance = null;
     public UserDaoSQLImpl() {
         super("user");
@@ -23,16 +20,16 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
     }
 
     @Override
-    public UserRequest row2object(ResultSet rs) throws SQLException {
+    public User row2object(ResultSet rs) throws SQLException {
         try{
-            return new UserRequest(
+            return new User(
                     rs.getInt("id"),
                     rs.getString("username"),
                     rs.getString("password"),
                     rs.getString("email"),
-                    rs.getString("full_name"),
-                    rs.getDate("date_of_birth"),
-                    rs.getString("roles")
+                    rs.getString("fullName"),
+                    rs.getDate("dateOfBirth"),
+                    rs.getInt("roleId")
             );
         }
         catch (Exception e)
@@ -42,16 +39,20 @@ public class UserDaoSQLImpl extends AbstractDao<UserRequest> implements UserDao 
     }
 
     @Override
-    public Map<String, Object> object2row(UserRequest object) {
+    public Map<String, Object> object2row(User object) {
         Map<String, Object> item = new TreeMap<>();
-        item.put("id", object.id());
-        item.put("username", object.username());
-        item.put("password", object.password());
-        item.put("email", object.email());
-        item.put("full_name", object.fullName());
-        item.put("date_of_birth", object.dateOfBirth());
-        item.put("roles", object.roles());
+        item.put("id", object.getId());
+        item.put("username", object.getUsername());
+        item.put("password", object.getPassword());
+        item.put("email", object.getEmail());
+        item.put("fullName", object.getFullName());
+        item.put("dateOfBirth", object.getDateOfBirth());
+        item.put("roleId", object.getRoleId());
         return item;
+    }
+
+    public User getByUsername(String username) throws SQLException {
+        return executeQueryUnique("SELECT * FROM user WHERE username = ?", new Object[]{username});
     }
 
 }

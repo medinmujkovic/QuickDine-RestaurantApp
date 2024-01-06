@@ -1,8 +1,11 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.LoginManager;
+import ba.unsa.etf.rpr.domain.enums.Role;
+import ba.unsa.etf.rpr.utils.StageUtils;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -15,17 +18,32 @@ import static ba.unsa.etf.rpr.utils.ValidationPatterns.type.*;
 
 
 public class LoginController {
-    public Button loginId;
     public TextField usernameId;
     public PasswordField passwordId;
     public Label invaliduUsernameId;
     public Label invalidPasswordId;
     public ImageView backgroundImage;
+    private final LoginManager loginManager = new LoginManager();
+    public static StageUtils stageDashboard = new StageUtils();
 
     //Login validation
-    public void loginAction(ActionEvent actionEvent) throws IOException {
+    public void loginAction(ActionEvent actionEvent) throws Exception {
         if(usernameId.getText().isEmpty()) invaliduUsernameId.setText("Username is required!");
-        if(passwordId.getText().isEmpty()) invalidPasswordId.setText("password is required!");
+        else if(passwordId.getText().isEmpty()) invalidPasswordId.setText("Password is required!");
+        else if(loginManager.authentication(usernameId.getText(), passwordId.getText())){
+            //login authentication
+
+            if(loginManager.getRole()== Role.SERVICE){
+                stageDashboard.openStage("/fxml/service.fxml", "Customer Service Dashboard");
+            }
+            if(loginManager.getRole()== Role.CHEF){
+                stageDashboard.openStage("/fxml/chef.fxml", "Chef Dashboard");
+            }
+            else if(loginManager.getRole()== Role.ADMIN){
+                stageDashboard.openStage("/fxml/admin.fxml", "Admin Dashboard");
+            }
+
+        }
     }
 
     @FXML

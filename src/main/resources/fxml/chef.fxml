@@ -41,12 +41,7 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="SettingsId" layoutX="10.0" layoutY="178.0" mnemonicParsing="false" text="Settings">
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </Button>
-                <Button fx:id="SignOutId" layoutX="10.0" layoutY="204.0" mnemonicParsing="false" text="Sign out">
+                <Button fx:id="signOutId" layoutX="10.0" layoutY="204.0" mnemonicParsing="false" onAction="#signOutAction" text="Sign out">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
@@ -72,7 +67,7 @@
                                         <Insets left="85.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label layoutX="414.0" layoutY="19.0" text="Description" />
+                                <Label layoutX="414.0" layoutY="19.0" text="Status" />
                             </children>
                             <VBox.margin>
                                 <Insets top="5.0" />
@@ -92,11 +87,6 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="80.0" />
                     </VBox.margin>
                 </ListView>
-                <Button fx:id="finishedId" mnemonicParsing="false" text="Finished">
-                    <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                </Button>
             </children>
         </VBox>
         <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
