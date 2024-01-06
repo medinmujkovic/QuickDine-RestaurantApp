@@ -41,6 +41,9 @@ public class LoginController {
         }
     }
 
+    public void orderScreenBtnAction(ActionEvent actionEvent) throws Exception {
+        stageDashboard.openStage("/fxml/service.fxml", "Order Screen");
+    }
     @FXML
     public void initialize()
     {
@@ -60,5 +63,6 @@ public class LoginController {
             else invalidPasswordId.setText("Invalid password!");
         });
     }
+
 
 }

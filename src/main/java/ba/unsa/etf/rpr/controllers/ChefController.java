@@ -1,13 +1,10 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.LoginManager;
-import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.Order;
-import ba.unsa.etf.rpr.domain.enums.OrderStatus;
 import ba.unsa.etf.rpr.utils.MenuItemBox;
 import ba.unsa.etf.rpr.utils.OrderItemBox;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -27,7 +24,6 @@ public class ChefController {
     public ListView orderListId;
     public Label FullNameId;
     public ListView selectedOrderId;
-    private OrderManager orderManager=new OrderManager();
 
     public void initialize() {
         //Creating a list of order items using the Order entity
@@ -43,16 +39,13 @@ public class ChefController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
+                    HBox hbox = null;
                     try {
-                        if (orderManager.getStatus(item.getId()) != OrderStatus.READY_FOR_PICKUP) {
-                            HBox hbox = OrderItemBox.createOrderBox(item);
-                            setGraphic(hbox);
-                        } else {
-                            Platform.runLater(() ->orders.remove(item));
-                        }
+                        hbox = OrderItemBox.createOrderBox(item);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
+                    setGraphic(hbox);
                 }
             }
         });
