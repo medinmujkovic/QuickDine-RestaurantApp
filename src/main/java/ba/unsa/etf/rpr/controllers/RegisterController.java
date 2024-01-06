@@ -1,11 +1,16 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.UserManager;
+import ba.unsa.etf.rpr.domain.entities.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.isValid;
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.type.*;
@@ -88,23 +93,32 @@ public class RegisterController {
                 invalidFullNameID.getText().isEmpty() &&
                 invalidDateOfBirth.getText().isEmpty()) {
             System.out.println("Everything is valid, going on Registration");
-            userManager.add();
+
+            User user = makeUser();
+            try {
+                userManager.add(user);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
+
+    }
+
+    private User makeUser() {
+        String[] dateValues = dateOfBirthID.getText().split("-");
+
+
+        int year = Integer.parseInt(dateValues[2]);
+        int month = Integer.parseInt(dateValues[1]); // Note: Month in Calendar is 0-based, so January is 0
+        int day = Integer.parseInt(dateValues[0]);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month - 1); // Adjust month to be 0-based
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+        Date date = calendar.getTime();
+
+        System.out.println("Date of added user: " + date);
+        return new User(usernameID.getText(), passwordID.getText(), emailID.getText(), fullNameID.getText(), date, 2);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

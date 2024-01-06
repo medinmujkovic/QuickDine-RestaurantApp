@@ -21,4 +21,12 @@ public class User implements Idable{
     private Date dateOfBirth;
     private int roleId;
 
+    public User(String username, String password, String email, String fullName, Date dateOfBirth, int roleId) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.fullName = fullName;
+        this.dateOfBirth = dateOfBirth;
+        this.roleId = roleId;
+    }
 }
