@@ -20,7 +20,7 @@ public class OrderScreenItemBox extends ItemBox{
         HBox hBox = new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox mainOrderBox = createItemLabelHBox(new Label(item.getSelectedMeals()), 200);
+        HBox mainOrderBox = createItemLabelHBox(new Label(String.valueOf(item.getId())), 130);
         HBox statusBox = createItemStatusBox(130,item);
         HBox acceptOrderBox=createAcceptedButtonBox(
                 new Button("Accept"),
@@ -28,7 +28,7 @@ public class OrderScreenItemBox extends ItemBox{
         );
 
         //Creating spacing between the items
-        hBox.setSpacing(70);
+        hBox.setSpacing(100);
         //Setting children of the main HBox views
         hBox.getChildren().addAll(mainOrderBox,statusBox,acceptOrderBox);
         return hBox;
