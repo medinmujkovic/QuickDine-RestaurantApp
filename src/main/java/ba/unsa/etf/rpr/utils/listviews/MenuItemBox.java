@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr.utils.listviews;
 
-import ba.unsa.etf.rpr.controllers.ServiceController;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -17,7 +17,7 @@ import java.util.Iterator;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.helpers.OrderHelper.createOrderRequest;
-import static ba.unsa.etf.rpr.utils.listviews.OrderItemBox.getSelectedOrderItems;
+import static ba.unsa.etf.rpr.utils.listviews.OrderItemBox.getSelectedOrderList;
 
 public class ChefController {
 
@@ -61,7 +61,7 @@ public class ChefController {
         FullNameId.setText(loginManager.getRs().getFullName());
 
         //Creating a list of selected order items using Order entity
-        ObservableList<Order> selectedItems = getSelectedOrderItems();
+        ObservableList<Order> selectedItems = getSelectedOrderList();
         //Setting the selected menu items to the FXML ListView and displaying it
         selectedOrderId.setItems(selectedItems);
         selectedOrderId.setCellFactory(param -> new ListCell<Order>() {

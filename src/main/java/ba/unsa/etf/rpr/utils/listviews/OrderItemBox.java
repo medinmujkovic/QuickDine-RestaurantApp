@@ -2,18 +2,14 @@ package ba.unsa.etf.rpr.utils.listviews;
 
 import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.business.OrderManager;
-import ba.unsa.etf.rpr.dao.OrderDaoSQLImpl;
-import ba.unsa.etf.rpr.domain.entities.Menu;
+import ba.unsa.etf.rpr.controllers.ChefController;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
-import com.mysql.cj.log.Log;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,8 +18,8 @@ import java.util.List;
 //Order item in the Chef Dashboard listview
 public class OrderItemBox extends ItemBox{
 
-    private static List<Order> selectedOrderItems;
-    private static ObservableList<Order> selectedItems= FXCollections.observableArrayList();
+    private static List<Order> selectedOrderList;
+    private static ObservableList<Order> selectedOrderObservable = FXCollections.observableArrayList();
     private static Order exists;
     private static final OrderManager orderManager = new OrderManager();
     private static final LoginManager loginManager = new LoginManager();
@@ -31,8 +27,8 @@ public class OrderItemBox extends ItemBox{
     public static HBox createOrderBox(Order item) throws SQLException {
 
         //Preventing selectedListItems to be null when loaded
-        if (selectedOrderItems == null) {
-            selectedOrderItems = new ArrayList<>();
+        if (selectedOrderList == null) {
+            selectedOrderList = new ArrayList<>();
         }
 
         //Creating the main HBox view for other info
@@ -56,8 +52,8 @@ public class OrderItemBox extends ItemBox{
     public static HBox createSelectedOrderBox(Order item) {
 
         //Preventing selectedListItems to be null when loaded
-        if (selectedOrderItems == null) {
-            selectedOrderItems = new ArrayList<>();
+        if (selectedOrderList == null) {
+            selectedOrderList = new ArrayList<>();
         }
 
         //Creating the main HBox view for other info
@@ -115,38 +111,32 @@ public class OrderItemBox extends ItemBox{
         button.setOnAction(actionEvent -> {
             //Check if the Order already exists
             exists=null;
-            for(Order i :selectedItems)
+            for(Order i : selectedOrderObservable)
                 if(i.getId()==item.getId())
                     exists=i;
 
             if(exists!=null) {
                 //If the Order already exists then just alter the changes to the selected list
-                selectedOrderItems.remove(exists);
+                selectedOrderList.remove(exists);
                 Order order=new Order(
                         exists.getId(),
                         exists.getUserId(),
                         exists.getStatusId(),
                         exists.getSelectedMeals()
                 );
-                selectedOrderItems.add(order);
+                selectedOrderList.add(order);
                 updateSelectedOrderView();
             }
             else {
                 //If the Order doesn't already exist then add a new Order to the selected list
-                Order order = new Order(
-                        item.getId(),
-                        item.getUserId(),
-                        item.getStatusId(),
-                        item.getSelectedMeals()
-                );
                 try {
-                    order.setStatusId(2);
-                    order.setUserId(loginManager.getRs().getId());
-                    Order changeStatus=orderManager.changeStatusId(order);
+                    item.setStatusId(2);
+                    item.setUserId(loginManager.getRs().getId());
+                    Order changeStatus=orderManager.changeStatusId(item);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                selectedOrderItems.add(order);
+                selectedOrderList.add(item);
                 updateSelectedOrderView();
             }
         });
@@ -163,18 +153,13 @@ public class OrderItemBox extends ItemBox{
 
         //Finish button action
         button.setOnAction(actionEvent -> {
-            Order order = new Order(
-                    item.getId(),
-                    item.getUserId(),
-                    item.getStatusId(),
-                    item.getSelectedMeals()
-            );
             try {
-                order.setStatusId(3);
-                Order changeStatus=orderManager.changeStatusId(order);
+                item.setStatusId(3);
+                Order changeStatus=orderManager.changeStatusId(item);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            deleteSelectedOrderItems();
             updateSelectedOrderView();
         });
 
@@ -191,7 +176,7 @@ public class OrderItemBox extends ItemBox{
 
         //Delete button action
         button.setOnAction(actionEvent -> {
-            selectedOrderItems.remove(item);
+            selectedOrderList.remove(item);
             try {
                 item.setStatusId(1);
                 item.setUserId(1);
@@ -207,15 +192,20 @@ public class OrderItemBox extends ItemBox{
 
 
     //Get selected Order Items for View
-    public static ObservableList<Order> getSelectedOrderItems()
+    public static ObservableList<Order> getSelectedOrderList()
     {
-        return selectedItems;
+        return selectedOrderObservable;
     }
 
     //Updating the selected items view
     public static void updateSelectedOrderView()
     {
-        selectedItems.clear();
-        selectedItems.addAll(selectedOrderItems);
+        selectedOrderObservable.clear();
+        selectedOrderObservable.addAll(selectedOrderList);
+    }
+
+    //Delete the items when order submitted
+    public static void deleteSelectedOrderItems() {
+        selectedOrderList.clear();
     }
 }
