@@ -58,7 +58,7 @@ public class ChefController {
 
         //Fetched Full Name
         LoginManager loginManager=new LoginManager();
-        FullNameId.setText(loginManager.getRs().getFullName());
+        FullNameId.setText(loginManager.getUser().getFullName());
 
         //Creating a list of selected order items using Order entity
         ObservableList<Order> selectedItems = getSelectedOrderList();

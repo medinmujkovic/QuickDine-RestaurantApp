@@ -10,7 +10,7 @@ import java.util.List;
 
 public class OrderManager {
 
-    private static List<Order> rs; //Results
+    private static List<Order> orders; //Results
     public static Order add(Order object) throws SQLException {
         return DaoFactory.orderDao().add(object);
     }
@@ -29,8 +29,8 @@ public class OrderManager {
 
     //Get the Order status using the PK id, while returning the OrderStatus Enum
     public OrderStatus getStatus(int id) throws SQLException {
-        rs=getAll();
-        for (Order order : rs) {
+        orders =getAll();
+        for (Order order : orders) {
             if (order.getId() == id) {
                 return OrderStatus.fromStatusId(order.getStatusId());
             }

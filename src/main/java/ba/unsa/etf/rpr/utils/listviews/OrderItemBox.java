@@ -2,7 +2,6 @@ package ba.unsa.etf.rpr.utils.listviews;
 
 import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.business.OrderManager;
-import ba.unsa.etf.rpr.controllers.ChefController;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
 import javafx.collections.FXCollections;
@@ -131,7 +130,7 @@ public class OrderItemBox extends ItemBox{
                 //If the Order doesn't already exist then add a new Order to the selected list
                 try {
                     item.setStatusId(2);
-                    item.setUserId(loginManager.getRs().getId());
+                    item.setUserId(loginManager.getUser().getId());
                     Order changeStatus=orderManager.changeStatusId(item);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);

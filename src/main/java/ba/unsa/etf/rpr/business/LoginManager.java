@@ -9,16 +9,16 @@ import java.sql.SQLException;
 
 public class LoginManager {
     @Getter
-    private static User rs; //Results
+    private static User user; //Results
 
     public boolean authentication(String username, String password) throws SQLException {
-        rs=getByUsername(username);
-        return username.equals(rs.getUsername()) && password.equals(rs.getPassword());
+        user =getByUsername(username);
+        return username.equals(user.getUsername()) && password.equals(user.getPassword());
     }
 
     //Getting the role of the User and returning it as a Role enum
     public Role getRole(){
-        return Role.fromRoleId(rs.getRoleId());
+        return Role.fromRoleId(user.getRoleId());
     }
 
     public User getByUsername(String username) throws SQLException {

@@ -41,7 +41,7 @@ public class LoginController {
     }
 
     public void orderScreenBtnAction(ActionEvent actionEvent) throws Exception {
-        stageDashboard.openStage("/fxml/orderscreen.fxml", "Order Screen");
+        stageDashboard.openStage("/fxml/order-screen.fxml", "Order Screen");
     }
     @FXML
     public void initialize()
