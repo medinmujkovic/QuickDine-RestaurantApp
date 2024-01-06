@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.Order;
-import ba.unsa.etf.rpr.utils.MenuItemBox;
+import ba.unsa.etf.rpr.utils.listviews.MenuItemBox;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 
 import java.sql.SQLException;
 
-import static ba.unsa.etf.rpr.utils.MenuItemBox.*;
+import static ba.unsa.etf.rpr.utils.listviews.MenuItemBox.*;
 
 public class CheckoutController {
     public ListView selectedListCheckout;
@@ -45,7 +45,7 @@ public class CheckoutController {
     public void initialize()
     {
         //Fetch items from selected list
-        selectedItems = getSelectedItems();
+        selectedItems = getSelectedObservable();
         double totalPrice = calculateTotalPrice(selectedItems);
         //Display selected items and its full price
         totalPriceLabel.setText("Total Price: "+String.format("%.2f", totalPrice)+" $");
@@ -69,7 +69,7 @@ public class CheckoutController {
     public void submitOrderAction(ActionEvent actionEvent) throws SQLException {
         String orderString=storeOrder(selectedItems);
         Order order = new Order(1,1,orderString);
-        Order order2 = OrderManager.add(order);
+        Order sentOrder = OrderManager.add(order);
         //Deleting items from the select list
         selectedItems.clear();
         deleteSelectedItems();

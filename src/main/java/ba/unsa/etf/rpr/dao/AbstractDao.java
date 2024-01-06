@@ -116,6 +116,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
                 stmt.setObject(counter, entry.getValue());
                 counter++;
             }
+            System.out.println(stmt);
             stmt.setObject(counter, item.getId());
             stmt.executeUpdate();
             return item;

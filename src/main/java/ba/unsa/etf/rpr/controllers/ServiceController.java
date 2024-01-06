@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.utils.MenuItemBox;
+import ba.unsa.etf.rpr.utils.listviews.MenuItemBox;
 import ba.unsa.etf.rpr.utils.StageUtils;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,8 +10,8 @@ import javafx.scene.layout.HBox;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
-import static ba.unsa.etf.rpr.utils.MenuItemBox.getSelectedItems;
-import static ba.unsa.etf.rpr.utils.MenuHelper.createMenus;
+import static ba.unsa.etf.rpr.utils.listviews.MenuItemBox.getSelectedObservable;
+import static ba.unsa.etf.rpr.utils.helpers.MenuHelper.createMenuRequest;
 
 public class ServiceController {
     public Button homeId;
@@ -24,7 +24,7 @@ public class ServiceController {
     public ListView MenuListId;
     public static StageUtils checkoutScreen;
 
-    public void setSelectedListId(ObservableList<Menu> selectedItems ) {
+    public void setSelectedListId(ObservableList<Menu> selectedItems) {
         SelectedListId.setItems(selectedItems);
     }
     @FXML
@@ -34,7 +34,7 @@ public class ServiceController {
 
     public void checkoutAction(ActionEvent actionEvent) throws Exception {
         //Redirect to checkout screen
-        ObservableList<Menu> menuItems = getSelectedItems();
+        ObservableList<Menu> menuItems = getSelectedObservable();
         if(!menuItems.isEmpty()) {
             checkoutScreen = new StageUtils();
             checkoutScreen.openStage("/fxml/checkout.fxml", "Checkout Screen");
@@ -42,7 +42,7 @@ public class ServiceController {
     }
     public void initialize() {
         //Creating a list of menu items using the Menu record
-        ObservableList<Menu> menuItems = createMenus();
+        ObservableList<Menu> menuItems = createMenuRequest();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view
@@ -54,14 +54,14 @@ public class ServiceController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = MenuItemBox.createItemBox(item);
+                    HBox hbox = MenuItemBox.createMenuItem(item);
                     setGraphic(hbox);
                 }
             }
         });
 
         //Creating a list of selected menu items using the Menu record
-        ObservableList<Menu> selectedItems = getSelectedItems();
+        ObservableList<Menu> selectedItems = getSelectedObservable();
         //Setting the selected menu items to the FXML ListView
         SelectedListId.setItems(selectedItems);
         //Displaying the view
@@ -73,7 +73,7 @@ public class ServiceController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = MenuItemBox.createSelectedItemBox(item);
+                    HBox hbox = MenuItemBox.createSelectedMenuItem(item);
                     setGraphic(hbox);
                 }
             }

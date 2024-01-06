@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.utils;
+package ba.unsa.etf.rpr.utils.helpers;
 
 import ba.unsa.etf.rpr.dao.MenuDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.entities.Menu;
@@ -10,12 +10,11 @@ import java.util.List;
 
 public class MenuHelper {
     //Retrieving menu items from the database
-    public static ObservableList<Menu> createMenus() {
+    public static ObservableList<Menu> createMenuRequest() {
         MenuDaoSQLImpl menuDao = MenuDaoSQLImpl.getInstance();
         try {
             List<Menu> menuItems = menuDao.getAll();
-            ObservableList<Menu> menuObservableList = FXCollections.observableArrayList(menuItems);
-            return menuObservableList;
+            return FXCollections.observableArrayList(menuItems);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

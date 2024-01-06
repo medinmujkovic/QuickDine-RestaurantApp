@@ -11,7 +11,6 @@ import java.util.Objects;
 @EqualsAndHashCode
 @ToString
 @AllArgsConstructor
-@RequiredArgsConstructor
 
 public class Order implements Idable {
     private int id;

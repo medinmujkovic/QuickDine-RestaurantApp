@@ -27,7 +27,6 @@ public class LoginController {
         else if(passwordId.getText().isEmpty()) invalidPasswordId.setText("Password is required!");
         else if(loginManager.authentication(usernameId.getText(), passwordId.getText())){
             //login authentication
-
             if(loginManager.getRole()== Role.SERVICE){
                 stageDashboard.openStage("/fxml/service.fxml", "Customer Service Dashboard");
             }
@@ -41,6 +40,9 @@ public class LoginController {
         }
     }
 
+    public void orderScreenBtnAction(ActionEvent actionEvent) throws Exception {
+        stageDashboard.openStage("/fxml/order-screen.fxml", "Order Screen");
+    }
     @FXML
     public void initialize()
     {
@@ -60,5 +62,6 @@ public class LoginController {
             else invalidPasswordId.setText("Invalid password!");
         });
     }
+
 
 }
