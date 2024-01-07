@@ -6,12 +6,14 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 
 import java.sql.SQLException;
 
+import static ba.unsa.etf.rpr.utils.PasswordHashing.isPasswordCorrect;
+
 public class LoginManager {
     private static User rs;
 
     public boolean authentication(String username, String password) throws SQLException {
         rs=getByUsername(username);
-        return username.equals(rs.getUsername()) && password.equals(rs.getPassword());
+        return username.equals(rs.getUsername()) && isPasswordCorrect(password, rs.getPassword());
     }
 
     public Role getRole(){
