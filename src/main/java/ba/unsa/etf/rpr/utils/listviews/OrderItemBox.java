@@ -20,8 +20,6 @@ public class OrderItemBox extends ItemBox{
     private static List<Order> selectedOrderList;
     private static ObservableList<Order> selectedOrderObservable = FXCollections.observableArrayList();
     private static Order exists;
-    private static final OrderManager orderManager = new OrderManager();
-    private static final LoginManager loginManager = new LoginManager();
 
     public static HBox createOrderBox(Order item) throws SQLException {
 
@@ -32,6 +30,9 @@ public class OrderItemBox extends ItemBox{
 
         //Creating the main HBox view for other info
         HBox hBox = new HBox();
+        hBox.setMinWidth(30);
+        hBox.setPrefWidth(30);
+        hBox.setMaxHeight(30);
 
         // Creating HBoxes for the UI of:
         HBox mainOrderBox = createItemLabelHBox(new Label(item.getSelectedMeals()), 200);
@@ -80,7 +81,7 @@ public class OrderItemBox extends ItemBox{
     }
 
     private static HBox createItemStatusBox(double width,Order item) throws SQLException {
-        if(orderManager.getStatus(item.getId())==OrderStatus.RECEIVED)
+        if(OrderManager.getStatus(item.getId())==OrderStatus.RECEIVED)
         {
             HBox infoBox = new HBox(new Label("Received"));
             infoBox.setMinWidth(width);
@@ -88,7 +89,7 @@ public class OrderItemBox extends ItemBox{
             infoBox.setMaxWidth(width);
             return infoBox;
         }
-        if(orderManager.getStatus(item.getId())==OrderStatus.IN_PROGRESS)
+        if(OrderManager.getStatus(item.getId())==OrderStatus.IN_PROGRESS)
         {
             HBox infoBox = new HBox(new Label("In Progress"));
             infoBox.setMinWidth(width);
@@ -99,47 +100,54 @@ public class OrderItemBox extends ItemBox{
         return null;
     }
 
-    private static HBox createAcceptedButtonBox(Button button, Order item) {
-        HBox infoBox=new HBox(button);
-        button.setId("acceptButtonId");
-        infoBox.setMinWidth(60);
-        infoBox.setPrefWidth(60);
-        infoBox.setMaxWidth(60);
+    private static HBox createAcceptedButtonBox(Button button, Order item) throws SQLException {
+        if(OrderManager.getStatus(item.getId())==OrderStatus.RECEIVED) {
 
-        //Accept button action
-        button.setOnAction(actionEvent -> {
-            //Check if the Order already exists
-            exists=null;
-            for(Order i : selectedOrderObservable)
-                if(i.getId()==item.getId())
-                    exists=i;
+            HBox infoBox=new HBox(button);
+            button.setId("acceptButtonId");
+            infoBox.setMinWidth(60);
+            infoBox.setPrefWidth(60);
+            infoBox.setMaxWidth(60);
 
-            if(exists!=null) {
-                //If the Order already exists then just alter the changes to the selected list
-                selectedOrderList.remove(exists);
-                Order order=new Order(
-                        exists.getId(),
-                        exists.getUserId(),
-                        exists.getStatusId(),
-                        exists.getSelectedMeals()
-                );
-                selectedOrderList.add(order);
-                updateSelectedOrderView();
-            }
-            else {
-                //If the Order doesn't already exist then add a new Order to the selected list
-                try {
-                    item.setStatusId(2);
-                    item.setUserId(loginManager.getUser().getId());
-                    Order changeStatus=orderManager.changeStatusId(item);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+            //Accept button action
+            button.setOnAction(actionEvent -> {
+                //Check if the Order already exists
+                exists = null;
+                for (Order i : selectedOrderObservable)
+                    if (i.getId() == item.getId())
+                        exists = i;
+
+                if (exists != null) {
+                    //If the Order already exists then just alter the changes to the selected list
+                    selectedOrderList.remove(exists);
+                    Order order = new Order(
+                            exists.getId(),
+                            exists.getUserId(),
+                            exists.getStatusId(),
+                            exists.getSelectedMeals()
+                    );
+                    selectedOrderList.add(order);
+                    updateSelectedOrderView();
+                } else {
+                    //If the Order doesn't already exist then add a new Order to the selected list
+                    try {
+                        item.setStatusId(2);
+                        item.setUserId(LoginManager.getUser().getId());
+                        Order changeStatus = OrderManager.changeStatusId(item);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    selectedOrderList.add(item);
+                    updateSelectedOrderView();
                 }
-                selectedOrderList.add(item);
-                updateSelectedOrderView();
-            }
-        });
-        return infoBox;
+            });
+            return infoBox;
+        }
+        HBox temp=new HBox();
+        temp.setMinHeight(30);
+        temp.setPrefHeight(30);
+        temp.setMaxHeight(30);
+        return temp;
     }
 
     //Method for creating the finish item button when selected
@@ -154,7 +162,7 @@ public class OrderItemBox extends ItemBox{
         button.setOnAction(actionEvent -> {
             try {
                 item.setStatusId(3);
-                Order changeStatus=orderManager.changeStatusId(item);
+                Order changeStatus= OrderManager.changeStatusId(item);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -179,7 +187,7 @@ public class OrderItemBox extends ItemBox{
             try {
                 item.setStatusId(1);
                 item.setUserId(1);
-                Order changeStatus=orderManager.changeStatusId(item);
+                Order changeStatus= OrderManager.changeStatusId(item);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

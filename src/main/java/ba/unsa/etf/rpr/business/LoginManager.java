@@ -11,17 +11,17 @@ public class LoginManager {
     @Getter
     private static User user; //Results
 
-    public boolean authentication(String username, String password) throws SQLException {
+    public static boolean authentication(String username, String password) throws SQLException {
         user =getByUsername(username);
         return username.equals(user.getUsername()) && password.equals(user.getPassword());
     }
 
     //Getting the role of the User and returning it as a Role enum
-    public Role getRole(){
+    public static Role getRole(){
         return Role.fromRoleId(user.getRoleId());
     }
 
-    public User getByUsername(String username) throws SQLException {
+    public static User getByUsername(String username) throws SQLException {
         return DaoFactory.userDao().getByUsername(username);
     }
 

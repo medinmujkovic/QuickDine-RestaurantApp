@@ -18,11 +18,6 @@ import static ba.unsa.etf.rpr.utils.listviews.MenuItemBox.getSelectedObservable;
 import static ba.unsa.etf.rpr.utils.helpers.MenuHelper.createMenuRequest;
 
 public class ServiceController {
-    public Button homeId;
-    public Button SignOutId;
-    public Button FoodId;
-    public Button DrinksId;
-    public Button MenusId;
     public ListView SelectedListId;
     public Button CheckOutId;
     public ListView MenuListId;

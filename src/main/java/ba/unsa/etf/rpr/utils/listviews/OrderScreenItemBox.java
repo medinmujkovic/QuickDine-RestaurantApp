@@ -62,22 +62,29 @@ public class OrderScreenItemBox extends ItemBox{
         return null;
     }
 
-    private static HBox createAcceptedButtonBox(Button button, Order item) {
-        HBox infoBox=new HBox(button);
-        button.setId("acceptButtonId");
-        infoBox.setMinWidth(60);
-        infoBox.setPrefWidth(60);
-        infoBox.setMaxWidth(60);
+    private static HBox createAcceptedButtonBox(Button button, Order item) throws SQLException {
+        if(OrderManager.getStatus(item.getId())==OrderStatus.READY_FOR_PICKUP) {
+            HBox infoBox = new HBox(button);
+            button.setId("acceptButtonId");
+            infoBox.setMinWidth(60);
+            infoBox.setPrefWidth(60);
+            infoBox.setMaxWidth(60);
 
-        //Accept button action
-        button.setOnAction(actionEvent -> {
-           try {
-                orderManager.deleteOrderFrom(item.getId());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        return infoBox;
+            //Accept button action
+            button.setOnAction(actionEvent -> {
+                try {
+                    orderManager.deleteOrderFrom(item.getId());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            return infoBox;
+        }
+        HBox temp=new HBox();
+        temp.setMinHeight(30);
+        temp.setPrefHeight(30);
+        temp.setMaxHeight(30);
+        return temp;
     }
 
 }

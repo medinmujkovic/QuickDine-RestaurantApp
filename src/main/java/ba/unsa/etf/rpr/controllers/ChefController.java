@@ -24,7 +24,6 @@ public class ChefController {
     public ListView orderListId;
     public Label FullNameId;
     public ListView selectedOrderId;
-    private OrderManager orderManager=new OrderManager();
 
     public void initialize() throws SQLException {
         //Creating a list of order items using the Order entity
@@ -32,7 +31,7 @@ public class ChefController {
         Iterator<Order> iterator = orders.iterator();
         while (iterator.hasNext()) {
             Order item=iterator.next();
-            if (orderManager.getStatus(item.getId())==OrderStatus.READY_FOR_PICKUP)
+            if (OrderManager.getStatus(item.getId())==OrderStatus.READY_FOR_PICKUP)
                 iterator.remove();
         }
         //Setting the orders to the FXML ListView and displaying it
