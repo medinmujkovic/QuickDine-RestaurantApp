@@ -3,15 +3,13 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.entities.User;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
+import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.isValid;
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.type.*;
 
@@ -74,51 +72,52 @@ public class RegisterController {
                 invalidDateOfBirth.setText("Invalid date!");
         });
         registerButton.setOnAction(event -> {
-            this.registerClick();
+            try {
+                this.registerClick();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
     }
-    public void registerClick() {
+    public void registerClick() throws Exception {
+        checkEmptyFields();
+        if (isEmptyAllInvalidLabels()) {
+            User user = makeUser();
+            userManager.add(user);
+        }
+        alertSuccess();
+        stageDashboard.closeStage();
+    }
+    private void checkEmptyFields () {
         if (usernameID.getText().isEmpty()) invalidUsernameID.setText("Username is required!");
         if (passwordID.getText().isEmpty()) invalidPasswordID.setText("Password is required!");
         if (repeatPasswordID.getText().isEmpty()) invalidRepeatPasswordID.setText("Repeated password is required!");
         if (emailID.getText().isEmpty()) invalidEmailID.setText("Email is required!");
         if (fullNameID.getText().isEmpty()) invalidFullNameID.setText("Full name is required!");
         if (dateOfBirthID.getText().isEmpty()) invalidDateOfBirth.setText("Date of birth is required!");
-
-        // if there are no errors, all invalid labels will be empty, and we can add the user
-        if (invalidUsernameID.getText().isEmpty() &&
+    }
+    private boolean isEmptyAllInvalidLabels() {
+        return  invalidUsernameID.getText().isEmpty() &&
                 invalidPasswordID.getText().isEmpty() &&
                 invalidRepeatPasswordID.getText().isEmpty() &&
                 invalidEmailID.getText().isEmpty() &&
                 invalidFullNameID.getText().isEmpty() &&
-                invalidDateOfBirth.getText().isEmpty()) {
-            System.out.println("Everything is valid, going on Registration");
-
-            User user = makeUser();
-            try {
-                userManager.add(user);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
+                invalidDateOfBirth.getText().isEmpty();
     }
-
     private User makeUser() {
         String[] dateValues = dateOfBirthID.getText().split("-");
-
-
-        int year = Integer.parseInt(dateValues[2]);
-        int month = Integer.parseInt(dateValues[1]); // Note: Month in Calendar is 0-based, so January is 0
-        int day = Integer.parseInt(dateValues[0]);
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month - 1); // Adjust month to be 0-based
-        calendar.set(Calendar.DAY_OF_MONTH, day);
+        calendar.set(Integer.parseInt(dateValues[2]),
+                     Integer.parseInt(dateValues[1]) - 1, // Adjust month to be 0-based
+                     Integer.parseInt(dateValues[0]));
         Date date = calendar.getTime();
-
-        System.out.println("Date of added user: " + date);
         return new User(usernameID.getText(), passwordID.getText(), emailID.getText(), fullNameID.getText(), date, 2);
     }
+    private void alertSuccess() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success!");
+        alert.setHeaderText(null);
+        alert.setContentText("User has been added successfully!"); // myb we can list new user info here
+        alert.showAndWait();
+    }
 }
-

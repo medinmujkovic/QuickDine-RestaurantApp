@@ -19,6 +19,7 @@ public class AdminController {
     public ListView MenuListId;
     public ListView UserListId;
     public Button signOutId;
+    public Button addUserId;
 
     public void initialize() {
         //Creating a list of menu items using the Menu record
@@ -62,5 +63,8 @@ public class AdminController {
     }
     public void signOutAction(ActionEvent actionEvent) {
         stageDashboard.closeStage();
+    }
+    public void addUserAction(ActionEvent actionEvent) throws Exception {
+        stageDashboard.openStage("/fxml/register.fxml", "Register new user");
     }
 }
