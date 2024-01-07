@@ -66,13 +66,6 @@ public class RegisterController {
             else
                 invalidDateOfBirth.setText("Date format is DD-MM-YYYY");
         });
-        registerButton.setOnAction(event -> {
-            try {
-                this.registerClick();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
     }
     public void registerClick() throws Exception {
         checkEmptyInputFields();

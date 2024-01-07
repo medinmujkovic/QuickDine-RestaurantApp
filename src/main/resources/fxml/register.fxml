@@ -195,7 +195,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="67.0" prefWidth="382.0" spacing="10.0">
                <children>
-                <Button fx:id="registerButton" cancelButton="true" mnemonicParsing="false" prefHeight="29.0" prefWidth="78.0" text="Register" textFill="WHITE">
+                <Button fx:id="registerButton" onAction="#registerClick" cancelButton="true" mnemonicParsing="false" prefHeight="29.0" prefWidth="78.0" text="Register" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
