@@ -13,9 +13,9 @@ public class LoginManager {
     @Getter
     private static User user; //Results
 
-    public boolean authentication(String username, String password) throws SQLException {
-        rs=getByUsername(username);
-        return username.equals(rs.getUsername()) && isPasswordCorrect(password, rs.getPassword());
+    public static boolean authentication(String username, String password) throws SQLException {
+        user=getByUsername(username);
+        return username.equals(user.getUsername()) && isPasswordCorrect(password, user.getPassword());
     }
 
     //Getting the role of the User and returning it as a Role enum
