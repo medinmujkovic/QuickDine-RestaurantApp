@@ -7,9 +7,9 @@ import javafx.stage.Stage;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class StageUtils {
-    private static javafx.stage.Stage stage=new javafx.stage.Stage();
+    private javafx.stage.Stage stage = new javafx.stage.Stage();
     public void openStage(String resource, String title) throws Exception {
-        stage=new javafx.stage.Stage();
+        stage = new javafx.stage.Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
         stage.setTitle(title);
         stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

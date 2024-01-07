@@ -1,15 +1,14 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.RegisterManager;
+import ba.unsa.etf.rpr.utils.StageUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.isValid;
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.type.*;
 
 public class RegisterController {
-    private final RegisterManager registerManager = new RegisterManager();
     public TextField usernameID;
     public Label invalidUsernameID;
     public PasswordField passwordID;
@@ -23,6 +22,7 @@ public class RegisterController {
     public TextField dateOfBirthID;
     public Label invalidDateOfBirth;
     public Button registerButton;
+    public static StageUtils stageRegistration = new StageUtils();
 
     @FXML
     public void initialize() {
@@ -77,14 +77,14 @@ public class RegisterController {
     public void registerClick() throws Exception {
         checkEmptyInputFields();
         if (isEmptyAllInvalidLabels()) {
-            registerManager.addUser(usernameID.getText(),
+            RegisterManager.addUser(usernameID.getText(),
                                     passwordID.getText(),
                                     emailID.getText(),
                                     fullNameID.getText(),
                                     dateOfBirthID.getText(),
                                     2);
             alertSuccess();
-            stageDashboard.closeStage();
+            stageRegistration.closeStage();
         }
     }
     private void checkEmptyInputFields () {
