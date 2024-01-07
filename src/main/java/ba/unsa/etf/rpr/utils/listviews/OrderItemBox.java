@@ -1,7 +1,9 @@
 package ba.unsa.etf.rpr.utils.listviews;
 
 import ba.unsa.etf.rpr.business.LoginManager;
+import ba.unsa.etf.rpr.business.MenuManager;
 import ba.unsa.etf.rpr.business.OrderManager;
+import ba.unsa.etf.rpr.controllers.ChefController;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
 import javafx.collections.FXCollections;
@@ -12,14 +14,19 @@ import javafx.scene.layout.HBox;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import static ba.unsa.etf.rpr.utils.helpers.OrderHelper.createOrderRequest;
+import static java.util.Collections.addAll;
 
 //Order item in the Chef Dashboard listview
 public class OrderItemBox extends ItemBox{
 
     private static List<Order> selectedOrderList;
     private static ObservableList<Order> selectedOrderObservable = FXCollections.observableArrayList();
-    private static Order exists;
+    public static ObservableList<Order> orders=createOrderRequest();
+
 
     public static HBox createOrderBox(Order item) throws SQLException {
 
@@ -44,8 +51,11 @@ public class OrderItemBox extends ItemBox{
 
         //Creating spacing between the items
         hBox.setSpacing(70);
+
         //Setting children of the main HBox views
-        hBox.getChildren().addAll(mainOrderBox,statusBox,acceptOrderBox);
+        if (mainOrderBox != null && statusBox != null && acceptOrderBox != null) {
+            hBox.getChildren().addAll(mainOrderBox, statusBox, acceptOrderBox);
+        }
         return hBox;
     }
 
@@ -112,7 +122,7 @@ public class OrderItemBox extends ItemBox{
             //Accept button action
             button.setOnAction(actionEvent -> {
                 //Check if the Order already exists
-                exists = null;
+                Order exists = null;
                 for (Order i : selectedOrderObservable)
                     if (i.getId() == item.getId())
                         exists = i;
@@ -197,12 +207,35 @@ public class OrderItemBox extends ItemBox{
     {
         return selectedOrderObservable;
     }
+    public static ObservableList<Order> getOrders() throws SQLException {
+        Iterator<Order> iterator = orders.iterator();
+        while (iterator.hasNext()) {
+            Order item=iterator.next();
+            if (OrderManager.getStatus(item.getId())==OrderStatus.READY_FOR_PICKUP)
+                iterator.remove();
+        }
+        return orders;
+    }
+
 
     //Updating the selected items view
     public static void updateSelectedOrderView()
     {
         selectedOrderObservable.clear();
         selectedOrderObservable.addAll(selectedOrderList);
+
+        orders.clear();
+        try {
+            orders.addAll(OrderManager.getAll());
+            Iterator<Order> iterator = orders.iterator();
+            while (iterator.hasNext()) {
+                Order item=iterator.next();
+                if (OrderManager.getStatus(item.getId())==OrderStatus.READY_FOR_PICKUP)
+                    iterator.remove();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //Delete the items when order submitted

@@ -23,7 +23,7 @@ public class OrderManager {
         return DaoFactory.orderDao().changeStatus(order);
     }
 
-    public void deleteOrderFrom(int id)  throws SQLException{
+    public static void deleteOrderFrom(int id)  throws SQLException{
         DaoFactory.orderDao().deleteOrder(id);
     }
 

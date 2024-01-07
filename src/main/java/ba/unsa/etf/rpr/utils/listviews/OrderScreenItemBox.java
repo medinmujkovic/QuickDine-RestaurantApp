@@ -3,16 +3,21 @@ package ba.unsa.etf.rpr.utils.listviews;
 import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Iterator;
 
+import static ba.unsa.etf.rpr.utils.helpers.OrderHelper.createOrderRequest;
+
+//Order screen for customers
 public class OrderScreenItemBox extends ItemBox{
 
-    private static final OrderManager orderManager = new OrderManager();
+    public static ObservableList<Order> orders=createOrderRequest();
+
     public static HBox createOrderScreenBox(Order item) throws SQLException {
 
 
@@ -35,7 +40,7 @@ public class OrderScreenItemBox extends ItemBox{
     }
 
     private static HBox createItemStatusBox(double width,Order item) throws SQLException {
-        if(orderManager.getStatus(item.getId())== OrderStatus.READY_FOR_PICKUP)
+        if(OrderManager.getStatus(item.getId())== OrderStatus.READY_FOR_PICKUP)
         {
             HBox infoBox = new HBox(new Label("Ready For Pickup"));
             infoBox.setMinWidth(width);
@@ -43,7 +48,7 @@ public class OrderScreenItemBox extends ItemBox{
             infoBox.setMaxWidth(width);
             return infoBox;
         }
-        if(orderManager.getStatus(item.getId())==OrderStatus.RECEIVED)
+        if(OrderManager.getStatus(item.getId())==OrderStatus.RECEIVED)
         {
             HBox infoBox = new HBox(new Label("Received"));
             infoBox.setMinWidth(width);
@@ -51,7 +56,7 @@ public class OrderScreenItemBox extends ItemBox{
             infoBox.setMaxWidth(width);
             return infoBox;
         }
-        if(orderManager.getStatus(item.getId())==OrderStatus.IN_PROGRESS)
+        if(OrderManager.getStatus(item.getId())==OrderStatus.IN_PROGRESS)
         {
             HBox infoBox = new HBox(new Label("In Progress"));
             infoBox.setMinWidth(width);
@@ -73,7 +78,8 @@ public class OrderScreenItemBox extends ItemBox{
             //Accept button action
             button.setOnAction(actionEvent -> {
                 try {
-                    orderManager.deleteOrderFrom(item.getId());
+                    OrderManager.deleteOrderFrom(item.getId());
+                    updateOrders();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -87,4 +93,17 @@ public class OrderScreenItemBox extends ItemBox{
         return temp;
     }
 
+    public static void updateOrders()
+    {
+        orders.clear();
+        try {
+            orders.addAll(OrderManager.getAll());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static ObservableList<Order> getOrders() {
+        return orders;
+    }
 }
