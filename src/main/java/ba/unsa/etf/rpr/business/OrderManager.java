@@ -19,16 +19,16 @@ public class OrderManager {
         return DaoFactory.orderDao().getAll();
     }
 
-    public Order changeStatusId(Order order) throws SQLException{
+    public static Order changeStatusId(Order order) throws SQLException{
         return DaoFactory.orderDao().changeStatus(order);
     }
 
-    public void deleteOrderFrom(int id)  throws SQLException{
+    public static void deleteOrderFrom(int id)  throws SQLException{
         DaoFactory.orderDao().deleteOrder(id);
     }
 
     //Get the Order status using the PK id, while returning the OrderStatus Enum
-    public OrderStatus getStatus(int id) throws SQLException {
+    public static OrderStatus getStatus(int id) throws SQLException {
         orders =getAll();
         for (Order order : orders) {
             if (order.getId() == id) {

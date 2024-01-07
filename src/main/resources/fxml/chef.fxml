@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="serviceBackgroundId" prefHeight="558.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ChefController">
+<GridPane fx:id="serviceBackgroundId" prefHeight="558.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ChefController">
     <stylesheets>
         <URL value="@../css/styles.css" />
     </stylesheets>
@@ -35,12 +35,10 @@
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
                 </Label>
-                <Button fx:id="homeId" mnemonicParsing="false" text="Home">
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </Button>
                 <Button fx:id="signOutId" layoutX="10.0" layoutY="204.0" mnemonicParsing="false" onAction="#signOutAction" text="Sign out">
                     <VBox.margin>
                         <Insets top="10.0" />

@@ -6,6 +6,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="serviceBackgroundId" prefHeight="613.0" prefWidth="1096.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ServiceController">
+<GridPane fx:id="serviceBackgroundId" prefHeight="613.0" prefWidth="1096.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ServiceController">
    <stylesheets>
       <URL value="@../css/styles.css" />
    </stylesheets>
@@ -29,10 +32,6 @@
    <children>
       <VBox alignment="CENTER" prefHeight="134.0" prefWidth="203.0">
          <children>
-            <Button fx:id="homeId" mnemonicParsing="false" text="Home">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin></Button>
             <Button fx:id="signOutId" layoutX="10.0" layoutY="204.0" mnemonicParsing="false" onAction="#signOutAction" text="Sign out">
                <VBox.margin>
                   <Insets top="10.0" />
@@ -48,22 +47,34 @@
                         <Font size="24.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="10.0" top="20.0" />
                      </VBox.margin></Label>
-                  <HBox prefHeight="48.0" prefWidth="562.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="562.0">
                      <children>
-                        <Button fx:id="FoodId" mnemonicParsing="false" text="Food">
+                        <Button layoutX="13.0" layoutY="16.0" mnemonicParsing="false" onAction="#allBtnAction" text="All" />
+                        <Button mnemonicParsing="false" onAction="#foodBtnAction" text="Food">
                            <HBox.margin>
                               <Insets left="3.0" right="3.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="DrinksId" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Drinks">
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#drinksBtnAction" text="Drinks">
                            <HBox.margin>
                               <Insets left="3.0" right="3.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="MenusId" layoutX="159.0" layoutY="10.0" mnemonicParsing="false" text="Menus">
+                        <Button layoutX="159.0" layoutY="10.0" mnemonicParsing="false" onAction="#dessertBtnAction" text="Desserts">
                            <HBox.margin>
                               <Insets left="3.0" right="3.0" />
                            </HBox.margin></Button>
+                        <Button layoutX="126.0" layoutY="10.0" mnemonicParsing="false" onAction="#menusBtnAction" text="Menus" />
+                        <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="509.0" spacing="7.0">
+                           <children>
+                              <ImageView fx:id="searchIconId" fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/search-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="searchId" alignment="TOP_RIGHT" onAction="#searchAction" />
+                           </children>
+                        </HBox>
                      </children>
                      <VBox.margin>
                         <Insets />

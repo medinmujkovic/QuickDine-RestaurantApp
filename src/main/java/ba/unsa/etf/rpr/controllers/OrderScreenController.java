@@ -16,7 +16,7 @@ public class OrderScreenController {
 
     public void initialize() throws SQLException {
         //Creating a list of order items using the Order entity
-        ObservableList<Order> orders = createOrderRequest();
+        ObservableList<Order> orders = OrderScreenItemBox.getOrders();
 
         //Setting the selected menu items to the FXML ListView and displaying it
         orderScreenId.setItems(orders);

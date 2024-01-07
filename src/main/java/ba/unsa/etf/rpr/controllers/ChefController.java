@@ -24,17 +24,11 @@ public class ChefController {
     public ListView orderListId;
     public Label FullNameId;
     public ListView selectedOrderId;
-    private OrderManager orderManager=new OrderManager();
 
     public void initialize() throws SQLException {
         //Creating a list of order items using the Order entity
-        ObservableList<Order> orders = createOrderRequest();
-        Iterator<Order> iterator = orders.iterator();
-        while (iterator.hasNext()) {
-            Order item=iterator.next();
-            if (orderManager.getStatus(item.getId())==OrderStatus.READY_FOR_PICKUP)
-                iterator.remove();
-        }
+        ObservableList<Order> orders = OrderItemBox.getOrders();
+
         //Setting the orders to the FXML ListView and displaying it
         orderListId.setItems(orders);
         orderListId.setCellFactory(param -> new ListCell<Order>() {
