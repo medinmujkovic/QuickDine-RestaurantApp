@@ -1,30 +1,32 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.utils.MenuItemBox;
+import ba.unsa.etf.rpr.business.MenuManager;
+import ba.unsa.etf.rpr.utils.listviews.MenuItemBox;
 import ba.unsa.etf.rpr.utils.StageUtils;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 
+import java.sql.SQLException;
+
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
-import static ba.unsa.etf.rpr.utils.MenuItemBox.getSelectedItems;
-import static ba.unsa.etf.rpr.utils.MenuHelper.createMenus;
+import static ba.unsa.etf.rpr.utils.listviews.MenuItemBox.getSelectedObservable;
+import static ba.unsa.etf.rpr.utils.helpers.MenuHelper.createMenuRequest;
 
 public class ServiceController {
-    public Button homeId;
-    public Button SignOutId;
-    public Button FoodId;
-    public Button DrinksId;
-    public Button MenusId;
     public ListView SelectedListId;
     public Button CheckOutId;
     public ListView MenuListId;
     public static StageUtils checkoutScreen;
+    public static ObservableList<Menu> menuItems;
+    public TextField searchId;
+    public ImageView searchIconId;
 
-    public void setSelectedListId(ObservableList<Menu> selectedItems ) {
+    public void setSelectedListId(ObservableList<Menu> selectedItems) {
         SelectedListId.setItems(selectedItems);
     }
     @FXML
@@ -34,7 +36,7 @@ public class ServiceController {
 
     public void checkoutAction(ActionEvent actionEvent) throws Exception {
         //Redirect to checkout screen
-        ObservableList<Menu> menuItems = getSelectedItems();
+        ObservableList<Menu> menuItems = getSelectedObservable();
         if(!menuItems.isEmpty()) {
             checkoutScreen = new StageUtils();
             checkoutScreen.openStage("/fxml/checkout.fxml", "Checkout Screen");
@@ -42,7 +44,7 @@ public class ServiceController {
     }
     public void initialize() {
         //Creating a list of menu items using the Menu record
-        ObservableList<Menu> menuItems = createMenus();
+        menuItems = createMenuRequest();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view
@@ -54,14 +56,14 @@ public class ServiceController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = MenuItemBox.createItemBox(item);
+                    HBox hbox = MenuItemBox.createMenuItem(item);
                     setGraphic(hbox);
                 }
             }
         });
 
         //Creating a list of selected menu items using the Menu record
-        ObservableList<Menu> selectedItems = getSelectedItems();
+        ObservableList<Menu> selectedItems = getSelectedObservable();
         //Setting the selected menu items to the FXML ListView
         SelectedListId.setItems(selectedItems);
         //Displaying the view
@@ -73,10 +75,49 @@ public class ServiceController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = MenuItemBox.createSelectedItemBox(item);
+                    HBox hbox = MenuItemBox.createSelectedMenuItem(item);
                     setGraphic(hbox);
                 }
             }
         });
     }
+
+    public void foodBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Food"));
+    }
+
+    public void drinksBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Drink"));
+    }
+
+    public void menusBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Menu"));
+    }
+
+    public void dessertBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Dessert"));
+    }
+
+    public void allBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.getAll());
+    }
+
+    public void searchAction(ActionEvent actionEvent) {
+        String searchText = searchId.getText().toLowerCase();
+
+        // Filter the menu items based on the search text
+        ObservableList<Menu> filteredMenuItems = menuItems.filtered(item ->
+                item.getName().toLowerCase().contains(searchText) ||
+                        item.getDescription().toLowerCase().contains(searchText));
+
+        MenuListId.setItems(filteredMenuItems);
+    }
+
+
+
 }

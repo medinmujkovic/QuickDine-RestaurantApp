@@ -51,6 +51,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao {
         return item;
     }
 
+    @Override
     public User getByUsername(String username) throws SQLException {
         return executeQueryUnique("SELECT * FROM user WHERE username = ?", new Object[]{username});
     }

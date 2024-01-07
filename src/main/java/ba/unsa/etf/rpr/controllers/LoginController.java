@@ -23,29 +23,30 @@ public class LoginController {
     public Label invaliduUsernameId;
     public Label invalidPasswordId;
     public ImageView backgroundImage;
-    private final LoginManager loginManager = new LoginManager();
     public static StageUtils stageDashboard = new StageUtils();
 
     //Login validation
     public void loginAction(ActionEvent actionEvent) throws Exception {
         if(usernameId.getText().isEmpty()) invaliduUsernameId.setText("Username is required!");
         else if(passwordId.getText().isEmpty()) invalidPasswordId.setText("Password is required!");
-        else if(loginManager.authentication(usernameId.getText(), passwordId.getText())){
+        else if(LoginManager.authentication(usernameId.getText(), passwordId.getText())){
             //login authentication
-
-            if(loginManager.getRole()== Role.SERVICE){
+            if(LoginManager.getRole()== Role.SERVICE){
                 stageDashboard.openStage("/fxml/service.fxml", "Customer Service Dashboard");
             }
-            if(loginManager.getRole()== Role.CHEF){
+            if(LoginManager.getRole()== Role.CHEF){
                 stageDashboard.openStage("/fxml/chef.fxml", "Chef Dashboard");
             }
-            else if(loginManager.getRole()== Role.ADMIN){
+            else if(LoginManager.getRole()== Role.ADMIN){
                 stageDashboard.openStage("/fxml/admin.fxml", "Admin Dashboard");
             }
 
         }
     }
 
+    public void orderScreenBtnAction(ActionEvent actionEvent) throws Exception {
+        stageDashboard.openStage("/fxml/order-screen.fxml", "Order Screen");
+    }
     @FXML
     public void initialize()
     {
@@ -65,5 +66,6 @@ public class LoginController {
             else invalidPasswordId.setText("Invalid password!");
         });
     }
+
 
 }

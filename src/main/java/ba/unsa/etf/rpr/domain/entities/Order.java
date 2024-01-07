@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.domain.entities;
 
 import ba.unsa.etf.rpr.domain.Idable;
+import ba.unsa.etf.rpr.domain.enums.OrderStatus;
 import lombok.*;
 
 import java.util.Objects;
@@ -11,7 +12,6 @@ import java.util.Objects;
 @EqualsAndHashCode
 @ToString
 @AllArgsConstructor
-//@RequiredArgsConstructor // this constructor conflicts with the one below
 
 public class Order implements Idable {
     private int id;
@@ -23,5 +23,9 @@ public class Order implements Idable {
         this.userId = userId;
         this.statusId = statusId;
         this.selectedMeals = selectedMeals;
+    }
+    public void setStatus(OrderStatus status) {
+        this.statusId = status.getStatusId();
+
     }
 }

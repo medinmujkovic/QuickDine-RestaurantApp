@@ -1,12 +1,14 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.entities.Menu;
+import ba.unsa.etf.rpr.domain.entities.User;
 import javafx.scene.image.Image;
 
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -60,5 +62,11 @@ public class MenuDaoSQLImpl extends AbstractDao<Menu> implements MenuDao  {
         item.put("amount", object.getAmount());
         return item;
     }
+
+    @Override
+    public List<Menu> selectType(String type) throws SQLException {
+        return executeQuery("SELECT * FROM menu WHERE type = ?", new Object[]{type});
+    }
+
 
 }
