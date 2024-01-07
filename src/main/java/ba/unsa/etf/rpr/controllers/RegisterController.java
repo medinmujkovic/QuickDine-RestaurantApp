@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.business.RegisterManager;
+import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.utils.StageUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -71,7 +71,7 @@ public class RegisterController {
         checkEmptyInputFields();
         if (isEmptyAllInvalidLabels()) {
             try {
-                RegisterManager.addUser(usernameID.getText(),
+                UserManager.add(usernameID.getText(),
                         passwordID.getText(),
                         emailID.getText(),
                         fullNameID.getText(),
