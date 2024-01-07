@@ -84,9 +84,9 @@ public class RegisterController {
         if (isEmptyAllInvalidLabels()) {
             User user = makeUser();
             userManager.add(user);
+            alertSuccess();
+            stageDashboard.closeStage();
         }
-        alertSuccess();
-        stageDashboard.closeStage();
     }
     private void checkEmptyFields () {
         if (usernameID.getText().isEmpty()) invalidUsernameID.setText("Username is required!");
