@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.utils.helpers;
 
+import ba.unsa.etf.rpr.business.MenuManager;
 import ba.unsa.etf.rpr.dao.MenuDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import javafx.collections.FXCollections;
@@ -13,7 +14,7 @@ public class MenuHelper {
     public static ObservableList<Menu> createMenuRequest() {
         MenuDaoSQLImpl menuDao = MenuDaoSQLImpl.getInstance();
         try {
-            List<Menu> menuItems = menuDao.getAll();
+            List<Menu> menuItems = MenuManager.getAll();
             return FXCollections.observableArrayList(menuItems);
         } catch (SQLException e) {
             throw new RuntimeException(e);

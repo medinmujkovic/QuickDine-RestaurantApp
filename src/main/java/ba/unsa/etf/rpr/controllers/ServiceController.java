@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.MenuManager;
 import ba.unsa.etf.rpr.utils.listviews.MenuItemBox;
 import ba.unsa.etf.rpr.utils.StageUtils;
 import javafx.collections.ObservableList;
@@ -8,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import ba.unsa.etf.rpr.domain.entities.Menu;
+
+import java.sql.SQLException;
+import java.util.List;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.listviews.MenuItemBox.getSelectedObservable;
@@ -23,6 +27,7 @@ public class ServiceController {
     public Button CheckOutId;
     public ListView MenuListId;
     public static StageUtils checkoutScreen;
+    public static ObservableList<Menu> menuItems;
 
     public void setSelectedListId(ObservableList<Menu> selectedItems) {
         SelectedListId.setItems(selectedItems);
@@ -42,7 +47,7 @@ public class ServiceController {
     }
     public void initialize() {
         //Creating a list of menu items using the Menu record
-        ObservableList<Menu> menuItems = createMenuRequest();
+        menuItems = createMenuRequest();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view
@@ -79,4 +84,29 @@ public class ServiceController {
             }
         });
     }
+
+    public void foodBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Food"));System.out.println(menuItems);
+    }
+
+    public void drinksBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Drink"));System.out.println(menuItems);
+    }
+
+    public void menusBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Menu"));System.out.println(menuItems);
+    }
+
+    public void dessertBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Dessert"));System.out.println(menuItems);
+    }
+
+    public void searchAction(ActionEvent actionEvent) {
+    }
+
+
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -52,18 +53,24 @@
                      </VBox.margin></Label>
                   <HBox prefHeight="48.0" prefWidth="562.0">
                      <children>
-                        <Button fx:id="FoodId" mnemonicParsing="false" text="Food">
+                        <Button mnemonicParsing="false" onAction="#foodBtnAction" text="Food">
                            <HBox.margin>
                               <Insets left="3.0" right="3.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="DrinksId" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Drinks">
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#drinksBtnAction" text="Drinks">
                            <HBox.margin>
                               <Insets left="3.0" right="3.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="MenusId" layoutX="159.0" layoutY="10.0" mnemonicParsing="false" text="Menus">
+                        <Button layoutX="159.0" layoutY="10.0" mnemonicParsing="false" onAction="#dessertBtnAction" text="Dessert">
                            <HBox.margin>
                               <Insets left="3.0" right="3.0" />
                            </HBox.margin></Button>
+                        <Button layoutX="126.0" layoutY="10.0" mnemonicParsing="false" onAction="#menusBtnAction" text="Menus" />
+                        <HBox alignment="TOP_RIGHT" prefHeight="45.0" prefWidth="556.0">
+                           <children>
+                              <TextField fx:id="serachId" alignment="TOP_RIGHT" onAction="#searchAction" />
+                           </children>
+                        </HBox>
                      </children>
                      <VBox.margin>
                         <Insets />
