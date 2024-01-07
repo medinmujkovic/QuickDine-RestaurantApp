@@ -119,7 +119,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="addUserId" layoutX="58.0" layoutY="70.0" mnemonicParsing="false" text="Add User">
+            <Button fx:id="addUserId" layoutX="58.0" layoutY="70.0" mnemonicParsing="false" onAction="#addUserAction" text="Add User">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

@@ -7,13 +7,15 @@ import lombok.Getter;
 
 import java.sql.SQLException;
 
+import static ba.unsa.etf.rpr.utils.PasswordHashing.isPasswordCorrect;
+
 public class LoginManager {
     @Getter
     private static User user; //Results
 
-    public static boolean authentication(String username, String password) throws SQLException {
-        user =getByUsername(username);
-        return username.equals(user.getUsername()) && password.equals(user.getPassword());
+    public boolean authentication(String username, String password) throws SQLException {
+        rs=getByUsername(username);
+        return username.equals(rs.getUsername()) && isPasswordCorrect(password, rs.getPassword());
     }
 
     //Getting the role of the User and returning it as a Role enum

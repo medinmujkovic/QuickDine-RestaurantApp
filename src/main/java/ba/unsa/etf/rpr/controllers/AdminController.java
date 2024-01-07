@@ -12,13 +12,20 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
+
+import static ba.unsa.etf.rpr.controllers.RegisterController.stageRegistration;
+//import static ba.unsa.etf.rpr.utils.MenuHelper.createMenus;
+//import static ba.unsa.etf.rpr.utils.UserHelper.createUserRequests;
+
 import static ba.unsa.etf.rpr.utils.helpers.MenuHelper.createMenuRequest;
 import static ba.unsa.etf.rpr.utils.helpers.UserHelper.createUserRequest;
+
 
 public class AdminController {
     public ListView MenuListId;
     public ListView UserListId;
     public Button signOutId;
+    public Button addUserId;
 
     public void initialize() {
         //Creating a list of menu items using the Menu record
@@ -61,6 +68,10 @@ public class AdminController {
 
     }
     public void signOutAction(ActionEvent actionEvent) {
+        System.out.println("TREBA ZATVROTIR");
         stageDashboard.closeStage();
+    }
+    public void addUserAction(ActionEvent actionEvent) throws Exception {
+        stageRegistration.openStage("/fxml/register.fxml", "Register new user");
     }
 }

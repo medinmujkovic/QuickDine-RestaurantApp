@@ -4,7 +4,7 @@ import ba.unsa.etf.rpr.domain.Idable;
 import lombok.*;
 
 import java.util.Date;
-import java.util.Objects;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,5 +20,4 @@ public class User implements Idable{
     private String fullName;
     private Date dateOfBirth;
     private int roleId;
-
 }
