@@ -120,18 +120,12 @@ public class OrderItemBox extends ItemBox{
                 if (exists != null) {
                     //If the Order already exists then just alter the changes to the selected list
                     selectedOrderList.remove(exists);
-                    Order order = new Order(
-                            exists.getId(),
-                            exists.getUserId(),
-                            exists.getStatusId(),
-                            exists.getSelectedMeals()
-                    );
-                    selectedOrderList.add(order);
+                    selectedOrderList.add(item);
                     updateSelectedOrderView();
                 } else {
                     //If the Order doesn't already exist then add a new Order to the selected list
                     try {
-                        item.setStatusId(2);
+                        item.setStatus(OrderStatus.IN_PROGRESS);
                         item.setUserId(LoginManager.getUser().getId());
                         Order changeStatus = OrderManager.changeStatusId(item);
                     } catch (SQLException e) {
@@ -161,7 +155,7 @@ public class OrderItemBox extends ItemBox{
         //Finish button action
         button.setOnAction(actionEvent -> {
             try {
-                item.setStatusId(3);
+                item.setStatus(OrderStatus.READY_FOR_PICKUP);
                 Order changeStatus= OrderManager.changeStatusId(item);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -185,7 +179,7 @@ public class OrderItemBox extends ItemBox{
         button.setOnAction(actionEvent -> {
             selectedOrderList.remove(item);
             try {
-                item.setStatusId(1);
+                item.setStatus(OrderStatus.RECEIVED);
                 item.setUserId(1);
                 Order changeStatus= OrderManager.changeStatusId(item);
             } catch (SQLException e) {
