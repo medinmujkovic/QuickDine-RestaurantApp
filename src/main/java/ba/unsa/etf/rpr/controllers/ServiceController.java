@@ -7,11 +7,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.listviews.MenuItemBox.getSelectedObservable;
@@ -28,6 +28,8 @@ public class ServiceController {
     public ListView MenuListId;
     public static StageUtils checkoutScreen;
     public static ObservableList<Menu> menuItems;
+    public TextField searchId;
+    public ImageView searchIconId;
 
     public void setSelectedListId(ObservableList<Menu> selectedItems) {
         SelectedListId.setItems(selectedItems);
@@ -87,26 +89,40 @@ public class ServiceController {
 
     public void foodBtnAction(ActionEvent actionEvent) throws SQLException {
         menuItems.clear();
-        menuItems.addAll(MenuManager.selectType("Food"));System.out.println(menuItems);
+        menuItems.addAll(MenuManager.selectType("Food"));
     }
 
     public void drinksBtnAction(ActionEvent actionEvent) throws SQLException {
         menuItems.clear();
-        menuItems.addAll(MenuManager.selectType("Drink"));System.out.println(menuItems);
+        menuItems.addAll(MenuManager.selectType("Drink"));
     }
 
     public void menusBtnAction(ActionEvent actionEvent) throws SQLException {
         menuItems.clear();
-        menuItems.addAll(MenuManager.selectType("Menu"));System.out.println(menuItems);
+        menuItems.addAll(MenuManager.selectType("Menu"));
     }
 
     public void dessertBtnAction(ActionEvent actionEvent) throws SQLException {
         menuItems.clear();
-        menuItems.addAll(MenuManager.selectType("Dessert"));System.out.println(menuItems);
+        menuItems.addAll(MenuManager.selectType("Dessert"));
+    }
+
+    public void allBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.getAll());
     }
 
     public void searchAction(ActionEvent actionEvent) {
+        String searchText = searchId.getText().toLowerCase();
+
+        // Filter the menu items based on the search text
+        ObservableList<Menu> filteredMenuItems = menuItems.filtered(item ->
+                item.getName().toLowerCase().contains(searchText) ||
+                        item.getDescription().toLowerCase().contains(searchText));
+
+        MenuListId.setItems(filteredMenuItems);
     }
+
 
 
 }
