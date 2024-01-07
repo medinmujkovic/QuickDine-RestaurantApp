@@ -77,14 +77,18 @@ public class RegisterController {
     public void registerClick() throws Exception {
         checkEmptyInputFields();
         if (isEmptyAllInvalidLabels()) {
-            RegisterManager.addUser(usernameID.getText(),
-                                    passwordID.getText(),
-                                    emailID.getText(),
-                                    fullNameID.getText(),
-                                    dateOfBirthID.getText(),
-                                    2);
-            alertSuccess();
-            stageRegistration.closeStage();
+            try {
+                RegisterManager.addUser(usernameID.getText(),
+                        passwordID.getText(),
+                        emailID.getText(),
+                        fullNameID.getText(),
+                        dateOfBirthID.getText(),
+                        2);
+                alertSuccess();
+                stageRegistration.closeStage();
+            } catch (Exception e) {
+                alertUsernameExists();
+            }
         }
     }
     private void checkEmptyInputFields () {
@@ -108,6 +112,13 @@ public class RegisterController {
         alert.setTitle("Success!");
         alert.setHeaderText(null);
         alert.setContentText("User has been added successfully!"); // myb we can list new user info here
+        alert.showAndWait();
+    }
+    private void alertUsernameExists() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Error!");
+        alert.setHeaderText(null);
+        alert.setContentText("Username is taken!"); // myb we can list new user info here
         alert.showAndWait();
     }
 }
