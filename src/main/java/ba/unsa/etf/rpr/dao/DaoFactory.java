@@ -5,7 +5,6 @@ public class DaoFactory {
     private static final MenuDao menuDao = MenuDaoSQLImpl.getInstance();
     private static final OrderDao orderDao = OrderDaoSQLImpl.getInstance();
     private static final UserDao userDao = UserDaoSQLImpl.getInstance();
-    private static final RegisterDao registerDao = RegisterDaoSQLImpl.getInstance();
     private DaoFactory(){
     }
 
@@ -21,7 +20,4 @@ public class DaoFactory {
         return userDao;
     }
 
-    public static RegisterDao registerDao() {
-        return registerDao;
-    }
 }

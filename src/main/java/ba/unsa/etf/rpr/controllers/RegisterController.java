@@ -1,20 +1,15 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.business.UserManager;
-import ba.unsa.etf.rpr.domain.entities.User;
+import ba.unsa.etf.rpr.business.RegisterManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.isValid;
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.type.*;
 
 public class RegisterController {
-    private final UserManager userManager = new UserManager();
+    private final RegisterManager registerManager = new RegisterManager();
     public TextField usernameID;
     public Label invalidUsernameID;
     public PasswordField passwordID;
@@ -69,7 +64,7 @@ public class RegisterController {
             if(isValid(newValue, date))
                 invalidDateOfBirth.setText("");
             else
-                invalidDateOfBirth.setText("Invalid date!");
+                invalidDateOfBirth.setText("Date format is DD-MM-YYYY");
         });
         registerButton.setOnAction(event -> {
             try {
@@ -80,15 +75,19 @@ public class RegisterController {
         });
     }
     public void registerClick() throws Exception {
-        checkEmptyFields();
+        checkEmptyInputFields();
         if (isEmptyAllInvalidLabels()) {
-            User user = makeUser();
-            userManager.add(user);
+            registerManager.addUser(usernameID.getText(),
+                                    passwordID.getText(),
+                                    emailID.getText(),
+                                    fullNameID.getText(),
+                                    dateOfBirthID.getText(),
+                                    2);
             alertSuccess();
             stageDashboard.closeStage();
         }
     }
-    private void checkEmptyFields () {
+    private void checkEmptyInputFields () {
         if (usernameID.getText().isEmpty()) invalidUsernameID.setText("Username is required!");
         if (passwordID.getText().isEmpty()) invalidPasswordID.setText("Password is required!");
         if (repeatPasswordID.getText().isEmpty()) invalidRepeatPasswordID.setText("Repeated password is required!");
@@ -103,15 +102,6 @@ public class RegisterController {
                 invalidEmailID.getText().isEmpty() &&
                 invalidFullNameID.getText().isEmpty() &&
                 invalidDateOfBirth.getText().isEmpty();
-    }
-    private User makeUser() {
-        String[] dateValues = dateOfBirthID.getText().split("-");
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Integer.parseInt(dateValues[2]),
-                     Integer.parseInt(dateValues[1]) - 1, // Adjust month to be 0-based
-                     Integer.parseInt(dateValues[0]));
-        Date date = calendar.getTime();
-        return new User(usernameID.getText(), passwordID.getText(), emailID.getText(), fullNameID.getText(), date, 2);
     }
     private void alertSuccess() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
