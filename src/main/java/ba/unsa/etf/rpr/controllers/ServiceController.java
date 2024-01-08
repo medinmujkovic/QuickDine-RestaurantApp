@@ -105,7 +105,6 @@ public class ServiceController {
         menuItems.clear();
         menuItems.addAll(MenuManager.getAll());
     }
-
     public void searchAction(ActionEvent actionEvent) {
         String searchText = searchId.getText().toLowerCase();
 
