@@ -1,8 +1,11 @@
 package ba.unsa.etf.rpr.business;
 
-import ba.unsa.etf.rpr.dao.DaoFactory;
+import ba.unsa.etf.rpr.DAL.DAO.DaoFactory;
+import ba.unsa.etf.rpr.DAL.DAO.OrderDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,6 +20,15 @@ public class OrderManager {
 
     public static List<Order> getAll() throws SQLException {
         return DaoFactory.orderDao().getAll();
+    }
+
+    public static ObservableList<Order> getAllObservable() {
+        try {
+            List<Order> orderItems = getAll();
+            return FXCollections.observableArrayList(orderItems);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static Order changeStatusId(Order order) throws SQLException{

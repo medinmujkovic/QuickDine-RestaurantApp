@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.LoginManager;
+import ba.unsa.etf.rpr.business.MenuManager;
+import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.User;
 import ba.unsa.etf.rpr.utils.listviews.MenuItemBox;
@@ -11,14 +14,14 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
+import java.sql.SQLException;
+
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 
 import static ba.unsa.etf.rpr.controllers.RegisterController.stageRegistration;
 //import static ba.unsa.etf.rpr.utils.MenuHelper.createMenus;
 //import static ba.unsa.etf.rpr.utils.UserHelper.createUserRequests;
 
-import static ba.unsa.etf.rpr.utils.helpers.MenuHelper.createMenuRequest;
-import static ba.unsa.etf.rpr.utils.helpers.UserHelper.createUserRequest;
 
 
 public class AdminController {
@@ -27,9 +30,9 @@ public class AdminController {
     public Button signOutId;
     public Button addUserId;
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         //Creating a list of menu items using the Menu record
-        ObservableList<Menu> menuItems = createMenuRequest();
+        ObservableList<Menu> menuItems = MenuManager.getAllObservable();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view
@@ -48,7 +51,7 @@ public class AdminController {
         });
 
         //Creating a list of user items using the UserRequest record
-        ObservableList<User> users = createUserRequest();
+        ObservableList<User> users = UserManager.getAllObservable();
         //Setting the user items to the FXML ListView
         UserListId.setItems(users);
         //Displaying the view

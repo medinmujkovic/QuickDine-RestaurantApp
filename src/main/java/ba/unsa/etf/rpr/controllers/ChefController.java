@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.util.Iterator;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
-import static ba.unsa.etf.rpr.utils.helpers.OrderHelper.createOrderRequest;
 import static ba.unsa.etf.rpr.utils.listviews.OrderItemBox.getSelectedOrderList;
 
 public class ChefController {
@@ -52,7 +51,7 @@ public class ChefController {
 
         //Fetched Full Name
         LoginManager loginManager=new LoginManager();
-        FullNameId.setText(loginManager.getUser().getFullName());
+        FullNameId.setText(loginManager.getFullNameRequest());
 
         //Creating a list of selected order items using Order entity
         ObservableList<Order> selectedItems = getSelectedOrderList();
