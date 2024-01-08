@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ba.unsa.etf.rpr.utils.helpers.OrderHelper.createOrderRequest;
 import static java.util.Collections.addAll;
@@ -208,12 +209,18 @@ public class OrderItemBox extends ItemBox{
         return selectedOrderObservable;
     }
     public static ObservableList<Order> getOrders() throws SQLException {
-        Iterator<Order> iterator = orders.iterator();
-        while (iterator.hasNext()) {
-            Order item=iterator.next();
-            if (OrderManager.getStatus(item.getId())==OrderStatus.READY_FOR_PICKUP)
-                iterator.remove();
-        }
+        List<Order> filteredOrders = orders.stream()
+                .filter(item -> {
+                    try {
+                        return OrderManager.getStatus(item.getId()) != OrderStatus.READY_FOR_PICKUP;
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .collect(Collectors.toList());
+
+        orders.clear();
+        orders.addAll(filteredOrders);
         return orders;
     }
 
