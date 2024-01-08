@@ -15,7 +15,6 @@ import java.sql.SQLException;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.utils.listviews.MenuItemBox.getSelectedObservable;
-import static ba.unsa.etf.rpr.utils.helpers.MenuHelper.createMenuRequest;
 
 public class ServiceController {
     public ListView SelectedListId;
@@ -44,7 +43,7 @@ public class ServiceController {
     }
     public void initialize() {
         //Creating a list of menu items using the Menu record
-        menuItems = createMenuRequest();
+        menuItems = MenuManager.getAllObservable();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view

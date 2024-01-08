@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr.business;
 
-import ba.unsa.etf.rpr.dao.DaoFactory;
-import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
+import ba.unsa.etf.rpr.DAL.DAO.DaoFactory;
+import ba.unsa.etf.rpr.DAL.DAO.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.entities.User;
 
 import java.security.NoSuchAlgorithmException;

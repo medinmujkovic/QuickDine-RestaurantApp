@@ -18,15 +18,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ba.unsa.etf.rpr.utils.helpers.OrderHelper.createOrderRequest;
-import static java.util.Collections.addAll;
 
 //Order item in the Chef Dashboard listview
 public class OrderItemBox extends ItemBox{
 
     private static List<Order> selectedOrderList;
     private static ObservableList<Order> selectedOrderObservable = FXCollections.observableArrayList();
-    public static ObservableList<Order> orders=createOrderRequest();
+    public static ObservableList<Order> orders=OrderManager.getAllObservable();
 
 
     public static HBox createOrderBox(Order item) throws SQLException {
@@ -137,7 +135,7 @@ public class OrderItemBox extends ItemBox{
                     //If the Order doesn't already exist then add a new Order to the selected list
                     try {
                         item.setStatus(OrderStatus.IN_PROGRESS);
-                        item.setUserId(LoginManager.getUser().getId());
+                        item.setUserId(LoginManager.getLoginRequest().id());
                         Order changeStatus = OrderManager.changeStatusId(item);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);

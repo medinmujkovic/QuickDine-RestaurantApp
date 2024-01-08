@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.dao;
+package ba.unsa.etf.rpr.DAL.DAO;
 
 import ba.unsa.etf.rpr.domain.entities.Order;
 
