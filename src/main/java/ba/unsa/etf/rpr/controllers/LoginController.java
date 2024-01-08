@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.domain.enums.Role;
 import ba.unsa.etf.rpr.utils.StageUtils;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -29,18 +30,42 @@ public class LoginController {
     public void loginAction(ActionEvent actionEvent) throws Exception {
         if(usernameId.getText().isEmpty()) invaliduUsernameId.setText("Username is required!");
         else if(passwordId.getText().isEmpty()) invalidPasswordId.setText("Password is required!");
-        else if(LoginManager.authentication(usernameId.getText(), passwordId.getText())){
-            //login authentication
-            if(LoginManager.getRole()== Role.SERVICE){
-                stageDashboard.openStage("/fxml/service.fxml", "Customer Service Dashboard");
-            }
-            if(LoginManager.getRole()== Role.CHEF){
-                stageDashboard.openStage("/fxml/chef.fxml", "Chef Dashboard");
-            }
-            else if(LoginManager.getRole()== Role.ADMIN){
-                stageDashboard.openStage("/fxml/admin.fxml", "Admin Dashboard");
-            }
+        else {
+            Task<Boolean> authenticationTask = new Task<Boolean>() {
+                @Override
+                protected Boolean call() throws Exception {
+                    return LoginManager.authentication(usernameId.getText(), passwordId.getText());
+                }
+            };
 
+            authenticationTask.setOnSucceeded(event -> {
+                if (authenticationTask.getValue()) {
+                    try {
+                        handleSuccessfulLogin();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    
+                }
+            });
+
+            Thread authenticationThread = new Thread(authenticationTask);
+            authenticationThread.start();
+        }
+    }
+
+    private void handleSuccessfulLogin() throws Exception {
+        switch (LoginManager.getRole()) {
+            case SERVICE:
+                stageDashboard.openStage("/fxml/service.fxml", "Customer Service Dashboard");
+                break;
+            case CHEF:
+                stageDashboard.openStage("/fxml/chef.fxml", "Chef Dashboard");
+                break;
+            case ADMIN:
+                stageDashboard.openStage("/fxml/admin.fxml", "Admin Dashboard");
+                break;
         }
     }
 
