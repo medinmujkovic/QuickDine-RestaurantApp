@@ -33,20 +33,20 @@ public class AdminMenuItem extends ItemBox{
         VBox nameBox= createTwoItemLabelsVBox(new Label(item.getName()),new Label(item.getDescription()),100);
         HBox priceBox=createItemLabelHBox(new Label("$"+item.getPrice()),60);
         HBox typeBox=createItemLabelHBox(new Label(item.getType()),60);
-        HBox amountBox=createItemLabelHBox(new Label(String.valueOf(item.getAmount())),10);
+        HBox amountBox=createItemLabelHBox(new Label(String.valueOf(item.getAmount())),30);
         VBox editBox=createMenuEdit(
-                new Button("edit"),
+                new Button("Edit"),
                 item
         );
         VBox deleteBox=createMenuDelete(
-                new Button("delete"),
+                new Button("Delete"),
                 item
         );
 
         //Creating pacing between the items
         hBox.setSpacing(70);
         //Setting children of the main HBox views
-        hBox.getChildren().addAll(nameBox,typeBox,priceBox, amountBox,deleteBox);
+        hBox.getChildren().addAll(nameBox,typeBox,priceBox, amountBox,deleteBox,editBox);
         hbox.getChildren().addAll(imageView, hBox);
 
         return hbox;
@@ -55,9 +55,9 @@ public class AdminMenuItem extends ItemBox{
     private static VBox createMenuDelete(Button button, Menu item) {
         VBox infoBox=new VBox(button);
         button.setId("deleteItemButtonId");
-        infoBox.setMinWidth(30);
-        infoBox.setPrefWidth(30);
-        infoBox.setMaxWidth(30);
+        infoBox.setMinWidth(60);
+        infoBox.setPrefWidth(60);
+        infoBox.setMaxWidth(60);
 
         //Delete button action
         button.setOnAction(actionEvent -> {
@@ -75,11 +75,11 @@ public class AdminMenuItem extends ItemBox{
     //Method for creating the edit item button when selected
     private static VBox createMenuEdit(Button button, Menu item) {
         VBox infoBox=new VBox(button);
-        infoBox.setMinWidth(30);
-        infoBox.setPrefWidth(30);
-        infoBox.setMaxWidth(30);
+        infoBox.setMinWidth(60);
+        infoBox.setPrefWidth(60);
+        infoBox.setMaxWidth(60);
 
-        //Delete button action
+        //Edit button action
         button.setOnAction(actionEvent -> {
 
         });
@@ -99,7 +99,7 @@ public class AdminMenuItem extends ItemBox{
     }
 
     //Get Menu items for view
-    public static ObservableList<Menu> getSelectedObservable()
+    public static ObservableList<Menu> getMenusObservable()
     {
         return menus;
     }

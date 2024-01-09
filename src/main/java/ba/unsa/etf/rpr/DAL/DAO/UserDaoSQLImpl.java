@@ -1,9 +1,11 @@
 package ba.unsa.etf.rpr.DAL.DAO;
 
 import ba.unsa.etf.rpr.domain.entities.User;
+import ba.unsa.etf.rpr.domain.enums.Role;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -49,6 +51,12 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao {
         item.put("dateOfBirth", object.getDateOfBirth());
         item.put("roleId", object.getRoleId());
         return item;
+    }
+
+    @Override
+    public List<User> selectRole(Role role) throws SQLException {
+        int roleId= role.getRoleId();
+        return executeQuery("SELECT * FROM user WHERE roleId = ?", new Object[]{roleId});
     }
 
     @Override
