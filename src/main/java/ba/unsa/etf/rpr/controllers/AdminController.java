@@ -2,17 +2,13 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.business.MenuManager;
-import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.User;
 import ba.unsa.etf.rpr.utils.listviews.AdminMenuItem;
 import ba.unsa.etf.rpr.utils.listviews.AdminUserItem;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
 import java.sql.SQLException;
@@ -32,10 +28,13 @@ public class AdminController {
     public Button signOutId;
     public Button addUserId;
     public Label FullNameId;
+    public TextField searchId;
+
+    public static ObservableList<Menu> menuItems;
 
     public void initialize() throws SQLException {
         //Creating a list of menu items using the Menu record
-        ObservableList<Menu> menuItems = AdminMenuItem.getSelectedObservable();
+        menuItems = AdminMenuItem.getMenusObservable();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view
@@ -56,7 +55,7 @@ public class AdminController {
         FullNameId.setText(LoginManager.getFullNameRequest());
 
         //Creating a list of user items using the UserRequest record
-        ObservableList<User> users = UserManager.getAllObservable();
+        ObservableList<User> users = AdminUserItem.getUsersObservable();
         //Setting the user items to the FXML ListView
         UserListId.setItems(users);
         //Displaying the view
@@ -84,4 +83,40 @@ public class AdminController {
     public void addMenuAction(ActionEvent actionEvent) throws Exception {
         stageAddMenu.openStage("/fxml/add-menu.fxml", "Add new menu");
     }
+
+    public void foodBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Food"));
+    }
+
+    public void drinksBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Drink"));
+    }
+
+    public void menusBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Menu"));
+    }
+
+    public void dessertBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.selectType("Dessert"));
+    }
+
+    public void allBtnAction(ActionEvent actionEvent) throws SQLException {
+        menuItems.clear();
+        menuItems.addAll(MenuManager.getAll());
+    }
+    public void searchAction(ActionEvent actionEvent) {
+        String searchText = searchId.getText().toLowerCase();
+
+        // Filter the menu items based on the search text
+        ObservableList<Menu> filteredMenuItems = menuItems.filtered(item ->
+                item.getName().toLowerCase().contains(searchText) ||
+                        item.getDescription().toLowerCase().contains(searchText));
+
+        MenuListId.setItems(filteredMenuItems);
+    }
+
 }
