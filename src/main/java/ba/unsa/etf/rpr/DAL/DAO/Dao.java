@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.dao;
+package ba.unsa.etf.rpr.DAL.DAO;
 
 import java.sql.SQLException;
 import java.util.List;

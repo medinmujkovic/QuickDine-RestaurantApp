@@ -11,12 +11,11 @@ import javafx.scene.layout.HBox;
 import java.sql.SQLException;
 import java.util.Iterator;
 
-import static ba.unsa.etf.rpr.utils.helpers.OrderHelper.createOrderRequest;
 
 //Order screen for customers
 public class OrderScreenItemBox extends ItemBox{
 
-    public static ObservableList<Order> orders=createOrderRequest();
+    public static ObservableList<Order> orders= OrderManager.getAllObservable();
 
     public static HBox createOrderScreenBox(Order item) throws SQLException {
 

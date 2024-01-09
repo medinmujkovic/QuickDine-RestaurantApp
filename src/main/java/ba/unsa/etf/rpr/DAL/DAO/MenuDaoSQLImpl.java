@@ -1,7 +1,6 @@
-package ba.unsa.etf.rpr.dao;
+package ba.unsa.etf.rpr.DAL.DAO;
 
 import ba.unsa.etf.rpr.domain.entities.Menu;
-import ba.unsa.etf.rpr.domain.entities.User;
 import javafx.scene.image.Image;
 
 import java.io.InputStream;

@@ -1,17 +1,36 @@
 package ba.unsa.etf.rpr.business;
 
-import ba.unsa.etf.rpr.dao.DaoFactory;
-import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
+import ba.unsa.etf.rpr.DAL.DAO.DaoFactory;
+import ba.unsa.etf.rpr.DAL.DAO.UserDaoSQLImpl;
+import ba.unsa.etf.rpr.DAL.DAO.DaoFactory;
+import ba.unsa.etf.rpr.DAL.DAO.UserDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Calendar;
 import java.util.Date;
 
 import static ba.unsa.etf.rpr.utils.PasswordHashing.hashString;
 
 public class UserManager {
+
+    public static List<User> getAll() throws SQLException {
+        return DaoFactory.userDao().getAll();
+    }
+
+    public static ObservableList<User> getAllObservable() throws SQLException {
+        try {
+            List<User> userItems = getAll();
+            return FXCollections.observableArrayList(userItems);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static User add(String username, String password, String email, String fullName, String dateOfBirthStr, int roleId) throws Exception {
         String[] dateValues = dateOfBirthStr.split("-");

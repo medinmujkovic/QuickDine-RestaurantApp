@@ -9,7 +9,6 @@ import javafx.scene.layout.HBox;
 
 import java.sql.SQLException;
 
-import static ba.unsa.etf.rpr.utils.helpers.OrderHelper.createOrderRequest;
 
 public class OrderScreenController {
     public ListView orderScreenId;
