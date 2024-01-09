@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 //User item in Admin Dashboard listview
-public class AdminUserItem {
+public class AdminUserItem extends ItemBox{
 
     public static HBox createUserBox(User item) {
 
@@ -15,12 +15,12 @@ public class AdminUserItem {
         HBox hBox=new HBox(10);
 
         // Creating HBoxes for the UI of:
-        HBox idBox=createItemBox(new Label(String.valueOf(item.getId())),10);
-        HBox usernameBox=createItemBox(new Label(item.getUsername()),60);
-        HBox passwordBox=createItemBox(new Label(item.getPassword()),60);
-        HBox emailBox=createItemBox(new Label(item.getEmail()),105);
-        HBox fullNameBox=createItemBox(new Label(item.getFullName()),60);
-        HBox dateOfBirthBox=createItemBox(new Label(String.valueOf(item.getDateOfBirth())),60);
+        HBox idBox=createItemLabelHBox(new Label(String.valueOf(item.getId())),10);
+        HBox usernameBox=createItemLabelHBox(new Label(item.getUsername()),60);
+        HBox passwordBox=createItemLabelHBox(new Label(item.getPassword()),60);
+        HBox emailBox=createItemLabelHBox(new Label(item.getEmail()),105);
+        HBox fullNameBox=createItemLabelHBox(new Label(item.getFullName()),60);
+        HBox dateOfBirthBox=createItemLabelHBox(new Label(String.valueOf(item.getDateOfBirth())),60);
 
         // Remove the user from the userRequests list
         Button deleteButton = new Button("Delete");
@@ -41,15 +41,5 @@ public class AdminUserItem {
 
         return hBox;
     }
-
-    //Helper method for creating the view
-    private static HBox createItemBox(Label label, double width) {
-        HBox infoBox=new HBox(label);
-        infoBox.setMinWidth(width);
-        infoBox.setPrefWidth(width);
-        infoBox.setMaxWidth(width);
-        return infoBox;
-    }
-
 
 }

@@ -33,9 +33,13 @@ public class AdminMenuItem extends ItemBox{
         VBox nameBox= createTwoItemLabelsVBox(new Label(item.getName()),new Label(item.getDescription()),100);
         HBox priceBox=createItemLabelHBox(new Label("$"+item.getPrice()),60);
         HBox typeBox=createItemLabelHBox(new Label(item.getType()),60);
-        HBox amountBox=createItemLabelHBox(new Label(String.valueOf(item.getAmount())),60);
+        HBox amountBox=createItemLabelHBox(new Label(String.valueOf(item.getAmount())),10);
+        VBox editBox=createMenuEdit(
+                new Button("edit"),
+                item
+        );
         VBox deleteBox=createMenuDelete(
-                new Button("X"),
+                new Button("delete"),
                 item
         );
 
@@ -68,6 +72,22 @@ public class AdminMenuItem extends ItemBox{
         return infoBox;
     }
 
+    //Method for creating the edit item button when selected
+    private static VBox createMenuEdit(Button button, Menu item) {
+        VBox infoBox=new VBox(button);
+        infoBox.setMinWidth(30);
+        infoBox.setPrefWidth(30);
+        infoBox.setMaxWidth(30);
+
+        //Delete button action
+        button.setOnAction(actionEvent -> {
+
+        });
+
+        return infoBox;
+    }
+
+
     public static void updateMenus()
     {
         menus.clear();
@@ -78,7 +98,7 @@ public class AdminMenuItem extends ItemBox{
         }
     }
 
-    //Get Selected menu items for view
+    //Get Menu items for view
     public static ObservableList<Menu> getSelectedObservable()
     {
         return menus;
