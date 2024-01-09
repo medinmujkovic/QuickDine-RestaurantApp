@@ -10,6 +10,7 @@ import ba.unsa.etf.rpr.utils.listviews.UserItemBox;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
@@ -30,6 +31,7 @@ public class AdminController {
     public ListView UserListId;
     public Button signOutId;
     public Button addUserId;
+    public Label FullNameId;
 
     public void initialize() throws SQLException {
         //Creating a list of menu items using the Menu record
@@ -50,6 +52,8 @@ public class AdminController {
                 }
             }
         });
+
+        FullNameId.setText(LoginManager.getFullNameRequest());
 
         //Creating a list of user items using the UserRequest record
         ObservableList<User> users = UserManager.getAllObservable();

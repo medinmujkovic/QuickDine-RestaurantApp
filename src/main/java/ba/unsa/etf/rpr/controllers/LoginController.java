@@ -37,7 +37,8 @@ public class LoginController {
                 protected Boolean call() throws Exception {
                     return LoginManager.authentication(usernameId.getText(), passwordId.getText());
                 }
-            };new Thread(authenticationTask).start();
+            };
+            new Thread(authenticationTask).start();
 
             authenticationTask.setOnSucceeded(event -> {
                 if (authenticationTask.getValue()) {

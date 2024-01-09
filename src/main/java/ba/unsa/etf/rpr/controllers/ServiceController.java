@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.business.MenuManager;
 import ba.unsa.etf.rpr.utils.listviews.MenuItemBox;
 import ba.unsa.etf.rpr.utils.StageUtils;
@@ -24,6 +25,7 @@ public class ServiceController {
     public static ObservableList<Menu> menuItems;
     public TextField searchId;
     public ImageView searchIconId;
+    public Label FullNameId;
 
     public void setSelectedListId(ObservableList<Menu> selectedItems) {
         SelectedListId.setItems(selectedItems);
@@ -41,7 +43,7 @@ public class ServiceController {
             checkoutScreen.openStage("/fxml/checkout.fxml", "Checkout Screen");
         }
     }
-    public void initialize() {
+    public void initialize() throws SQLException {
         //Creating a list of menu items using the Menu record
         menuItems = MenuManager.getAllObservable();
         //Setting the menu items to the FXML ListView
@@ -60,6 +62,8 @@ public class ServiceController {
                 }
             }
         });
+
+        FullNameId.setText(LoginManager.getFullNameRequest());
 
         //Creating a list of selected menu items using the Menu record
         ObservableList<Menu> selectedItems = getSelectedObservable();

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.AdminController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.AdminController">
 <stylesheets>
     <URL value="@../css/styles.css" />
 </stylesheets>
@@ -32,10 +32,13 @@
       <VBox alignment="CENTER" prefHeight="132.0" prefWidth="141.0">
          <children>
             <ImageView fitHeight="21.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="FullNameId" text="Admin">
+            <Label fx:id="FullNameId" text="Full Name">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Label>
          </children>
          <GridPane.margin>
@@ -114,17 +117,12 @@
       </ScrollPane>
       <VBox alignment="CENTER" prefHeight="134.0" prefWidth="203.0" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="homeId" mnemonicParsing="false" text="Home">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
             <Button fx:id="addUserId" layoutX="58.0" layoutY="70.0" mnemonicParsing="false" onAction="#addUserAction" text="Add User">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="addMenuId" onAction="#addMenuAction" layoutX="50.0" layoutY="89.0" mnemonicParsing="false" text="Add Menu">
+            <Button fx:id="addMenuId" layoutX="50.0" layoutY="89.0" mnemonicParsing="false" onAction="#addMenuAction" text="Add Menu">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
