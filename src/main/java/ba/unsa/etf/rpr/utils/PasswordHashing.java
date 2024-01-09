@@ -3,10 +3,21 @@ package ba.unsa.etf.rpr.utils;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordHashing {
 
     public static String hashString(String input) throws NoSuchAlgorithmException {
+        return BCrypt.hashpw(input, BCrypt.gensalt());
+
+
+
+
+
+
+
+
+        /*
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hashBytes = digest.digest(input.getBytes(StandardCharsets.UTF_8));
 
@@ -20,16 +31,10 @@ public class PasswordHashing {
             hexString.append(hex);
         }
 
-        return hexString.toString();
+        return hexString.toString();*/
     }
 
     public static boolean isPasswordCorrect(String enteredPassword, String storedHash) {
-        try {
-            String enteredPasswordHashed = hashString(enteredPassword);
-            return enteredPasswordHashed.equals(storedHash);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return false;
-        }
+        return BCrypt.checkpw(enteredPassword, storedHash);
     }
 }
