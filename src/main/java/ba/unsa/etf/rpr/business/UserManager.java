@@ -13,7 +13,7 @@ import static ba.unsa.etf.rpr.utils.PasswordHashing.hashString;
 
 public class UserManager {
 
-    public static User add(String username, String password, String email, String fullName, String dateOfBirthStr, int roleId) throws Exception, NoSuchAlgorithmException {
+    public static User add(String username, String password, String email, String fullName, String dateOfBirthStr, int roleId) throws Exception {
         String[] dateValues = dateOfBirthStr.split("-");
         Calendar calendar = Calendar.getInstance();
         calendar.set(Integer.parseInt(dateValues[2]),

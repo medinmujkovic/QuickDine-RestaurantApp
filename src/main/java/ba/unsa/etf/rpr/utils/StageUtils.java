@@ -2,7 +2,10 @@ package ba.unsa.etf.rpr.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+
+import java.sql.SQLOutput;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -21,5 +24,11 @@ public class StageUtils {
             stage.close();
         }
     }
-
+    public static void alert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 }

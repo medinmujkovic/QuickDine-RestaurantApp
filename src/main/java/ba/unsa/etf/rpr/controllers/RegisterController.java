@@ -77,10 +77,10 @@ public class RegisterController {
                         fullNameID.getText(),
                         dateOfBirthID.getText(),
                         2);
-                alertSuccess();
+                StageUtils.alert("Success!", "User has been added successfully!");
                 stageRegistration.closeStage();
             } catch (Exception e) {
-                alertUsernameExists();
+                StageUtils.alert("Error!", "Username is taken!");
             }
         }
     }
@@ -99,19 +99,5 @@ public class RegisterController {
                 invalidEmailID.getText().isEmpty() &&
                 invalidFullNameID.getText().isEmpty() &&
                 invalidDateOfBirth.getText().isEmpty();
-    }
-    private void alertSuccess() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success!");
-        alert.setHeaderText(null);
-        alert.setContentText("User has been added successfully!"); // myb we can list new user info here
-        alert.showAndWait();
-    }
-    private void alertUsernameExists() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Error!");
-        alert.setHeaderText(null);
-        alert.setContentText("Username is taken!"); // myb we can list new user info here
-        alert.showAndWait();
     }
 }
