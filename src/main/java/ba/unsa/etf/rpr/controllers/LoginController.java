@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.domain.enums.Role;
 import ba.unsa.etf.rpr.utils.StageUtils;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +37,7 @@ public class LoginController {
                 protected Boolean call() throws Exception {
                     return LoginManager.authentication(usernameId.getText(), passwordId.getText());
                 }
-            };
+            };new Thread(authenticationTask).start();
 
             authenticationTask.setOnSucceeded(event -> {
                 if (authenticationTask.getValue()) {
@@ -45,9 +46,11 @@ public class LoginController {
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-                } else {
-                    
                 }
+            });
+
+            authenticationTask.setOnFailed(event->{
+                StageUtils.alert("Login failed", "User has not been found.");
             });
 
             Thread authenticationThread = new Thread(authenticationTask);

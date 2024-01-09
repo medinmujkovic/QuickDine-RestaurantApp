@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.utils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.sql.SQLOutput;
@@ -17,6 +18,7 @@ public class StageUtils {
         stage.setTitle(title);
         stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(true);
+        stage.getIcons().add(new Image("https://banner2.cleanpng.com/20180629/rib/kisspng-monumental-restaurant-elche-logo-kitchen-restaurant-sign-5b36b178864749.62945802153031103255.jpg"));
         stage.show();
     }
     public void closeStage() {
