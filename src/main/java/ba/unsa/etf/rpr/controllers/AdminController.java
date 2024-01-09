@@ -2,8 +2,10 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.business.MenuManager;
+import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.User;
+import ba.unsa.etf.rpr.domain.enums.Role;
 import ba.unsa.etf.rpr.utils.listviews.AdminMenuItem;
 import ba.unsa.etf.rpr.utils.listviews.AdminUserItem;
 import javafx.collections.ObservableList;
@@ -29,8 +31,10 @@ public class AdminController {
     public Button addUserId;
     public Label FullNameId;
     public TextField searchId;
+    public TextField searchIdRole;
 
     public static ObservableList<Menu> menuItems;
+    public static ObservableList<User> userItems;
 
     public void initialize() throws SQLException {
         //Creating a list of menu items using the Menu record
@@ -55,9 +59,9 @@ public class AdminController {
         FullNameId.setText(LoginManager.getFullNameRequest());
 
         //Creating a list of user items using the UserRequest record
-        ObservableList<User> users = AdminUserItem.getUsersObservable();
+        userItems = AdminUserItem.getUsersObservable();
         //Setting the user items to the FXML ListView
-        UserListId.setItems(users);
+        UserListId.setItems(userItems);
         //Displaying the view
         UserListId.setCellFactory(param -> new ListCell<User>() {
             @Override
@@ -119,4 +123,35 @@ public class AdminController {
         MenuListId.setItems(filteredMenuItems);
     }
 
+
+    public void allBtnActionRoles(ActionEvent actionEvent) throws SQLException {
+        userItems.clear();
+        userItems.addAll(UserManager.getAll());
+    }
+
+    public void adminBtnAction(ActionEvent actionEvent) throws SQLException {
+        userItems.clear();
+        userItems.addAll(UserManager.selectRole(Role.ADMIN));
+    }
+
+    public void serviceBtnAction(ActionEvent actionEvent) throws SQLException {
+        userItems.clear();
+        userItems.addAll(UserManager.selectRole(Role.SERVICE));
+    }
+
+    public void chefsBtnAction(ActionEvent actionEvent) throws SQLException {
+        userItems.clear();
+        userItems.addAll(UserManager.selectRole(Role.CHEF));
+    }
+
+    public void searchUserAction(ActionEvent actionEvent) {
+        String searchText = searchIdRole.getText().toLowerCase();
+
+        // Filter the user items based on the search text
+        ObservableList<User> filteredUserItems = userItems.filtered(item ->
+                item.getUsername().toLowerCase().contains(searchText) ||
+                        item.getFullName().toLowerCase().contains(searchText));
+
+        UserListId.setItems(filteredUserItems);
+    }
 }

@@ -6,6 +6,7 @@ import ba.unsa.etf.rpr.DAL.DAO.DaoFactory;
 import ba.unsa.etf.rpr.DAL.DAO.UserDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.User;
+import ba.unsa.etf.rpr.domain.enums.Role;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -63,4 +64,7 @@ public class UserManager {
 
     }
 
+    public static List<User> selectRole(Role role) throws SQLException {
+        return DaoFactory.userDao().selectRole(role);
+    }
 }
