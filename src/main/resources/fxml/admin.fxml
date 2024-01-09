@@ -124,7 +124,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="addMenuId" layoutX="50.0" layoutY="89.0" mnemonicParsing="false" text="Add Menu">
+            <Button fx:id="addMenuId" onAction="#addMenuAction" layoutX="50.0" layoutY="89.0" mnemonicParsing="false" text="Add Menu">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

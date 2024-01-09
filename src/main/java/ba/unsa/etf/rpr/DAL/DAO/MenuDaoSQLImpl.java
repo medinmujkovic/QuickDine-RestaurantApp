@@ -56,7 +56,7 @@ public class MenuDaoSQLImpl extends AbstractDao<Menu> implements MenuDao  {
         item.put("name", object.getName());
         item.put("type", object.getType());
         item.put("description", object.getDescription());
-        item.put("image", object.getImage());
+        item.put("image", object.getImageBlob());
         item.put("price", object.getPrice());
         item.put("amount", object.getAmount());
         return item;
@@ -67,5 +67,8 @@ public class MenuDaoSQLImpl extends AbstractDao<Menu> implements MenuDao  {
         return executeQuery("SELECT * FROM menu WHERE type = ?", new Object[]{type});
     }
 
+    public Menu getByName(String name) throws SQLException {
+        return executeQueryUnique("SELECT * FROM menu WHERE name = ?", new Object[]{name});
+    }
 
 }

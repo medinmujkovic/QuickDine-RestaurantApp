@@ -48,6 +48,13 @@
             <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-swing -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>20.0.2</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

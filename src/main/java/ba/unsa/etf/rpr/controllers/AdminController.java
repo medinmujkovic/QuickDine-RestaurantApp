@@ -17,8 +17,9 @@ import javafx.scene.layout.HBox;
 import java.sql.SQLException;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
-
 import static ba.unsa.etf.rpr.controllers.RegisterController.stageRegistration;
+import static ba.unsa.etf.rpr.controllers.AddMenuController.stageAddMenu;
+
 //import static ba.unsa.etf.rpr.utils.MenuHelper.createMenus;
 //import static ba.unsa.etf.rpr.utils.UserHelper.createUserRequests;
 
@@ -71,10 +72,12 @@ public class AdminController {
 
     }
     public void signOutAction(ActionEvent actionEvent) {
-        System.out.println("TREBA ZATVROTIR");
         stageDashboard.closeStage();
     }
     public void addUserAction(ActionEvent actionEvent) throws Exception {
         stageRegistration.openStage("/fxml/register.fxml", "Register new user");
+    }
+    public void addMenuAction(ActionEvent actionEvent) throws Exception {
+        stageAddMenu.openStage("/fxml/add-menu.fxml", "Add new menu");
     }
 }
