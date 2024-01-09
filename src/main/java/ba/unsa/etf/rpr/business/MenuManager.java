@@ -41,4 +41,7 @@ public class MenuManager {
     }
 
 
+    public static void deleteMenuFrom(int id) throws SQLException {
+        DaoFactory.menuDao().deleteMenu(id);
+    }
 }

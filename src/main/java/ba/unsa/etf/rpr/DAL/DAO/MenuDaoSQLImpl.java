@@ -71,4 +71,9 @@ public class MenuDaoSQLImpl extends AbstractDao<Menu> implements MenuDao  {
         return executeQueryUnique("SELECT * FROM menu WHERE name = ?", new Object[]{name});
     }
 
+    @Override
+    public void deleteMenu(int id) throws SQLException{
+        delete(id);
+    }
+
 }

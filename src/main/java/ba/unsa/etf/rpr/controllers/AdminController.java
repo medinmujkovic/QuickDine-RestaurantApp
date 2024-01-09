@@ -5,8 +5,8 @@ import ba.unsa.etf.rpr.business.MenuManager;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.User;
-import ba.unsa.etf.rpr.utils.listviews.MenuItemBox;
-import ba.unsa.etf.rpr.utils.listviews.UserItemBox;
+import ba.unsa.etf.rpr.utils.listviews.AdminMenuItem;
+import ba.unsa.etf.rpr.utils.listviews.AdminUserItem;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -35,7 +35,7 @@ public class AdminController {
 
     public void initialize() throws SQLException {
         //Creating a list of menu items using the Menu record
-        ObservableList<Menu> menuItems = MenuManager.getAllObservable();
+        ObservableList<Menu> menuItems = AdminMenuItem.getSelectedObservable();
         //Setting the menu items to the FXML ListView
         MenuListId.setItems(menuItems);
         //Displaying the view
@@ -47,7 +47,7 @@ public class AdminController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = MenuItemBox.createMenuItem(item);
+                    HBox hbox = AdminMenuItem.createMenuAdmin(item);
                     setGraphic(hbox);
                 }
             }
@@ -68,7 +68,7 @@ public class AdminController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = UserItemBox.createUserBox(item);
+                    HBox hbox = AdminUserItem.createUserBox(item);
                     setGraphic(hbox);
                 }
             }
