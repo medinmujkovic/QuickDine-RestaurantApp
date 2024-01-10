@@ -30,12 +30,12 @@ public class AdminUserItem extends ItemBox{
         HBox hBox=new HBox(10);
 
         // Creating HBoxes for the UI of:
-        HBox idBox=createItemLabelHBox(new Label(String.valueOf(item.getId())),30);
-        HBox usernameBox=createItemLabelHBox(new Label(item.getUsername()),60);
+        HBox idBox=createItemLabelHBox(new Label(String.valueOf(item.getId())),40);
+        HBox usernameBox=createItemLabelHBox(new Label(item.getUsername()),70);
         HBox roleBox=createItemLabelHBox(new Label(new String[]{"Admin", "Chef", "Service"}[item.getRoleId() - 1]),60);
-        HBox emailBox=createItemLabelHBox(new Label(item.getEmail()),105);
-        HBox fullNameBox=createItemLabelHBox(new Label(item.getFullName()),90);
-        HBox dateOfBirthBox=createItemLabelHBox(new Label(String.valueOf(item.getDateOfBirth())),90);
+        HBox emailBox=createItemLabelHBox(new Label(item.getEmail()),110);
+        HBox fullNameBox=createItemLabelHBox(new Label(item.getFullName()),120);
+        HBox dateOfBirthBox=createItemLabelHBox(new Label(String.valueOf(item.getDateOfBirth())),200);
 
         // Remove the user from the userRequests list
         Button deleteButton = new Button("Delete");

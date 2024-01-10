@@ -32,37 +32,34 @@ public class AdminMenuItem extends ItemBox{
         HBox hBox=new HBox();
 
         // Creating HBoxes for the UI of:
-        VBox nameBox= createTwoItemLabelsVBox(new Label(item.getName()),new Label(item.getDescription()),100);
+        VBox nameBox= createTwoItemLabelsVBox(new Label(item.getName()),new Label(item.getDescription()),80);
         HBox priceBox=createItemLabelHBox(new Label("$"+item.getPrice()),60);
         HBox typeBox=createItemLabelHBox(new Label(item.getType()),60);
-        HBox amountBox=createItemLabelHBox(new Label(String.valueOf(item.getAmount())),30);
-        VBox editBox=createMenuEdit(
-                new Button("Edit"),
-                item
-        );
-        VBox deleteBox=createMenuDelete(
+        HBox amountBox=createItemLabelHBox(new Label(String.valueOf(item.getAmount())),150);
+        HBox deleteEditBox= createMenuDeleteEdit(
                 new Button("Delete"),
+                new Button("Edit"),
                 item
         );
 
         //Creating pacing between the items
         hBox.setSpacing(70);
         //Setting children of the main HBox views
-        hBox.getChildren().addAll(nameBox,typeBox,priceBox, amountBox,deleteBox,editBox);
+        hBox.getChildren().addAll(nameBox,typeBox,priceBox, amountBox,deleteEditBox);
         hbox.getChildren().addAll(imageView, hBox);
 
         return hbox;
     }
     //Method for creating the delete item button when selected
-    private static VBox createMenuDelete(Button button, Menu item) {
-        VBox infoBox=new VBox(button);
-        button.setId("deleteItemButtonId");
-        infoBox.setMinWidth(60);
-        infoBox.setPrefWidth(60);
-        infoBox.setMaxWidth(60);
+    private static HBox createMenuDeleteEdit(Button delete, Button edit, Menu item) {
+        HBox infoBox= new HBox(delete,edit);
+        infoBox.setMinWidth(120);
+        infoBox.setPrefWidth(120);
+        infoBox.setMaxWidth(120);
+        infoBox.setSpacing(17);
 
         //Delete button action
-        button.setOnAction(actionEvent -> {
+        delete.setOnAction(actionEvent -> {
             try {
                 MenuManager.deleteMenuFrom(item.getId());
                 updateMenus();
@@ -71,6 +68,15 @@ public class AdminMenuItem extends ItemBox{
             }
         });
 
+        //Edit button action
+        edit.setOnAction(actionEvent -> {
+            try {
+                editID = item.getId();
+                stageAddEditMenu.openStage("/fxml/add-edit-menu.fxml", "Edit menu");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         return infoBox;
     }
 
@@ -81,15 +87,7 @@ public class AdminMenuItem extends ItemBox{
         infoBox.setPrefWidth(60);
         infoBox.setMaxWidth(60);
 
-        //Edit button action
-        button.setOnAction(actionEvent -> {
-            try {
-                editID = item.getId();
-                stageAddEditMenu.openStage("/fxml/add-edit-menu.fxml", "Edit menu");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
+
 
         return infoBox;
     }
