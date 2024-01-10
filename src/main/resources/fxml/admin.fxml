@@ -33,35 +33,11 @@
       <!-- Add the remaining RowConstraints as needed -->
    </rowConstraints>
    <children>
-      <VBox alignment="CENTER" prefHeight="132.0" prefWidth="141.0">
-         <children>
-            <Label text="Admin Dashboard">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <ImageView fitHeight="21.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="FullNameId" text="Full Name">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-      </VBox>
       <Pane prefHeight="136.0" prefWidth="972.0" GridPane.columnIndex="1">
          <children>
-            <VBox layoutX="8.0" prefHeight="83.0" prefWidth="814.0">
+            <VBox layoutX="14.0" layoutY="23.0" prefHeight="83.0" prefWidth="913.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="750.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="919.0">
                      <children>
                         <Button layoutX="13.0" layoutY="16.0" mnemonicParsing="false" onAction="#allBtnAction" text="All" />
                         <Button mnemonicParsing="false" onAction="#foodBtnAction" text="Food">
@@ -80,7 +56,7 @@
                            </HBox.margin>
                         </Button>
                         <Button layoutX="126.0" layoutY="10.0" mnemonicParsing="false" onAction="#menusBtnAction" text="Menus" />
-                        <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="529.0" spacing="7.0">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="626.0" spacing="7.0">
                            <children>
                               <ImageView fx:id="searchIconId" fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -89,13 +65,16 @@
                               </ImageView>
                               <TextField fx:id="searchId" alignment="TOP_RIGHT" onAction="#searchAction" />
                            </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </HBox>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="12.0" prefWidth="822.0" spacing="110.0">
+                  <HBox alignment="CENTER" prefHeight="12.0" prefWidth="822.0" spacing="90.0">
                      <children>
                         <Label text="Name">
                            <HBox.margin>
@@ -114,8 +93,11 @@
                            </HBox.margin>
                         </Label>
                      </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                      <padding>
-                        <Insets right="200.0" />
+                        <Insets right="400.0" />
                      </padding>
                   </HBox>
                </children>
@@ -132,6 +114,18 @@
          </GridPane.margin></ListView>
       <VBox alignment="CENTER" prefHeight="134.0" prefWidth="203.0" GridPane.rowIndex="1">
          <children>
+            <VBox alignment="CENTER" prefHeight="132.0" prefWidth="141.0">
+               <children>
+                  <Label fx:id="FullNameId" text="Full Name">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
             <Button fx:id="addUserId" layoutX="58.0" layoutY="70.0" mnemonicParsing="false" onAction="#addUserAction" text="Add User">
                <VBox.margin>
                   <Insets top="10.0" />
@@ -167,7 +161,7 @@
                   <Insets left="3.0" right="3.0" />
                </HBox.margin>
             </Button>
-            <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="577.0" spacing="7.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="677.0" spacing="7.0">
                <children>
                   <ImageView fx:id="searchIconId2" fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -182,10 +176,10 @@
             </HBox>
          </children>
          <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets bottom="20.0" left="10.0" top="20.0" />
          </GridPane.margin>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="23.0" prefWidth="972.0" spacing="60.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <HBox alignment="CENTER" prefHeight="23.0" prefWidth="972.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
             <Label text="Id">
                <HBox.margin>
@@ -212,8 +206,16 @@
                </HBox.margin></Label>
          </children>
          <padding>
-            <Insets right="200.0" />
+            <Insets right="250.0" />
          </padding>
       </HBox>
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Admin Dashboard">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="23.0" />
+         </GridPane.margin>
+      </Label>
    </children>
 </GridPane>
