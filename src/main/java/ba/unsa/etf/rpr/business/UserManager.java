@@ -24,6 +24,10 @@ public class UserManager {
         return DaoFactory.userDao().getAll();
     }
 
+    public static User getByID(int id) throws SQLException {
+        return DaoFactory.userDao().getById(id);
+    }
+
     public static ObservableList<User> getAllObservable() throws SQLException {
         try {
             List<User> userItems = getAll();
@@ -34,12 +38,7 @@ public class UserManager {
     }
 
     public static User add(String username, String password, String email, String fullName, String dateOfBirthStr, int roleId) throws Exception {
-        String[] dateValues = dateOfBirthStr.split("-");
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Integer.parseInt(dateValues[2]),
-                Integer.parseInt(dateValues[1]) - 1, // Adjust month to be 0-based
-                Integer.parseInt(dateValues[0]));
-        Date date = calendar.getTime();
+        Date date = strToDate(dateOfBirthStr);
         String hashedPassword = hashString(password);
         User user = new User(1, username, hashedPassword, email, fullName, date, roleId);
         try {
@@ -50,6 +49,16 @@ public class UserManager {
             return DaoFactory.userDao().add(user);
         }
     }
+
+    private static Date strToDate(String dateOfBirthStr) {
+        String[] dateValues = dateOfBirthStr.split("-");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Integer.parseInt(dateValues[2]),
+                Integer.parseInt(dateValues[1]) - 1, // Adjust month to be 0-based
+                Integer.parseInt(dateValues[0]));
+        return calendar.getTime();
+    }
+
     public static void remove(User user)
     {
         UserDaoSQLImpl userDao = UserDaoSQLImpl.getInstance();
@@ -59,12 +68,15 @@ public class UserManager {
             throw new RuntimeException(e);
         }
     }
-    public static void edit(User item)
-    {
-
+    public static void update(int id, String username, String password, String email, String fullName, String dateOfBirthStr, int roleId) throws SQLException {
+        String hashedPassword = hashString(password);
+        User u = new User(id, username, hashedPassword, email, fullName, strToDate(dateOfBirthStr), roleId);
+        DaoFactory.userDao().update(u);
     }
 
     public static List<User> selectRole(Role role) throws SQLException {
         return DaoFactory.userDao().selectRole(role);
     }
+
+
 }

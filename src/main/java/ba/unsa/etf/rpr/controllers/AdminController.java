@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
 import java.sql.SQLException;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
-import static ba.unsa.etf.rpr.controllers.RegisterController.stageRegistration;
+import static ba.unsa.etf.rpr.controllers.AddEditUserController.stageAddEditUser;
 import static ba.unsa.etf.rpr.controllers.AddEditMenuController.stageAddEditMenu;
 
 //import static ba.unsa.etf.rpr.utils.MenuHelper.createMenus;
@@ -82,7 +82,7 @@ public class AdminController {
         stageDashboard.closeStage();
     }
     public void addUserAction(ActionEvent actionEvent) throws Exception {
-        stageRegistration.openStage("/fxml/register.fxml", "Register new user");
+        stageAddEditUser.openStage("/fxml/add-edit-user.fxml", "Register new user");
     }
     public void addMenuAction(ActionEvent actionEvent) throws Exception {
         AddEditMenuController.editID = 0;
