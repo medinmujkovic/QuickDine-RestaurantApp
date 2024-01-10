@@ -3,12 +3,14 @@ package ba.unsa.etf.rpr.utils.listviews;
 import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.Iterator;
 
 
@@ -97,6 +99,8 @@ public class OrderScreenItemBox extends ItemBox{
         orders.clear();
         try {
             orders.addAll(OrderManager.getAll());
+            FXCollections.sort(orders, Comparator.comparingInt(Order::getStatusId).reversed());
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
