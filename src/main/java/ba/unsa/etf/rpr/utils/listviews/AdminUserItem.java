@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.utils.listviews;
 import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.controllers.AddEditUserController;
 import ba.unsa.etf.rpr.domain.entities.User;
+import ba.unsa.etf.rpr.domain.enums.Role;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,7 +33,11 @@ public class AdminUserItem extends ItemBox{
         // Creating HBoxes for the UI of:
         HBox idBox=createItemLabelHBox(new Label(String.valueOf(item.getId())),40);
         HBox usernameBox=createItemLabelHBox(new Label(item.getUsername()),70);
-        HBox roleBox=createItemLabelHBox(new Label(new String[]{"Admin", "Chef", "Service"}[item.getRoleId() - 1]),60);
+
+        Role role = Role.fromRoleId(item.getRoleId());
+        String formatedRole=formatRole(role);
+        HBox roleBox=createItemLabelHBox(new Label(formatedRole),60);
+
         HBox emailBox=createItemLabelHBox(new Label(item.getEmail()),110);
         HBox fullNameBox=createItemLabelHBox(new Label(item.getFullName()),120);
         HBox dateOfBirthBox=createItemLabelHBox(new Label(String.valueOf(item.getDateOfBirth())),200);
@@ -62,6 +67,11 @@ public class AdminUserItem extends ItemBox{
         hBox.getChildren().addAll(idBox,usernameBox,roleBox,emailBox,fullNameBox,dateOfBirthBox,deleteButton,editButton);
 
         return hBox;
+    }
+
+    private static String formatRole(Role role) {
+        String roleName = role.toString();
+        return roleName.substring(0, 1).toUpperCase() + roleName.substring(1).toLowerCase();
     }
 
     public static void updateUsers()
