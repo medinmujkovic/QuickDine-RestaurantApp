@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.domain.entities;
 import ba.unsa.etf.rpr.domain.Idable;
 import lombok.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Getter
@@ -20,4 +21,9 @@ public class User implements Idable{
     private String fullName;
     private Date dateOfBirth;
     private int roleId;
+
+    public String getDateOfBirthString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(dateOfBirth);
+    }
 }
