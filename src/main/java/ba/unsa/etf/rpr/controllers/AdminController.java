@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 import static ba.unsa.etf.rpr.controllers.LoginController.stageDashboard;
 import static ba.unsa.etf.rpr.controllers.RegisterController.stageRegistration;
-import static ba.unsa.etf.rpr.controllers.AddMenuController.stageAddMenu;
+import static ba.unsa.etf.rpr.controllers.AddEditMenuController.stageAddEditMenu;
 
 //import static ba.unsa.etf.rpr.utils.MenuHelper.createMenus;
 //import static ba.unsa.etf.rpr.utils.UserHelper.createUserRequests;
@@ -85,7 +85,8 @@ public class AdminController {
         stageRegistration.openStage("/fxml/register.fxml", "Register new user");
     }
     public void addMenuAction(ActionEvent actionEvent) throws Exception {
-        stageAddMenu.openStage("/fxml/add-menu.fxml", "Add new menu");
+        AddEditMenuController.editID = 0;
+        stageAddEditMenu.openStage("/fxml/add-edit-menu.fxml", "Add new menu");
     }
 
     public void foodBtnAction(ActionEvent actionEvent) throws SQLException {

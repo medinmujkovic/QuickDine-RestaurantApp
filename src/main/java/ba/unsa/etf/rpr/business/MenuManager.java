@@ -23,8 +23,17 @@ public class MenuManager {
         }
     }
 
+    public static void update(int id, String name, String type, String description, Image image, double price, int amount) throws Exception {
+        Menu m = new Menu(id, name, type, description, image, price, amount);
+        DaoFactory.menuDao().update(m);
+    }
+
     public static List<Menu> getAll() throws SQLException {
         return DaoFactory.menuDao().getAll();
+    }
+
+    public static Menu getByID(int id) throws SQLException {
+        return DaoFactory.menuDao().getById(id);
     }
 
     public static ObservableList<Menu> getAllObservable() {

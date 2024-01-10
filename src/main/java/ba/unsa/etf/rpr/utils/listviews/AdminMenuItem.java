@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
 
+import static ba.unsa.etf.rpr.controllers.AddEditMenuController.*;
+
 public class AdminMenuItem extends ItemBox{
 
     public static ObservableList<Menu> menus= MenuManager.getAllObservable();
@@ -81,7 +83,12 @@ public class AdminMenuItem extends ItemBox{
 
         //Edit button action
         button.setOnAction(actionEvent -> {
-
+            try {
+                editID = item.getId();
+                stageAddEditMenu.openStage("/fxml/add-edit-menu.fxml", "Edit menu");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
 
         return infoBox;
