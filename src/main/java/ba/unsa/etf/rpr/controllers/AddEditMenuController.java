@@ -96,80 +96,84 @@ public class AddEditMenuController {
         checkEmptyInputFields();
         if (isEmptyAllInvalidLabels()) {
             if (editID == 0) {
-                // we are adding
-                try {
-                    MenuManager.add(nameID.getText(),
-                            typeID.getValue().toString(),
-                            descriptionID.getText(),
-                            imageID.getImage(),
-                            Double.parseDouble(priceID.getText()),
-                            Integer.parseInt(amountID.getText())
-                    );
-                    StageUtils.alert("Success!", "Menu has been added successfully!");
-                    stageAddEditMenu.closeStage();
-                } catch (Exception e) {
-                    StageUtils.alert("Error!", "Menu with the same name already exists!");
-                }
+                addMenu();
             }
             else if (oldMenu.getName().equals(nameID.getText())) {
-                // we are editing and name didn't get changed
-                try {
-                    MenuManager.update(editID,
-                            nameID.getText(),
-                            typeID.getValue().toString(),
-                            descriptionID.getText(),
-                            imageID.getImage(),
-                            Double.parseDouble(priceID.getText()),
-                            Integer.parseInt(amountID.getText())
-                    );
-                    StageUtils.alert("Success!", "Menu has been updated successfully!");
-                    stageAddEditMenu.closeStage();
-
-                } catch (Exception e) {
-                    StageUtils.alert("Error!", "I have no idea why theres an error!");
-                }
+                editMenuSameName();
             }
             else {
-                // we are editing and name got changed
-                try {
-                    // firstly delete current menu
-                    MenuManager.deleteMenuFrom(editID);
-                    // then we try to add new menu that has new name
-                    MenuManager.add(nameID.getText(),
-                            typeID.getValue().toString(),
-                            descriptionID.getText(),
-                            imageID.getImage(),
-                            Double.parseDouble(priceID.getText()),
-                            Integer.parseInt(amountID.getText())
-                    );
-                    StageUtils.alert("Success!", "Menu has been updated successfully!");
-                    stageAddEditMenu.closeStage();
-
-                } catch (Exception e) {
-                    StageUtils.alert("Error!", "Menu with the same name already exists!");
-
-                    Menu menu = null;
-                    try {
-                        // if new name already exists, we need to add old menu again!
-                        menu = MenuManager.add(oldMenu.getName(),
-                                oldMenu.getType(),
-                                oldMenu.getDescription(),
-                                oldMenu.getImage(),
-                                oldMenu.getPrice(),
-                                oldMenu.getAmount()
-                        );
-                        editID = menu.getId();
-                        // put old info back
-                        fillInfoForEdit();
-                    } catch (Exception ignored) {
-
-                    }
-                }
-
+                editMenuNameChanged();
             }
         }
         AdminMenuItem.updateMenus();
     }
+
+    private void editMenuNameChanged() {
+        try {
+            // firstly delete current menu
+            MenuManager.deleteMenuFrom(editID);
+            // then we try to add new menu that has new name
+            MenuManager.add(nameID.getText(),
+                    typeID.getValue().toString(),
+                    descriptionID.getText(),
+                    imageID.getImage(),
+                    Double.parseDouble(priceID.getText()),
+                    Integer.parseInt(amountID.getText())
+            );
+            StageUtils.alert("Success!", "Menu has been updated successfully!");
+            stageAddEditMenu.closeStage();
+        } catch (Exception e) {
+            StageUtils.alert("Error!", "Menu with the same name already exists!");
+            Menu menu = null;
+            try {
+                // if new name already exists, we need to add old menu again!
+                menu = MenuManager.add(oldMenu.getName(),
+                        oldMenu.getType(),
+                        oldMenu.getDescription(),
+                        oldMenu.getImage(),
+                        oldMenu.getPrice(),
+                        oldMenu.getAmount()
+                );
+                editID = menu.getId();
+                // put old info back
+                fillInfoForEdit();
+            } catch (Exception ignored) { }
+        }
+    }
+
+    private void editMenuSameName() {
+        try {
+            MenuManager.update(editID,
+                    nameID.getText(),
+                    typeID.getValue().toString(),
+                    descriptionID.getText(),
+                    imageID.getImage(),
+                    Double.parseDouble(priceID.getText()),
+                    Integer.parseInt(amountID.getText())
+            );
+            StageUtils.alert("Success!", "Menu has been updated successfully!");
+            stageAddEditMenu.closeStage();
+        } catch (Exception e) {
+            StageUtils.alert("Error!", "I have no idea why theres an error!");
+        }
+    }
+
+    private void addMenu() {
+        try {
+            MenuManager.add(nameID.getText(),
+                    typeID.getValue().toString(),
+                    descriptionID.getText(),
+                    imageID.getImage(),
+                    Double.parseDouble(priceID.getText()),
+                    Integer.parseInt(amountID.getText())
+            );
+            StageUtils.alert("Success!", "Menu has been added successfully!");
+            stageAddEditMenu.closeStage();
+        } catch (Exception e) {
+            StageUtils.alert("Error!", "Menu with the same name already exists!");
+        }
+    }
+
     public void cancelClick(ActionEvent actionEvent) {
         stageAddEditMenu.closeStage();
         editID = 0;
