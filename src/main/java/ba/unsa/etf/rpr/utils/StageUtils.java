@@ -17,7 +17,7 @@ public class StageUtils {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
         stage.setTitle(title);
         stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.getIcons().add(new Image("https://banner2.cleanpng.com/20180629/rib/kisspng-monumental-restaurant-elche-logo-kitchen-restaurant-sign-5b36b178864749.62945802153031103255.jpg"));
         stage.show();
     }
