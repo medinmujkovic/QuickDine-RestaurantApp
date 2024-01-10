@@ -16,24 +16,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.AdminController">
-<stylesheets>
-    <URL value="@../css/styles.css" />
-</stylesheets>
-    <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="423.0" minWidth="10.0" prefWidth="179.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="902.0" minWidth="10.0" prefWidth="787.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="510.0" minHeight="0.0" prefHeight="145.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="196.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="258.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.AdminController">
+   <stylesheets>
+      <URL value="@../css/styles.css" />
+   </stylesheets>
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="423.0" minWidth="10.0" prefWidth="228.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1031.0" minWidth="10.0" prefWidth="972.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="510.0" minHeight="0.0" prefHeight="145.0" vgrow="SOMETIMES" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <!-- Add the remaining RowConstraints as needed -->
+   </rowConstraints>
    <children>
       <VBox alignment="CENTER" prefHeight="132.0" prefWidth="141.0">
          <children>
+            <Label text="Admin Dashboard">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
             <ImageView fitHeight="21.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="FullNameId" text="Full Name">
                <VBox.margin>
@@ -48,18 +57,10 @@
             <Insets />
          </GridPane.margin>
       </VBox>
-      <Pane prefHeight="400.0" prefWidth="673.0" GridPane.columnIndex="1">
+      <Pane prefHeight="136.0" prefWidth="972.0" GridPane.columnIndex="1">
          <children>
-            <VBox prefHeight="132.0" prefWidth="822.0">
+            <VBox layoutX="8.0" prefHeight="83.0" prefWidth="814.0">
                <children>
-                  <Label text="Admin Dashboard">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="750.0">
                      <children>
                         <Button layoutX="13.0" layoutY="16.0" mnemonicParsing="false" onAction="#allBtnAction" text="All" />
@@ -94,7 +95,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="47.0" prefWidth="824.0" spacing="110.0">
+                  <HBox alignment="CENTER" prefHeight="12.0" prefWidth="822.0" spacing="110.0">
                      <children>
                         <Label text="Name">
                            <HBox.margin>
@@ -121,11 +122,11 @@
             </VBox>
          </children>
       </Pane>
-      <ListView fx:id="UserListId" prefHeight="134.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <ListView fx:id="UserListId" prefHeight="270.0" prefWidth="952.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin></ListView>
-      <ListView fx:id="MenuListId" prefHeight="395.0" prefWidth="620.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <ListView fx:id="MenuListId" prefHeight="372.0" prefWidth="952.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin></ListView>
@@ -184,25 +185,31 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="812.0" spacing="60.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <HBox alignment="CENTER" prefHeight="23.0" prefWidth="972.0" spacing="60.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
             <Label text="Id">
                <HBox.margin>
-                  <Insets left="85.0" />
+                  <Insets right="50.0" />
                </HBox.margin>
             </Label>
-            <Label layoutX="102.0" layoutY="18.0" text="Name" />
+            <Label layoutX="102.0" layoutY="18.0" text="Name">
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin></Label>
             <Label layoutX="10.0" layoutY="10.0" text="Password">
                <HBox.margin>
-                  <Insets />
+                  <Insets right="50.0" />
                </HBox.margin>
             </Label>
             <Label layoutX="42.0" layoutY="10.0" text="Full Name">
                <HBox.margin>
-                  <Insets />
+                  <Insets right="50.0" />
                </HBox.margin>
             </Label>
-            <Label layoutX="549.0" layoutY="22.0" text="Date of Birth" />
+            <Label layoutX="549.0" layoutY="22.0" text="Date of Birth">
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin></Label>
          </children>
          <padding>
             <Insets right="200.0" />

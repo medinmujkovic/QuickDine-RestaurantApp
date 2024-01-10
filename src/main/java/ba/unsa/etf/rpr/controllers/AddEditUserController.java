@@ -35,6 +35,10 @@ public class AddEditUserController {
     public void initialize() {
         if (editID != 0)
             fillInfoForEdit();
+        else {
+            titleID.setText("Quick Dine - Registration");
+            submitButton.setText("Register");
+        }
         usernameID.textProperty().addListener((obs,oldValue,newValue)->{
             if(isValid(newValue, username))
                 invalidUsernameID.setText("");

@@ -82,6 +82,7 @@ public class AdminController {
         stageDashboard.closeStage();
     }
     public void addUserAction(ActionEvent actionEvent) throws Exception {
+        AddEditUserController.editID = 0;
         stageAddEditUser.openStage("/fxml/add-edit-user.fxml", "Register new user");
     }
     public void addMenuAction(ActionEvent actionEvent) throws Exception {
