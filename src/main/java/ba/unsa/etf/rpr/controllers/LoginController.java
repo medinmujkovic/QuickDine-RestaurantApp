@@ -41,13 +41,15 @@ public class LoginController {
             new Thread(authenticationTask).start();
 
             authenticationTask.setOnSucceeded(event -> {
-                if (authenticationTask.getValue()) {
-                    try {
-                        handleSuccessfulLogin();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                Platform.runLater(() -> {
+                    if (authenticationTask.getValue()) {
+                        try {
+                            handleSuccessfulLogin();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
-                }
+                });
             });
 
             authenticationTask.setOnFailed(event->{
