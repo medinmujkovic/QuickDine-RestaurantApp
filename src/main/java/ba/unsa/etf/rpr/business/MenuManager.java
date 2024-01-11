@@ -35,6 +35,9 @@ public class MenuManager {
     public static Menu getByID(int id) throws SQLException {
         return DaoFactory.menuDao().getById(id);
     }
+    public static Menu getByName(String name) throws SQLException {
+        return DaoFactory.menuDao().getByName(name);
+    }
 
     public static ObservableList<Menu> getAllObservable() {
         try {

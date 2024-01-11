@@ -9,4 +9,6 @@ import java.util.List;
 public interface MenuDao extends Dao<Menu>{
     List<Menu> selectType(String type) throws SQLException;
     void deleteMenu(int id) throws SQLException;
+
+    Menu getByName(String name) throws SQLException;
 }

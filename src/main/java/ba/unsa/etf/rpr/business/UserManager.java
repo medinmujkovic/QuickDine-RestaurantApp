@@ -28,6 +28,10 @@ public class UserManager {
         return DaoFactory.userDao().getById(id);
     }
 
+    public static User getByUsername(String username) throws SQLException {
+        return DaoFactory.userDao().getByUsername(username);
+    }
+
     public static ObservableList<User> getAllObservable() throws SQLException {
         try {
             List<User> userItems = getAll();
