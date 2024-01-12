@@ -1,13 +1,12 @@
 package ba.unsa.etf.rpr.utils.listviews;
 
 import ba.unsa.etf.rpr.business.LoginManager;
-import ba.unsa.etf.rpr.business.MenuManager;
 import ba.unsa.etf.rpr.business.OrderManager;
-import ba.unsa.etf.rpr.controllers.ChefController;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -15,9 +14,7 @@ import javafx.scene.layout.HBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 //Order item in the Chef Dashboard listview
@@ -226,7 +223,7 @@ public class OrderItemBox extends ItemBox{
 
 
     //Updating the selected items view
-    public static void updateSelectedOrderView()
+    public static ObservableList<Order> updateSelectedOrderView()
     {
         selectedOrderObservable.clear();
         selectedOrderObservable.addAll(selectedOrderList);
@@ -248,6 +245,23 @@ public class OrderItemBox extends ItemBox{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return orders;
+    }
+
+    public static void loadData() {
+        Task<ObservableList<Order>> task = new Task<>() {
+            @Override
+            protected ObservableList<Order> call() throws Exception {
+                return updateSelectedOrderView();
+            }
+        };
+
+        task.setOnSucceeded(event -> {
+            List<Order> loadedOrders = task.getValue();
+            orders.addAll(loadedOrders);
+        });
+
+        new Thread(task).start();
     }
 
     //Delete the items when order submitted

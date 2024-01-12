@@ -29,6 +29,7 @@ public class ChefController {
         ObservableList<Order> orders = OrderItemBox.getOrders();
 
         //Setting the orders to the FXML ListView and displaying it
+        OrderItemBox.loadData();
         orderListId.setItems(orders);
         orderListId.setCellFactory(param -> new ListCell<Order>() {
             @Override
