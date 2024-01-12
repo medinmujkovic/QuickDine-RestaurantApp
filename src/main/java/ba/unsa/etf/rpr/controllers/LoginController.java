@@ -8,12 +8,12 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
+import static ba.unsa.etf.rpr.utils.LoadingIndicator.createLoadingIndicator;
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.isValid;
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.type.*;
 
@@ -25,6 +25,7 @@ public class LoginController {
     public Label invalidPasswordId;
     public ImageView backgroundImage;
     public static StageUtils stageDashboard = new StageUtils();
+    public Button loginBtn;
 
     //Login validation
     public void loginAction(ActionEvent actionEvent) throws Exception {
@@ -39,14 +40,41 @@ public class LoginController {
             };
             new Thread(authenticationTask).start();
 
+            ImageView loadingIndicator = createLoadingIndicator();
+            loadingIndicator.setVisible(false);
+            String originalLabel = loginBtn.getText();
+
+            authenticationTask.setOnRunning(event -> {
+                Platform.runLater(() -> {
+                    loginBtn.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+                    loginBtn.setGraphic(loadingIndicator);
+                    loadingIndicator.setVisible(true);
+                });
+            });
+
             authenticationTask.setOnSucceeded(event -> {
                 Platform.runLater(() -> {
                     if (authenticationTask.getValue()) {
-                        try {
-                            handleSuccessfulLogin();
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
+                        CompletableFuture.runAsync(() -> {
+                            try {
+                                Thread.sleep(1000);
+                                Platform.runLater(() -> {
+                                    try {
+                                        handleSuccessfulLogin();
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                    loadingIndicator.setVisible(false);
+                                    loginBtn.setContentDisplay(ContentDisplay.TEXT_ONLY);
+                                    loginBtn.setText(originalLabel);
+
+                                });
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
+                    } else {
+                        loadingIndicator.setVisible(false);
                     }
                 });
             });
