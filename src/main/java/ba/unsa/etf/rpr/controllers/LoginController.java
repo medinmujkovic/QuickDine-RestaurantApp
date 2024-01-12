@@ -40,7 +40,7 @@ public class LoginController {
             new Thread(authenticationTask).start();
 
             authenticationTask.setOnSucceeded(event -> {
-
+                Platform.runLater(() -> {
                     if (authenticationTask.getValue()) {
                         try {
                             handleSuccessfulLogin();
@@ -48,6 +48,7 @@ public class LoginController {
                             throw new RuntimeException(e);
                         }
                     }
+                });
             });
 
             authenticationTask.setOnFailed(event->{

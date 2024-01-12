@@ -4,17 +4,23 @@ import ba.unsa.etf.rpr.business.LoginManager;
 import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.entities.Order;
 import ba.unsa.etf.rpr.domain.enums.OrderStatus;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+import static ba.unsa.etf.rpr.utils.LoadingIndicator.createLoadingIndicator;
 
 
 //Order item in the Chef Dashboard listview
@@ -116,31 +122,35 @@ public class OrderItemBox extends ItemBox{
             infoBox.setPrefWidth(60);
             infoBox.setMaxWidth(60);
 
+            ImageView loadingIndicator = createLoadingIndicator();
+            loadingIndicator.setVisible(false);
+
             //Accept button action
             button.setOnAction(actionEvent -> {
-                //Check if the Order already exists
-                Order exists = null;
-                for (Order i : selectedOrderObservable)
-                    if (i.getId() == item.getId())
-                        exists = i;
+                button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+                button.setGraphic(loadingIndicator);
+                loadingIndicator.setVisible(true);
 
-                if (exists != null) {
-                    //If the Order already exists then just alter the changes to the selected list
-                    selectedOrderList.remove(exists);
-                    selectedOrderList.add(item);
-                    updateSelectedOrderView();
-                } else {
-                    //If the Order doesn't already exist then add a new Order to the selected list
+                CompletableFuture.runAsync(() -> {
                     try {
+                        Thread.sleep(2000);
                         item.setStatus(OrderStatus.IN_PROGRESS);
                         item.setUserId(LoginManager.getLoginRequest().id());
                         Order changeStatus = OrderManager.changeStatusId(item);
-                    } catch (SQLException e) {
+
+                        Platform.runLater(() -> {
+
+                            selectedOrderList.remove(item);
+                            selectedOrderList.add(changeStatus);
+                            updateSelectedOrderView();
+
+                            loadingIndicator.setVisible(false);
+                            button.setGraphic(null);
+                        });
+                    } catch (InterruptedException | SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    selectedOrderList.add(item);
-                    updateSelectedOrderView();
-                }
+                });
             });
             return infoBox;
         }
@@ -159,16 +169,34 @@ public class OrderItemBox extends ItemBox{
         infoBox.setPrefWidth(50);
         infoBox.setMaxWidth(50);
 
+        ImageView loadingIndicator = createLoadingIndicator();
+        loadingIndicator.setVisible(false);
+
         //Finish button action
         button.setOnAction(actionEvent -> {
-            try {
-                item.setStatus(OrderStatus.READY_FOR_PICKUP);
-                Order changeStatus= OrderManager.changeStatusId(item);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            deleteSelectedOrderItems();
-            updateSelectedOrderView();
+            button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            button.setGraphic(loadingIndicator);
+            loadingIndicator.setVisible(true);
+
+
+            CompletableFuture.runAsync(() -> {
+                try {
+                    Thread.sleep(2000);
+                    item.setStatus(OrderStatus.READY_FOR_PICKUP);
+                    Order changeStatus = OrderManager.changeStatusId(item);
+
+                    Platform.runLater(() -> {
+                        deleteSelectedOrderItems();
+                        updateSelectedOrderView();
+
+                        loadingIndicator.setVisible(false);
+                        button.setGraphic(null);
+                    });
+                } catch (SQLException | InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+            });
         });
 
         return infoBox;
@@ -182,17 +210,34 @@ public class OrderItemBox extends ItemBox{
         infoBox.setPrefWidth(30);
         infoBox.setMaxWidth(30);
 
+        ImageView loadingIndicator = createLoadingIndicator();
+        loadingIndicator.setVisible(false);
+
         //Delete button action
         button.setOnAction(actionEvent -> {
-            selectedOrderList.remove(item);
-            try {
-                item.setStatus(OrderStatus.RECEIVED);
-                item.setUserId(1);
-                Order changeStatus= OrderManager.changeStatusId(item);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            updateSelectedOrderView();
+
+            button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            button.setGraphic(loadingIndicator);
+            loadingIndicator.setVisible(true);
+            CompletableFuture.runAsync(() -> {
+                try {
+                    Thread.sleep(2000);
+                    item.setStatus(OrderStatus.RECEIVED);
+                    item.setUserId(1);
+                    Order changeStatus = OrderManager.changeStatusId(item);
+                    Platform.runLater(() -> {
+
+                        selectedOrderList.remove(item);
+                        updateSelectedOrderView();
+
+                        loadingIndicator.setVisible(false);
+                        button.setGraphic(null);
+                    });
+                } catch (SQLException | InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+            });
         });
 
         return infoBox;
