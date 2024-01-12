@@ -11,8 +11,8 @@ public class LoadingIndicator {
         Image image = new Image("img/spinner-icon.png");
         ImageView loadingIndicator = new ImageView(image);
 
-        loadingIndicator.setFitWidth(20);
-        loadingIndicator.setFitHeight(20);
+        loadingIndicator.setFitWidth(17);
+        loadingIndicator.setFitHeight(17);
 
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(1), loadingIndicator);
         rotateTransition.setByAngle(360);

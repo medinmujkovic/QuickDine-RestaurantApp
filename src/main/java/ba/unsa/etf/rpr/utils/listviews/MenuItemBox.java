@@ -130,7 +130,7 @@ public class MenuItemBox extends ItemBox {
         HBox hBox=new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox nameBox=createItemLabelHBox(new Label(item.getName()),50);
+        HBox nameBox=createItemLabelHBox(new Label(item.getName()),120);
         HBox priceBox=createItemLabelHBox(new Label("$"+item.getPrice()),60);
         HBox amountBox=createItemLabelHBox(new Label("x"+item.getAmount()),30);
 

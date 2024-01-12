@@ -41,7 +41,7 @@ Button:pressed {
 }
 
 .body{
-    -fx-background-image: url(../img/restaurant-background-2ez77umko2vj5w02.jpg);
+    -fx-background-image: url(../img/restaurant-background.jpg);
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
