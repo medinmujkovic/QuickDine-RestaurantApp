@@ -27,8 +27,8 @@ public class OrderScreenItemBox extends ItemBox{
         HBox hBox = new HBox();
 
         // Creating HBoxes for the UI of:
-        HBox mainOrderBox = createItemLabelHBox(new Label(String.valueOf(item.getId())), 130);
-        HBox statusBox = createItemStatusBox(130,item);
+        HBox mainOrderBox = createItemLabelHBox(new Label(String.valueOf(item.getId())), 70);
+        HBox statusBox = createItemStatusBox(110,item);
         HBox acceptOrderBox=createAcceptedButtonBox(
                 new Button("Accept"),
                 item
