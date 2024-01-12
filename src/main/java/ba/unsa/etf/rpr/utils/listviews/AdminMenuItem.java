@@ -80,19 +80,6 @@ public class AdminMenuItem extends ItemBox{
         return infoBox;
     }
 
-    //Method for creating the edit item button when selected
-    private static VBox createMenuEdit(Button button, Menu item) {
-        VBox infoBox=new VBox(button);
-        infoBox.setMinWidth(60);
-        infoBox.setPrefWidth(60);
-        infoBox.setMaxWidth(60);
-
-
-
-        return infoBox;
-    }
-
-
     public static void updateMenus()
     {
         menus.clear();
