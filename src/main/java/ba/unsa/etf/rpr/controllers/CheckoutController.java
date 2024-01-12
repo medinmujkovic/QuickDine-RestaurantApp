@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.OrderManager;
 import ba.unsa.etf.rpr.domain.entities.Menu;
 import ba.unsa.etf.rpr.domain.entities.Order;
+import ba.unsa.etf.rpr.utils.StageUtils;
 import ba.unsa.etf.rpr.utils.listviews.MenuItemBox;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -70,6 +71,8 @@ public class CheckoutController {
         String orderString=storeOrder(selectedItems);
         Order order = new Order(1,1,orderString);
         Order sentOrder = OrderManager.add(order);
+
+        StageUtils.alert("Success!", "Order has been submitted!");
         //Deleting items from the select list
         selectedItems.clear();
         deleteSelectedItems();
