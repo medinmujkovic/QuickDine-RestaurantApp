@@ -8,15 +8,16 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import lombok.Getter;
 
 import java.sql.SQLException;
 import java.util.Comparator;
-import java.util.Iterator;
 
 
 //Order screen for customers
 public class OrderScreenItemBox extends ItemBox{
 
+    @Getter
     public static ObservableList<Order> orders= OrderManager.getAllObservable();
 
     public static HBox createOrderScreenBox(Order item) throws SQLException {
@@ -106,7 +107,4 @@ public class OrderScreenItemBox extends ItemBox{
         }
     }
 
-    public static ObservableList<Order> getOrders() {
-        return orders;
-    }
 }

@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-
 import java.io.IOException;
 
 import static ba.unsa.etf.rpr.utils.ValidationPatterns.isValid;
@@ -41,7 +40,7 @@ public class LoginController {
             new Thread(authenticationTask).start();
 
             authenticationTask.setOnSucceeded(event -> {
-                Platform.runLater(() -> {
+
                     if (authenticationTask.getValue()) {
                         try {
                             handleSuccessfulLogin();
@@ -49,7 +48,6 @@ public class LoginController {
                             throw new RuntimeException(e);
                         }
                     }
-                });
             });
 
             authenticationTask.setOnFailed(event->{

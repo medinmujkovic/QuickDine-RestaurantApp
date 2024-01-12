@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -215,7 +216,8 @@ public class OrderItemBox extends ItemBox{
                         throw new RuntimeException(e);
                     }
                 })
-                .collect(Collectors.toList());
+                .sorted(Comparator.comparing(Order::getId).reversed())
+                .toList();
 
         orders.clear();
         orders.addAll(filteredOrders);
@@ -231,13 +233,18 @@ public class OrderItemBox extends ItemBox{
 
         orders.clear();
         try {
-            orders.addAll(OrderManager.getAll());
-            Iterator<Order> iterator = orders.iterator();
-            while (iterator.hasNext()) {
-                Order item=iterator.next();
-                if (OrderManager.getStatus(item.getId())==OrderStatus.READY_FOR_PICKUP)
-                    iterator.remove();
-            }
+            List<Order> filteredOrders = OrderManager.getAll().stream()
+                    .filter(order -> {
+                        try {
+                            return OrderManager.getStatus(order.getId()) != OrderStatus.READY_FOR_PICKUP;
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    })
+                    .sorted(Comparator.comparing(Order::getId).reversed())
+                    .toList();
+
+            orders.addAll(filteredOrders);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
